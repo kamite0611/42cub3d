@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 21:52:47 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/29 22:25:17 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ typedef struct s_cub_data
 
 
 /** CubData */
+void init_cub_data(t_cub_data *cub_data);
 int initialize_cub_data(t_cub_data *cub_data);
 
-
+/** Exit */
+void free_exit(t_cub_data *cub_data, int status);
 
 /** Utils */
 int err_msg(char *msg, int status);
