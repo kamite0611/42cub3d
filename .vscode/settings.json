@@ -1,7 +1,8 @@
 {
   "files.associations": {
     "*.tsx": "typescriptreact",
-    "cub3d.h": "c"
+    "cub3d.h": "c",
+    "keysym.h": "c"
   },
   "cSpell.words": ["cubdata", "filedata", "mapinfo", "putstr", "texinfo"]
 }
