@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:56:49 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 23:17:21 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/29 23:20:45 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void free_cub_data(t_cub_data *cub_data)
 
 
 /**
- * 全てをfree後,exitする
+ * 全てをfree後,statusで渡された値でexitする
  */
 void free_exit(t_cub_data *cub_data, int status)
 {

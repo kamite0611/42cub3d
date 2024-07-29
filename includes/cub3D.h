@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 23:04:51 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/29 23:27:13 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_tex_data
 
 typedef struct s_cub_data
 {
+  char *map_path; /** argv[2] */
+
   void *mlx;
   void *win;
   int win_height;
@@ -52,7 +54,7 @@ typedef struct s_cub_data
 
 /** CubData */
 void init_cub_data(t_cub_data *cub_data);
-int initialize_cub_data(t_cub_data *cub_data);
+int initialize_cub_data(t_cub_data *cub_data, char *map_path);
 
 /** Exit */
 void free_exit(t_cub_data *cub_data, int status);
