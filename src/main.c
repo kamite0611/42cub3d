@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:46:23 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 23:57:54 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 00:43:34 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int main(int argc, char *argv[])
 {
 	t_cub_data cub_data;
 
-	if(!args_checker(argc, argv))
+	if(args_checker(argc, argv))
 		return ERR;
 
-	initialize_cub_data(&cub_data, argv[2]);
+	initialize_cub_data(&cub_data, argv[1]);
 	init_cub_data(&cub_data);
 
 	mlx_loop(cub_data.mlx);

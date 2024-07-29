@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/07/30 00:17:25 by akamite          ###   ########.fr        #
+#    Updated: 2024/07/30 00:42:22 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,4 +87,4 @@ fclean: clean
 re: fclean all
 
 debug: re
-	./$(NAME) hoge
+	./$(NAME) maps/good_map1.cub
