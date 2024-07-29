@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/07/30 00:14:07 by akamite          ###   ########.fr        #
+#    Updated: 2024/07/30 00:17:25 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC_DIR	= src/
 OBJ_DIR	= obj/
 
 SRC	= \
+	cub_data/init_mapinfo.c \
 	cub_data/init.c \
 	cub_data/initialize.c \
 	exit/free_exit.c \
