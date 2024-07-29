@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 23:02:08 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/29 23:04:51 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct s_cub_data
 {
   void *mlx;
   void *win;
-  unsigned int win_height;
-  unsigned int win_width;
+  int win_height;
+  int win_width;
 
   t_tex_data tex_data;
 } t_cub_data;

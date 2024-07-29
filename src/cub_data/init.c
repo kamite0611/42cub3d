@@ -6,15 +6,12 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 22:59:43 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/29 23:05:01 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void alloc_all(t_cub_data *cub_data)
-{
-}
 
 void init_cub_data(t_cub_data *cub_data)
 {
