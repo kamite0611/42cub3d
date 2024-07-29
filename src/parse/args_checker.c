@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   args_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 23:28:50 by akamite          ###   ########.fr       */
+/*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
+/*   Updated: 2024/07/29 23:35:25 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void init_tex_data(t_tex_data *tex_data)
+/**
+ * コマンドライン引数が正しいかチェックする
+ * - コマンドライン引数の数が正しいか
+ * - ファイルパスが正しいか
+ * - ファイルの内容が正しいか
+ */
+int args_checker(int argc, char *argv[])
 {
-}
-
-void init_cub_data(t_cub_data *cub_data)
-{
-	cub_data->mlx = mlx_init();
-	if (!cub_data->mlx)
-		free_exit(cub_data, err_msg("mlx_init() Error.", ERR));
-
-	cub_data->win = mlx_new_window(cub_data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
-	if (!cub_data->win)
-		free_exit(cub_data, err_msg("mlx_new_window() Error.", ERR));
+	if (argc != 2)
+		return (err_msg(ERR_USAGE, 1));
+	/** @TODO add argv checker */
+	return SUCCESS;
 }
