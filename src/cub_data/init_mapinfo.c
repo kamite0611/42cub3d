@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 02:03:35 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 02:05:52 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static int	parse_line(char *line, t_mapinfo *mapinfo)
 /**
  * ファイルの列数を mapinfo に入れる
  * - mapinfo.line_count	ファイル列数 (int)
+ * - mapinfo.*			parse_line()
  */
 static int	parse_file(t_mapinfo *mapinfo)
 {
@@ -84,7 +85,7 @@ static int	parse_file(t_mapinfo *mapinfo)
 }
 
 /**
- * ファイル情報を
+ * ファイル情報を t_cub_data に入れる
  */
 
 void	init_mapinfo(t_cub_data *cubdata)
