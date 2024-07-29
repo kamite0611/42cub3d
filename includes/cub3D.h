@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 22:33:48 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/29 23:02:08 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,24 @@
 
 #define WIN_HEIGHT 480
 #define WIN_WIDTH 640
+#define TEX_SIZE 64
+
 
 #include "libft.h"
-
 #include <X11/keysym.h>
 #include <X11/X.h>
 #include "mlx.h"
 #include <stdlib.h>
+
+typedef struct s_tex_data
+{
+  char *north;
+  char *south;
+  char *west;
+  char *east;
+	int size;
+} t_tex_data;
+
 
 typedef struct s_cub_data
 {
@@ -32,6 +43,8 @@ typedef struct s_cub_data
   void *win;
   unsigned int win_height;
   unsigned int win_width;
+
+  t_tex_data tex_data;
 } t_cub_data;
 
 #define ERR_USAGE "Usage: ./cub3D <path/to/map.cub>"
