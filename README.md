@@ -2,14 +2,14 @@
 
 必要なライブラリ
 
-- pkg-config (`brew install pkg-config`)
-- libx11 (`brew install libx11`)
+- pkg-config `brew install pkg-config`
+- libx11 `brew install libx11`
 
 その他必要かもしれないライブラリ
 
-- libxext (`brew install libxext`)
-- libxrandr (`brew install libxrandr`)
-- libxrender (`brew install libxrender`)
+- libxext `brew install libxext`
+- libxrandr `brew install libxrandr`
+- libxrender `brew install libxrender`
 
 Makefile に環境依存の書き込みがあるので編集してください
 
