@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 00:13:26 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 00:14:35 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 void init_mapinfo(t_mapinfo *mapinfo)
 {
+	(void)mapinfo;
 }
 
 void init_texinfo(t_texinfo *texinfo)
 {
+	(void)texinfo;
 }
 
 void init_cub_data(t_cub_data *cub_data)
