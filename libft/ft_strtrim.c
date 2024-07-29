@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 21:13:22 by mnakashi          #+#    #+#             */
-/*   Updated: 2024/04/15 21:32:14 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/07/30 01:17:08 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,32 @@ char	*ft_strtrim(char const *s1, char const *set)
 	trimmed = ft_substr(s1, start, end - start + 1);
 	return (trimmed);
 }
+
+char	*ft_strtrim_both(char const *s1, char const *startStr, char const *endStr)
+{
+	char	*trimmed;
+	size_t	start;
+	size_t	end;
+
+	if (!s1)
+		return (NULL);
+	if (!startStr && !endStr)
+		return (ft_strdup(s1));
+	if(!startStr)
+		startStr = endStr;
+	if(!endStr)
+		endStr = startStr;
+	end = ft_strlen(s1) - 1;
+	start = 0;
+	while (s1[start] && ft_strchr(startStr, s1[start]))
+		++start;
+	while (s1[end] && ft_strchr(endStr, s1[end]))
+		--end;
+	trimmed = ft_substr(s1, start, end - start + 1);
+	return (trimmed);
+}
+
+
 
 // int	main()
 // {

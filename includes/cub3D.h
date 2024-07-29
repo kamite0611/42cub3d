@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 00:57:57 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 01:08:36 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ typedef struct s_mapinfo
 {
   char *path; /** argv[2] */
 
-  char *content;
+  char *no_path;
+  char *so_path;
+  char *we_path;
+  char *ea_path;
+
   int line_count;
 } t_mapinfo;
 

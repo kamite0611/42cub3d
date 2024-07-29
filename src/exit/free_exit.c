@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:56:49 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 00:54:34 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 01:05:48 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
  * t_mapinfoの中身でmallocしているものをfreeする
  */
 void free_mapinfo(t_mapinfo *mapinfo){
-	if(mapinfo->content)
-		free(mapinfo->content);
+	(void)mapinfo;
+	// if(mapinfo->content)
+		// free(mapinfo->content);
 }
 
 /**
