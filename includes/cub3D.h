@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 20:12:46 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/29 20:20:31 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_cub_data
 
 #include <X11/keysym.h>
 #include <X11/X.h>
+#include "libft.h"
 
 /** Utils */
 int err_msg(char *msg, int status);

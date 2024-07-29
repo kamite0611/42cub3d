@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/07/29 20:17:24 by akamite          ###   ########.fr        #
+#    Updated: 2024/07/29 20:22:42 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ MLX_LIBS		= \
 
 # libft
 LIBFT_DIR = libft
-LIBFTA = $(LIBFT_DIR)
+LIBFT_A = $(LIBFT_DIR)/libft.a
 
 
 SRC_DIR	= src/
@@ -39,9 +39,14 @@ SRC	= \
 	utils/error.c \
 	main.c
 
+A_FILES	= $(LIBFT_A)
 SRCS	= $(addprefix $(SRC_DIR), $(SRC))
 OBJS	= $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
-INCS	= -I ./includes/ $(MLX_INCS)
+INCS	= \
+	-I ./includes/ \
+	-I ./libft/ \
+	$(MLX_INCS)
+
 
 
 all: dirs buildLibs $(NAME)
@@ -55,7 +60,7 @@ buildLibs:
 	make -C $(LIBFT_DIR)/
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(INCS) $(MLX_LIBS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(INCS) $(MLX_LIBS) $(A_FILES) $(OBJS) -o $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCS)

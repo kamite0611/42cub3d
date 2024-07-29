@@ -6,12 +6,18 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:08:55 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 20:11:28 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/29 20:23:02 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3D.h"
+
 int err_msg(char *msg, int status)
 {
-	(void)msg;
+	if(msg)
+	{
+		ft_putstr_fd(msg, status);
+	}
+	ft_putstr_fd("\n", status);
 	return status;
 }
