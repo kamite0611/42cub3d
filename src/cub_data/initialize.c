@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 18:46:23 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 20:31:03 by akamite          ###   ########.fr       */
+/*   Created: 2024/07/29 20:31:35 by akamite           #+#    #+#             */
+/*   Updated: 2024/07/29 20:34:46 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int main(int argc, char *argv[])
+int initialize_cub_data(t_cub_data *cub_data)
 {
-	t_cub_data cub_data;
-
-	(void)argv;
-	(void)cub_data;
-	if (argc != 2)
-		return (err_msg(ERR_USAGE, 1));
-
-
-
-	return 0;
+	cub_data->mlx = NULL;
+	cub_data->win = NULL;
+	cub_data->win_height = WIN_HEIGHT;
+	cub_data->win_height = WIN_WIDTH;
+	return SUCCESS;
 }
