@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:56:49 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 02:01:28 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 02:18:24 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,14 @@
  */
 void	free_mapinfo(t_mapinfo *mapinfo)
 {
-	(void)mapinfo;
-	// if(mapinfo->content)
-	// free(mapinfo->content);
+	if (mapinfo->no_path)
+		free(mapinfo->no_path);
+	if (mapinfo->so_path)
+		free(mapinfo->so_path);
+	if (mapinfo->we_path)
+		free(mapinfo->we_path);
+	if (mapinfo->ea_path)
+		free(mapinfo->ea_path);
 }
 
 /**
