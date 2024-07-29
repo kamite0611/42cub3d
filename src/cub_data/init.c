@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 23:55:40 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 00:00:25 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ void init_cub_data(t_cub_data *cub_data)
 	cub_data->win = mlx_new_window(cub_data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	if (!cub_data->win)
 		free_exit(cub_data, err_msg("mlx_new_window() Error.", ERR));
+
 }
