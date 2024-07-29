@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/07/29 20:22:42 by akamite          ###   ########.fr        #
+#    Updated: 2024/07/29 22:34:56 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ MLX_A				= $(MLX_DIR)/libmlx.a
 
 MLX_INCS		= \
 	-I/opt/homebrew/Cellar/libx11/1.8.9/include -I/opt/homebrew/Cellar/libxcb/1.17.0/include -I/opt/homebrew/Cellar/libxau/1.0.11/include -I/opt/homebrew/Cellar/libxdmcp/1.1.5/include -I/opt/homebrew/Cellar/xorgproto/2024.1/include \
-	-I $(MLX_DIR) 
+	-I $(MLX_DIR)
 
 MLX_LIBS		= \
 	-L /opt/homebrew/Cellar/libx11/1.8.9/lib \
@@ -36,6 +36,9 @@ SRC_DIR	= src/
 OBJ_DIR	= obj/
 
 SRC	= \
+	cub_data/init.c \
+	cub_data/initialize.c \
+	exit/free_exit.c \
 	utils/error.c \
 	main.c
 
@@ -54,6 +57,8 @@ all: dirs buildLibs $(NAME)
 dirs:
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(OBJ_DIR)/utils
+	@mkdir -p $(OBJ_DIR)/cub_data
+	@mkdir -p $(OBJ_DIR)/exit
 
 buildLibs:
 	make -C $(MLX_DIR)/

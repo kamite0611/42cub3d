@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:46:23 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 22:25:26 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/29 22:38:11 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int main(int argc, char *argv[])
 		return (err_msg(ERR_USAGE, 1));
 	initialize_cub_data(&cub_data);
 	init_cub_data(&cub_data);
-
 	mlx_loop(cub_data.mlx);
 	return 0;
 }

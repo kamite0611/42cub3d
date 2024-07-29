@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 22:25:17 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/29 22:33:48 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 #include <X11/keysym.h>
 #include <X11/X.h>
+#include "mlx.h"
 #include <stdlib.h>
 
 typedef struct s_cub_data

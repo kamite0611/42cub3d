@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:56:49 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 21:58:52 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/29 22:35:13 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void free_exit(t_cub_data *cub_data, int status)
 		mlx_loop_end(cub_data->mlx);
 		free(cub_data->mlx);
 	}
-	free_data(cub_data);
+	free(cub_data);
 	exit(status);
 }
 
