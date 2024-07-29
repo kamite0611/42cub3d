@@ -6,13 +6,13 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:31:35 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 02:01:30 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 02:03:57 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	initialize_mapinfo(t_mapinfo *mapinfo, char *map_path)
+static int	initialize_mapinfo(t_mapinfo *mapinfo, char *map_path)
 {
 	mapinfo->path = map_path;
 	mapinfo->line_count = 0;
@@ -29,7 +29,7 @@ int	initialize_mapinfo(t_mapinfo *mapinfo, char *map_path)
 	return (SUCCESS);
 }
 
-int	initialize_texinfo(t_texinfo *text_data)
+static int	initialize_texinfo(t_texinfo *text_data)
 {
 	text_data->north = NULL;
 	text_data->south = NULL;

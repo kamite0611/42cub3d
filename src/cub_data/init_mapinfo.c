@@ -6,15 +6,12 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 02:01:35 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 02:03:35 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-/**
- * 一列の
- */
 static int	parse_line(char *line, t_mapinfo *mapinfo)
 {
 	char	*tmp;
