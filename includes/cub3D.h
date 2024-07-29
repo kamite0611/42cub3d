@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 00:17:40 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 00:19:14 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@
 
 
 #include "libft.h"
+#include "mlx.h"
 #include <X11/keysym.h>
 #include <X11/X.h>
-#include "mlx.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct s_mapinfo
 {
