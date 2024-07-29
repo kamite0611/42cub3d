@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/07/29 23:11:38 by akamite          ###   ########.fr        #
+#    Updated: 2024/07/29 23:55:23 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC	= \
 	cub_data/init.c \
 	cub_data/initialize.c \
 	exit/free_exit.c \
+	parse/args_checker.c \
 	utils/error.c \
 	main.c
 
@@ -56,9 +57,10 @@ all: dirs buildLibs $(NAME)
 
 dirs:
 	@mkdir -p $(OBJ_DIR)
-	@mkdir -p $(OBJ_DIR)/utils
 	@mkdir -p $(OBJ_DIR)/cub_data
 	@mkdir -p $(OBJ_DIR)/exit
+	@mkdir -p $(OBJ_DIR)/parse
+	@mkdir -p $(OBJ_DIR)/utils
 
 buildLibs:
 	make -C $(MLX_DIR)/

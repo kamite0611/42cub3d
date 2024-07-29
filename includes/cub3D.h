@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 23:27:13 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/29 23:54:59 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,8 @@ void free_exit(t_cub_data *cub_data, int status);
 
 /** Utils */
 int err_msg(char *msg, int status);
+
+/** parse */
+int args_checker(int argc, char *argv[]);
 
 #endif
