@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/07/29 22:34:56 by akamite          ###   ########.fr        #
+#    Updated: 2024/07/29 23:11:38 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,12 +70,18 @@ $(NAME): $(OBJS)
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCS)
 
+# clean:
+# 	make -C $(MLX_DIR) clean
+# 	make -C $(LIBFT_DIR) clean
+# 	$(RM) -r $(OBJ_DIR)
+
 clean:
-	make -C $(MLX_DIR) clean
-	make -C $(LIBFT_DIR) clean
 	$(RM) -r $(OBJ_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+debug: re
+	./$(NAME) hoge

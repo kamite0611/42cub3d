@@ -6,13 +6,25 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:56:49 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 22:35:13 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/29 23:17:21 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "cub3D.h"
 
+/**
+ * t_cub_dataの中身でmallocしているものをfreeする
+ */
+void free_cub_data(t_cub_data *cub_data)
+{
+	(void)cub_data;
+}
+
+
+/**
+ * 全てをfree後,exitする
+ */
 void free_exit(t_cub_data *cub_data, int status)
 {
 	if(!cub_data)
@@ -25,7 +37,7 @@ void free_exit(t_cub_data *cub_data, int status)
 		mlx_loop_end(cub_data->mlx);
 		free(cub_data->mlx);
 	}
-	free(cub_data);
+	free_cub_data(cub_data);
 	exit(status);
 }
 
