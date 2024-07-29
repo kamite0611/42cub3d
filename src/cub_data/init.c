@@ -6,15 +6,19 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 00:00:25 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 00:10:17 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-// void init_tex_data(t_tex_data *tex_data)
-// {
-// }
+void init_mapinfo(t_mapinfo *mapinfo)
+{
+}
+
+void init_texinfo(t_texinfo *texinfo)
+{
+}
 
 void init_cub_data(t_cub_data *cub_data)
 {

@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 23:54:59 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 00:12:30 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,31 @@
 #include "mlx.h"
 #include <stdlib.h>
 
-typedef struct s_tex_data
+typedef struct s_mapinfo
+{
+  char *path; /** argv[2] */
+} t_mapinfo;
+
+
+typedef struct s_texinfo
 {
   char *north;
   char *south;
   char *west;
   char *east;
 	int size;
-} t_tex_data;
+} t_texinfo;
 
 
 typedef struct s_cub_data
 {
-  char *map_path; /** argv[2] */
-
   void *mlx;
   void *win;
   int win_height;
   int win_width;
 
-  t_tex_data tex_data;
+  t_texinfo texinfo; /** テクスチャ関係 */
+  t_mapinfo mapinfo; /** Map関係 */
 } t_cub_data;
 
 #define ERR_USAGE "Usage: ./cub3D <path/to/map.cub>"
