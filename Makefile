@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/07/29 20:01:06 by akamite          ###   ########.fr        #
+#    Updated: 2024/07/29 20:03:37 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ MLX_LIBS		= \
 	-L $(MLX_DIR) \
 	-lmlx -lXext -lX11 -lm -lz
 
-
 SRC_DIR	= src/
 OBJ_DIR	= obj/
 
@@ -39,7 +38,10 @@ OBJS	= $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 INCS	= -I ./includes/ $(MLX_INCS)
 
 
-all: $(MLX_A) $(NAME)
+all: dirs $(MLX_A) $(NAME)
+
+dirs:
+	@mkdir -p $(OBJ_DIR)
 
 $(MLX_A):
 	make -sC $(MLX_DIR)/
@@ -48,7 +50,6 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(INCS) $(MLX_LIBS) $(OBJS) -o $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	@mkdir $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCS)
 
 clean:
