@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 02:05:52 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 02:12:55 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,10 @@ static int	parse_file(t_mapinfo *mapinfo)
 	return (SUCCESS);
 }
 
-/**
- * ファイル情報を t_cub_data に入れる
- */
-
-void	init_mapinfo(t_cub_data *cubdata)
+int	init_mapinfo(t_mapinfo *mapinfo)
 {
-	if (parse_file(&cubdata->mapinfo))
-		free_exit(cubdata, ERR);
-	put_mapinfo(&cubdata->mapinfo);
+	if (parse_file(mapinfo))
+		return (ERR);
+	put_mapinfo(mapinfo);
+	return (SUCCESS);
 }
