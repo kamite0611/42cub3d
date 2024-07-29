@@ -3,5 +3,5 @@
     "*.tsx": "typescriptreact",
     "cub3d.h": "c"
   },
-  "cSpell.words": ["mapinfo", "texinfo"]
+  "cSpell.words": ["mapinfo", "putstr", "texinfo"]
 }

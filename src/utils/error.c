@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:08:55 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 20:23:02 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 00:15:06 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 int err_msg(char *msg, int status)
 {
 	if(msg)
-	{
 		ft_putstr_fd(msg, status);
-	}
 	ft_putstr_fd("\n", status);
 	return status;
 }
