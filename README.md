@@ -1,4 +1,4 @@
-# Getting Started
+# 始める前に
 
 必要なライブラリ
 
@@ -19,3 +19,10 @@ $ pkg-config --libs x11
 ```
 
 表示された Include および Libraries を Makefile の該当箇所に追加してください。
+
+# Getting Started
+
+```
+$ make
+$ ./cub3D
+```
