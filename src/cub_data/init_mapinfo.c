@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 01:21:19 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 01:25:17 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ static int parse_line(char *line, t_mapinfo *mapinfo)
 		mapinfo->no_path = ft_strtrim_both(line, "NO ", "\n");
 	}else if(ft_strncmp(line, "SO", 2) == 0){
 		mapinfo->so_path = ft_strtrim_both(line, "SO ", "\n");
+	}else if(ft_strncmp(line, "WE", 2) == 0){
+		mapinfo->we_path = ft_strtrim_both(line, "WE ", "\n");
+	}else if(ft_strncmp(line, "EA", 2) == 0){
+		mapinfo->ea_path = ft_strtrim_both(line, "EA ", "\n");
 	}
 	return SUCCESS;
 }
