@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 00:57:43 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 00:58:52 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 static int set_line_cont(t_mapinfo *mapinfo)
 {
 	char	*line;
-	char	*result;
 	int fd = open(mapinfo->path, O_RDONLY);
 
 	if (fd < 0)
