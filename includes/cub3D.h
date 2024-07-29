@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 01:08:36 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 01:20:53 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void free_exit(t_cub_data *cub_data, int status);
 
 /** Utils */
 int err_msg(char *msg, int status);
+void put_mapinfo(t_mapinfo *mapinfo);
 
 /** map_check */
 int args_checker(int argc, char *argv[]);

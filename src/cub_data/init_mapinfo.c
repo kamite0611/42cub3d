@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 01:18:03 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 01:21:19 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static int parse_line(char *line, t_mapinfo *mapinfo)
 		mapinfo->no_path = ft_strtrim_both(line, "NO ", "\n");
 	}else if(ft_strncmp(line, "SO", 2) == 0){
 		mapinfo->so_path = ft_strtrim_both(line, "SO ", "\n");
-
 	}
 	return SUCCESS;
 }
@@ -56,6 +55,5 @@ void init_mapinfo(t_cub_data *cubdata)
 	if(parse_file(&cubdata->mapinfo))
 		free_exit(cubdata, ERR);
 
-	printf("no_path : \"%s\" \n", cubdata->mapinfo.no_path);
-
+	put_mapinfo(&cubdata->mapinfo);
 }

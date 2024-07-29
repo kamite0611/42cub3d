@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/07/30 00:58:41 by akamite          ###   ########.fr        #
+#    Updated: 2024/07/30 01:21:01 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC	= \
 	exit/free_exit.c \
 	map_check/args_checker.c \
 	utils/error.c \
+	utils/debug.c \
 	main.c
 
 A_FILES	= $(LIBFT_A)
