@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 18:46:23 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 02:01:13 by akamite          ###   ########.fr       */
+/*   Created: 2024/07/30 01:50:36 by akamite           #+#    #+#             */
+/*   Updated: 2024/07/30 02:01:18 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main(int argc, char *argv[])
+void	free_strarr(char *str_arr[])
 {
-	t_cub_data	cub_data;
+	int	i;
 
-	if (args_checker(argc, argv))
-		return (ERR);
-	initialize_cub_data(&cub_data, argv[1]);
-	init_cub_data(&cub_data);
-	// mlx_loop(cub_data.mlx);
-	system("leaks -atExit -- ./cub3D ");
-	return (0);
+	i = 0;
+	while (str_arr[i])
+	{
+		free(str_arr[i]);
+		i++;
+	}
+	free(str_arr);
 }

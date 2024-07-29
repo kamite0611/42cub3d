@@ -6,26 +6,26 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:56:49 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 01:05:48 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 02:01:28 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3D.h"
 
 /**
  * t_mapinfoの中身でmallocしているものをfreeする
  */
-void free_mapinfo(t_mapinfo *mapinfo){
+void	free_mapinfo(t_mapinfo *mapinfo)
+{
 	(void)mapinfo;
 	// if(mapinfo->content)
-		// free(mapinfo->content);
+	// free(mapinfo->content);
 }
 
 /**
  * t_cub_dataの中身でmallocしているものをfreeする
  */
-void free_cub_data(t_cub_data *cub_data)
+void	free_cub_data(t_cub_data *cub_data)
 {
 	free_mapinfo(&cub_data->mapinfo);
 }
@@ -33,9 +33,9 @@ void free_cub_data(t_cub_data *cub_data)
 /**
  * 全てをfree後,statusで渡された値でexitする
  */
-void free_exit(t_cub_data *cub_data, int status)
+void	free_exit(t_cub_data *cub_data, int status)
 {
-	if(!cub_data)
+	if (!cub_data)
 		exit(status);
 	if (cub_data->win && cub_data->mlx)
 		mlx_destroy_window(cub_data->mlx, cub_data->win);
@@ -48,4 +48,3 @@ void free_exit(t_cub_data *cub_data, int status)
 	free_cub_data(cub_data);
 	exit(status);
 }
-

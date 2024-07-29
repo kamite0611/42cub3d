@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 01:20:53 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 01:55:20 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,13 @@ typedef struct s_mapinfo
   char *we_path;
   char *ea_path;
 
+  char **map;
+
+  int floor_rgb[3];
+  int ceiling_rgb[3];
+
   int line_count;
+  int map_height_count;
 } t_mapinfo;
 
 
@@ -74,11 +80,13 @@ int initialize_cub_data(t_cub_data *cub_data, char *map_path);
 /** Exit */
 void free_exit(t_cub_data *cub_data, int status);
 
+/** map_check */
+int args_checker(int argc, char *argv[]);
+
 /** Utils */
 int err_msg(char *msg, int status);
 void put_mapinfo(t_mapinfo *mapinfo);
+void free_strarr(char *str_arr[]);
 
-/** map_check */
-int args_checker(int argc, char *argv[]);
 
 #endif
