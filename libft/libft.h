@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 21:13:45 by mnakashi          #+#    #+#             */
-/*   Updated: 2024/06/12 19:57:42 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 00:29:20 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
 
 // part1//
 int		ft_isalpha(int c);
@@ -61,5 +66,13 @@ int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strndup(const char *s1, size_t n);
 long	ft_strtol(const char *__str, char **endptr);
 char	**ft_sort_strings_asc(char **str_arr);
+
+/* ---------------	GNL	--------------- */
+
+char	*get_next_line(int fd);
+
+char	*f_strchr(char *s, int c);
+char	*f_strdup(char *s1);
+char	*f_strjoin(char *s1, char *s2);
 
 #endif

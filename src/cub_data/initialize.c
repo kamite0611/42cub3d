@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:31:35 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 00:13:04 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 00:23:51 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int initialize_mapinfo(t_mapinfo *mapinfo, char *map_path)
 {
 	mapinfo->path = map_path;
+	mapinfo->content = NULL;
+	mapinfo->content_size = 0;
 	return SUCCESS;
 }
 
