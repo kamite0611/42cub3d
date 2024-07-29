@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 01:18:50 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 02:01:22 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 02:31:08 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	put_mapinfo(t_mapinfo *mapinfo)
 	printf("we_path\t\t: \"%s\" \n", mapinfo->we_path);
 	printf("ea_path\t\t: \"%s\" \n", mapinfo->ea_path);
 	printf("line_count\t: %d\n", mapinfo->line_count);
-	printf("floor_rgb\t: R[%d],G[%d],B[%d]\n", mapinfo->floor_rgb[0],
+	printf("floor_rgb\t: R[%d], G[%d], B[%d]\n", mapinfo->floor_rgb[0],
 		mapinfo->floor_rgb[1], mapinfo->floor_rgb[2]);
-	printf("ceiling_rgb\t: R[%d],G[%d],B[%d]\n", mapinfo->ceiling_rgb[0],
+	printf("ceiling_rgb\t: R[%d], G[%d], B[%d]\n", mapinfo->ceiling_rgb[0],
 		mapinfo->ceiling_rgb[1], mapinfo->ceiling_rgb[2]);
 }
