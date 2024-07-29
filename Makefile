@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/07/29 20:03:37 by akamite          ###   ########.fr        #
+#    Updated: 2024/07/29 20:11:16 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC_DIR	= src/
 OBJ_DIR	= obj/
 
 SRC	= \
+	utils/error.c \
 	main.c
 
 SRCS	= $(addprefix $(SRC_DIR), $(SRC))
@@ -42,6 +43,7 @@ all: dirs $(MLX_A) $(NAME)
 
 dirs:
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/utils
 
 $(MLX_A):
 	make -sC $(MLX_DIR)/

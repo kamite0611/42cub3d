@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 18:46:23 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 20:11:41 by akamite          ###   ########.fr       */
+/*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
+/*   Updated: 2024/07/29 20:12:46 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#ifndef CUB3D_H
+#define CUB3D_H
 
-int main(int argc, char *argv[])
+typedef struct s_cub_data
 {
-	(void)argv;
-	if (argc != 2)
-		return (err_msg(ERR_USAGE, 1));
+  void *mlx;
+  void *win;
+} t_cub_data;
 
-	return 0;
-}
+#define ERR_USAGE "Usage: ./cub3D <path/to/map.cub>"
+
+#include <X11/keysym.h>
+#include <X11/X.h>
+
+/** Utils */
+int err_msg(char *msg, int status);
+
+#endif

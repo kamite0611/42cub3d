@@ -1,22 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 18:46:23 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/29 20:11:41 by akamite          ###   ########.fr       */
+/*   Created: 2024/07/29 20:08:55 by akamite           #+#    #+#             */
+/*   Updated: 2024/07/29 20:11:28 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-
-int main(int argc, char *argv[])
+int err_msg(char *msg, int status)
 {
-	(void)argv;
-	if (argc != 2)
-		return (err_msg(ERR_USAGE, 1));
-
-	return 0;
+	(void)msg;
+	return status;
 }
