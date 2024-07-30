@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 18:56:29 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 19:04:32 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int				args_checker(int argc, char *argv[]);
 /** Utils */
 int				err_msg(char *msg, int status);
 void			put_mapinfo(t_mapinfo *mapinfo);
+void			put_texinfo(t_texinfo *texinfo);
 void			free_strarr(char *str_arr[]);
 
 #endif
