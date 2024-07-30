@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 02:15:59 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 18:56:42 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_cub_data(t_cub_data *cub_data)
 		free_exit(cub_data, err_msg("mlx_new_window() Error.", ERR));
 	if (init_mapinfo(&cub_data->mapinfo))
 		free_exit(cub_data, ERR);
-	if (init_texinfo(&cub_data->texinfo))
+	if (init_texinfo(cub_data))
 		free_exit(cub_data, ERR);
+	put_mapinfo(&cub_data->mapinfo);
 }

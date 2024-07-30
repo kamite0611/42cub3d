@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 17:59:12 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 18:45:28 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,5 @@ int	init_mapinfo(t_mapinfo *mapinfo)
 {
 	if (parse_file(mapinfo))
 		return (ERR);
-	put_mapinfo(mapinfo);
 	return (SUCCESS);
 }

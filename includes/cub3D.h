@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 18:43:48 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 18:56:29 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ typedef struct s_texture
 {
 	void		*img;
 	int			*addr;
+	int			bits_pixel;
+	int			size_line;
+	int			endian;
 }				t_texture;
 
 typedef struct s_texinfo
@@ -85,7 +88,7 @@ typedef struct s_cub_data
 
 /** CubData */
 int				init_mapinfo(t_mapinfo *mapinfo);
-int				init_texinfo(t_texinfo *texinfo);
+int				init_texinfo(t_cub_data *cubdata);
 void			init_cub_data(t_cub_data *cub_data);
 int				initialize_cub_data(t_cub_data *cub_data, char *map_path);
 
