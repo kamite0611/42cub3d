@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 02:04:21 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 02:13:35 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_mapinfo
 	int		map_height_count;
 }			t_mapinfo;
 
-typedef struct s_cub_data
+typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
@@ -74,7 +74,7 @@ typedef struct s_cub_data
 	int		**view_pixels;
 
 	t_mapinfo mapinfo; /** Map関係 */
-}			t_cub_data;
+}			t_game;
 
 /* ------------------- functions ------------------- */
 
@@ -82,20 +82,20 @@ typedef struct s_cub_data
 int			init_mapinfo(t_mapinfo *mapinfo);
 int			initialize_mapinfo(t_mapinfo *mapinfo, char *map_path);
 
-void		init_cub_data(t_cub_data *cub_data);
-int			initialize_cub_data(t_cub_data *cub_data, char *map_path);
+void		init_game(t_game *game);
+int			initialize_game(t_game *game, char *map_path);
 
-void		init_img(t_cub_data *cubdata, t_img *image, int width, int height);
+void		init_img(t_game *game, t_img *image, int width, int height);
 void		initialize_img(t_img *image);
 
 /** Exit */
-void		free_exit(t_cub_data *cub_data, int status);
+void		free_exit(t_game *game, int status);
 
 /** map_check */
 int			args_checker(int argc, char *argv[]);
 
 /** Render */
-void		render_view(t_cub_data *cubdata);
+void		render_view(t_game *game);
 
 /** Utils */
 int			err_msg(char *msg, int status);

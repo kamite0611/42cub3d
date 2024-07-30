@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:56:49 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 02:04:37 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 02:12:12 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,32 @@ static void	free_mapinfo(t_mapinfo *mapinfo)
 }
 
 /**
- * t_cub_dataの中身でmallocしているものをfreeする
+ * t_gameの中身でmallocしているものをfreeする
  */
-static void	free_cub_data(t_cub_data *cub_data)
+static void	free_game(t_game *game)
 {
-	free_mapinfo(&cub_data->mapinfo);
+	if (game)
+	{
+		free_mapinfo(&game->mapinfo);
+		free_tab((void **)game->view_pixels);
+	}
 }
 
 /**
  * 全てをfree後,statusで渡された値でexitする
  */
-void	free_exit(t_cub_data *cub_data, int status)
+void	free_exit(t_game *game, int status)
 {
-	if (!cub_data)
+	if (!game)
 		exit(status);
-	if (cub_data->win && cub_data->mlx)
-		mlx_destroy_window(cub_data->mlx, cub_data->win);
-	if (cub_data->mlx)
+	if (game->win && game->mlx)
+		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
 	{
-		mlx_destroy_display(cub_data->mlx);
-		mlx_loop_end(cub_data->mlx);
-		free(cub_data->mlx);
+		mlx_destroy_display(game->mlx);
+		mlx_loop_end(game->mlx);
+		free(game->mlx);
 	}
-	free_cub_data(cub_data);
+	free_game(game);
 	exit(status);
 }
