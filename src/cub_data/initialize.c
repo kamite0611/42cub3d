@@ -6,11 +6,18 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:31:35 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 02:03:57 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 18:44:03 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static int	initialize_texture(t_texture *texture)
+{
+	texture->img = NULL;
+	texture->addr = NULL;
+	return (SUCCESS);
+}
 
 static int	initialize_mapinfo(t_mapinfo *mapinfo, char *map_path)
 {
@@ -31,10 +38,10 @@ static int	initialize_mapinfo(t_mapinfo *mapinfo, char *map_path)
 
 static int	initialize_texinfo(t_texinfo *text_data)
 {
-	text_data->north = NULL;
-	text_data->south = NULL;
-	text_data->west = NULL;
-	text_data->east = NULL;
+	initialize_texture(&text_data->north);
+	initialize_texture(&text_data->south);
+	initialize_texture(&text_data->west);
+	initialize_texture(&text_data->east);
 	text_data->size = TEX_SIZE;
 	return (SUCCESS);
 }

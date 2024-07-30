@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 02:12:55 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 17:59:12 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static int	parse_line(char *line, t_mapinfo *mapinfo)
 	}
 	else if (line && ft_strcmp(line, "\n") != 0)
 	{
+		/** TODO マップ情報をどこかに保存する */
 	}
 	return (SUCCESS);
 }

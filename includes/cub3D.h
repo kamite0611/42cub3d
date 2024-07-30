@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 02:14:00 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 18:43:48 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,57 +40,64 @@ typedef struct s_mapinfo
 {
 	char *path; /** argv[2] */
 
-	char	*no_path;
-	char	*so_path;
-	char	*we_path;
-	char	*ea_path;
+	char		*no_path;
+	char		*so_path;
+	char		*we_path;
+	char		*ea_path;
 
-	char	**map;
+	char		**map;
 
-	int		floor_rgb[3];
-	int		ceiling_rgb[3];
+	int			floor_rgb[3];
+	int			ceiling_rgb[3];
 
-	int		line_count;
-	int		map_height_count;
-}			t_mapinfo;
+	int			line_count;
+	int			map_height_count;
+}				t_mapinfo;
+
+typedef struct s_texture
+{
+	void		*img;
+	int			*addr;
+}				t_texture;
 
 typedef struct s_texinfo
 {
-	char	*north;
-	char	*south;
-	char	*west;
-	char	*east;
-	int		size;
-}			t_texinfo;
+	t_texture	north;
+	t_texture	south;
+	t_texture	west;
+	t_texture	east;
+
+	int			size;
+}				t_texinfo;
 
 typedef struct s_cub_data
 {
-	void	*mlx;
-	void	*win;
-	int		win_height;
-	int		win_width;
+	void		*mlx;
+	void		*win;
+	int			win_height;
+	int			win_width;
 
 	t_texinfo texinfo; /** テクスチャ関係 */
 	t_mapinfo mapinfo; /** Map関係 */
-}			t_cub_data;
+}				t_cub_data;
 
 /* ------------------- functions ------------------- */
 
 /** CubData */
-int			init_mapinfo(t_mapinfo *mapinfo);
-int			init_texinfo(t_texinfo *texinfo);
-void		init_cub_data(t_cub_data *cub_data);
-int			initialize_cub_data(t_cub_data *cub_data, char *map_path);
+int				init_mapinfo(t_mapinfo *mapinfo);
+int				init_texinfo(t_texinfo *texinfo);
+void			init_cub_data(t_cub_data *cub_data);
+int				initialize_cub_data(t_cub_data *cub_data, char *map_path);
 
 /** Exit */
-void		free_exit(t_cub_data *cub_data, int status);
+void			free_exit(t_cub_data *cub_data, int status);
 
 /** map_check */
-int			args_checker(int argc, char *argv[]);
+int				args_checker(int argc, char *argv[]);
 
 /** Utils */
-int			err_msg(char *msg, int status);
-void		put_mapinfo(t_mapinfo *mapinfo);
-void		free_strarr(char *str_arr[]);
+int				err_msg(char *msg, int status);
+void			put_mapinfo(t_mapinfo *mapinfo);
+void			free_strarr(char *str_arr[]);
 
 #endif
