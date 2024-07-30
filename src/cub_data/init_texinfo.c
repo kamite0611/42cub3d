@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 02:10:38 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 19:14:54 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/30 19:18:13 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static int	init_texture(t_cub_data *cubdata, t_texture *texture, char *path)
 {
 	texture->img = mlx_xpm_file_to_image(cubdata->mlx, path,
 			&cubdata->texinfo.size, &cubdata->texinfo.size);
-	if (!texture->img)
-		return (err_msg("mlx error.", ERR));
+	if (texture->img == NULL)
+		return (err_msg("mlx_xpm_file_to_image() error.", ERR));
 	texture->addr = (int *)mlx_get_data_addr(texture->img, &texture->bits_pixel,
 			&texture->size_line, &texture->endian);
-	if (!texture->addr)
-		return (err_msg("mlx error.", ERR));
+	if (texture->addr == NULL)
+		return (err_msg("mlx_get_data_addr() error.", ERR));
 	return (SUCCESS);
 }
 
