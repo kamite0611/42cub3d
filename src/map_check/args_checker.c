@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 02:01:25 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 02:16:55 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	args_checker(int argc, char *argv[])
 {
 	(void)argv;
 	if (argc != 2)
-		free_exit(NULL, err_msg(ERR_USAGE, ERR));
+		free_exit(NULL, err_msg(ERR_USAGE, ERROR));
 	/** @TODO add argv checker */
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 02:13:35 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 02:16:13 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /* ------------------- defines ------------------- */
 
-# define ERR 1
+# define ERROR 1
 # define SUCCESS 0
 
 # define WIN_HEIGHT 480
@@ -23,6 +23,7 @@
 # define TEX_SIZE 64
 
 # define ERR_USAGE "Usage: ./cub3D <path/to/map.cub>"
+# define ERR_MALLOC "Error: malloc() failed."
 
 /* ------------------- includes ------------------- */
 

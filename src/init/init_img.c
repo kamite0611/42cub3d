@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 02:10:38 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 02:13:12 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 02:16:31 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	init_img(t_game *game, t_img *image, int width, int height)
 	initialize_img(image);
 	image->img = mlx_new_image(game->mlx, width, height);
 	if (image->img == NULL)
-		free_exit(game, err_msg("mlx_xpm_file_to_image() error.", ERR));
+		free_exit(game, err_msg("mlx_xpm_file_to_image() error.", ERROR));
 	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits,
 			&image->size_line, &image->endian);
 	if (image->addr == NULL)
-		free_exit(game, err_msg("mlx_get_data_addr() error.", ERR));
+		free_exit(game, err_msg("mlx_get_data_addr() error.", ERROR));
 }
 
 void	initialize_img(t_img *image)

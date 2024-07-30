@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_cubdata.c                                     :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 02:12:12 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 02:16:40 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void	init_view_pixels(t_game *game)
 {
 	game->view_pixels = calloc(sizeof *game->view_pixels, game->win_height);
+	if (!game->view_pixels)
+		free_exit(game, err_msg(ERR_MALLOC, ERROR));
 }
 
 /**
@@ -25,12 +27,12 @@ void	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		free_exit(game, err_msg("mlx_init() Error.", ERR));
+		free_exit(game, err_msg("mlx_init() Error.", ERROR));
 	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	if (!game->win)
-		free_exit(game, err_msg("mlx_new_window() Error.", ERR));
+		free_exit(game, err_msg("mlx_new_window() Error.", ERROR));
 	if (init_mapinfo(&game->mapinfo))
-		free_exit(game, ERR);
+		free_exit(game, ERROR);
 	put_mapinfo(&game->mapinfo);
 }
 

@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:46:23 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 02:14:15 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 02:16:31 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char *argv[])
 	t_game	game;
 
 	if (args_checker(argc, argv))
-		return (ERR);
+		return (ERROR);
 	initialize_game(&game, argv[1]);
 	init_game(&game);
 	render_view(&game);
