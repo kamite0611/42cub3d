@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 02:10:38 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 00:58:39 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 01:00:50 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,13 @@ void	init_img(t_cub_data *cubdata, t_img *image, int width, int height)
 			&image->size_line, &image->endian);
 	if (image->addr == NULL)
 		free_exit(cubdata, err_msg("mlx_get_data_addr() error.", ERR));
+}
+
+void	initialize_img(t_img *image)
+{
+	image->img = NULL;
+	image->addr = NULL;
+	image->pixel_bits = 0;
+	image->size_line = 0;
+	image->endian = 0;
 }

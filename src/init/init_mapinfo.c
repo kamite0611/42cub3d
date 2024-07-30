@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 22:32:31 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 01:01:44 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,22 @@ int	init_mapinfo(t_mapinfo *mapinfo)
 {
 	if (parse_file(mapinfo))
 		return (ERR);
+	return (SUCCESS);
+}
+
+int	initialize_mapinfo(t_mapinfo *mapinfo, char *map_path)
+{
+	mapinfo->path = map_path;
+	mapinfo->line_count = 0;
+	mapinfo->no_path = NULL;
+	mapinfo->so_path = NULL;
+	mapinfo->we_path = NULL;
+	mapinfo->ea_path = NULL;
+	mapinfo->floor_rgb[0] = 0;
+	mapinfo->floor_rgb[1] = 0;
+	mapinfo->floor_rgb[2] = 0;
+	mapinfo->ceiling_rgb[0] = 0;
+	mapinfo->ceiling_rgb[1] = 0;
+	mapinfo->ceiling_rgb[2] = 0;
 	return (SUCCESS);
 }
