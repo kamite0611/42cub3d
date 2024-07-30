@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 01:24:26 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 01:34:23 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	init_mapinfo(t_mapinfo *mapinfo)
 	char	**map;
 
 	/** @TODO ファイルから取得する */
-	mapinfo->no_path = "textures/bookshelf.xpm";
-	mapinfo->so_path = "textures/bookshelf.xpm";
-	mapinfo->we_path = "textures/bookshelf.xpm";
-	mapinfo->ea_path = "textures/bookshelf.xpm";
+	mapinfo->no_path = ft_strdup("textures/bookshelf.xpm");
+	mapinfo->so_path = ft_strdup("textures/bookshelf.xpm");
+	mapinfo->we_path = ft_strdup("textures/bookshelf.xpm");
+	mapinfo->ea_path = ft_strdup("textures/bookshelf.xpm");
 	mapinfo->line_count = 22;
 	mapinfo->floor_rgb[0] = 53;
 	mapinfo->floor_rgb[1] = 41;

@@ -6,12 +6,16 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 01:00:40 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 01:32:32 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/**
+ * t_cub_data 全体の構造体
+ * mapinfo,mlx など処理に必要なデータを全てこの段階で入れる
+ */
 void	init_cub_data(t_cub_data *cub_data)
 {
 	cub_data->mlx = mlx_init();

@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:46:23 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 00:15:31 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 01:34:34 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	main(int argc, char *argv[])
 	initialize_cub_data(&cub_data, argv[1]);
 	init_cub_data(&cub_data);
 	render_view(&cub_data);
-	mlx_loop(cub_data.mlx);
+	// mlx_loop(cub_data.mlx);
 	// system("leaks -atExit -- ./cub3D");
-	return (0);
+	free_exit(&cub_data, SUCCESS);
+	return (SUCCESS);
 }
