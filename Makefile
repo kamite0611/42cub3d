@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/07/30 02:14:29 by akamite          ###   ########.fr        #
+#    Updated: 2024/07/31 00:15:11 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC	= \
 	cub_data/initialize.c \
 	exit/free_exit.c \
 	map_check/args_checker.c \
+	render/render.c \
 	utils/error.c \
 	utils/debug.c \
 	utils/free.c \
@@ -64,6 +65,7 @@ dirs:
 	@mkdir -p $(OBJ_DIR)/cub_data
 	@mkdir -p $(OBJ_DIR)/exit
 	@mkdir -p $(OBJ_DIR)/map_check
+	@mkdir -p $(OBJ_DIR)/render
 	@mkdir -p $(OBJ_DIR)/utils
 
 buildLibs:

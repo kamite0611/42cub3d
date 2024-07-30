@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 18:46:23 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 00:15:31 by akamite          ###   ########.fr       */
+/*   Created: 2024/07/31 00:08:37 by akamite           #+#    #+#             */
+/*   Updated: 2024/07/31 00:41:08 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main(int argc, char *argv[])
+void	render_view(t_cub_data *cubdata)
 {
-	t_cub_data	cub_data;
+	t_img	image;
+	int		y;
+	int		x;
 
-	if (args_checker(argc, argv))
-		return (ERR);
-	initialize_cub_data(&cub_data, argv[1]);
-	init_cub_data(&cub_data);
-	render_view(&cub_data);
-	mlx_loop(cub_data.mlx);
-	// system("leaks -atExit -- ./cub3D");
-	return (0);
+	init_img(cubdata, &image, cubdata->win_width, cubdata->win_height);
+	y = 0;
+	while (y < cubdata->win_height)
+	{
+		x = 0;
+		while (x < cubdata->win_width)
+		{
+			image.addr[y * (image.size_line / 4) + x] = 1000000;
+			x++;
+		}
+		y++;
+	}
+	mlx_put_image_to_window(cubdata->mlx, cubdata->win, image.img, 0, 0);
 }

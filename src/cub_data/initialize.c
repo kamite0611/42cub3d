@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:31:35 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 19:09:15 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 00:37:06 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@ static int	initialize_texture(t_texture *texture)
 	texture->size_line = 0;
 	texture->endian = 0;
 	return (SUCCESS);
+}
+
+void	initialize_img(t_img *image)
+{
+	image->img = NULL;
+	image->addr = NULL;
+	image->pixel_bits = 0;
+	image->size_line = 0;
+	image->endian = 0;
 }
 
 static int	initialize_mapinfo(t_mapinfo *mapinfo, char *map_path)
@@ -53,8 +62,8 @@ int	initialize_cub_data(t_cub_data *cub_data, char *map_path)
 {
 	cub_data->mlx = NULL;
 	cub_data->win = NULL;
+	cub_data->win_width = WIN_WIDTH;
 	cub_data->win_height = WIN_HEIGHT;
-	cub_data->win_height = WIN_WIDTH;
 	initialize_texinfo(&cub_data->texinfo);
 	initialize_mapinfo(&cub_data->mapinfo, map_path);
 	return (SUCCESS);
