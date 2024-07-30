@@ -6,21 +6,25 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 01:50:36 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 02:01:18 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 02:04:17 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	free_strarr(char *str_arr[])
+void	free_tab(void **tab)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (str_arr[i])
+	while (tab[i])
 	{
-		free(str_arr[i]);
+		free(tab[i]);
 		i++;
 	}
-	free(str_arr);
+	if (tab)
+	{
+		free(tab);
+		tab = NULL;
+	}
 }

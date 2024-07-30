@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 01:02:13 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 02:04:21 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ typedef struct s_cub_data
 	int		win_height;
 	int		win_width;
 
+	/** 画面全体のピクセル 640*480 */
+	int		**view_pixels;
+
 	t_mapinfo mapinfo; /** Map関係 */
 }			t_cub_data;
 
@@ -97,6 +100,6 @@ void		render_view(t_cub_data *cubdata);
 /** Utils */
 int			err_msg(char *msg, int status);
 void		put_mapinfo(t_mapinfo *mapinfo);
-void		free_strarr(char *str_arr[]);
+void		free_tab(void **tab);
 
 #endif

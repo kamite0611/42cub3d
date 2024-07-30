@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 01:32:32 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 02:01:49 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	initialize_cub_data(t_cub_data *cub_data, char *map_path)
 	cub_data->win = NULL;
 	cub_data->win_width = WIN_WIDTH;
 	cub_data->win_height = WIN_HEIGHT;
+	cub_data->view_pixels = NULL;
 	initialize_mapinfo(&cub_data->mapinfo, map_path);
 	return (SUCCESS);
 }

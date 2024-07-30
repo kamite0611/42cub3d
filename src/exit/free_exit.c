@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:56:49 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 01:33:18 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 02:04:37 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	free_mapinfo(t_mapinfo *mapinfo)
 	if (mapinfo->ea_path)
 		free(mapinfo->ea_path);
 	if (mapinfo->map)
-		free_strarr(mapinfo->map);
+		free_tab((void **)mapinfo->map);
 }
 
 /**
