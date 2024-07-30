@@ -6,11 +6,23 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 01:18:50 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 00:58:56 by akamite          ###   ########.fr       */
+/*   Updated: 2024/07/31 01:22:01 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	put_str_arr(char **str_arr, char *name)
+{
+	int	i;
+
+	i = 0;
+	while (str_arr[i])
+	{
+		printf("%s[%d]\t: \"%s\" ,\n", name, i, str_arr[i]);
+		i++;
+	}
+}
 
 void	put_mapinfo(t_mapinfo *mapinfo)
 {
@@ -25,4 +37,5 @@ void	put_mapinfo(t_mapinfo *mapinfo)
 		mapinfo->floor_rgb[1], mapinfo->floor_rgb[2]);
 	printf("ceiling_rgb\t: R[%d], G[%d], B[%d]\n", mapinfo->ceiling_rgb[0],
 		mapinfo->ceiling_rgb[1], mapinfo->ceiling_rgb[2]);
+	put_str_arr(mapinfo->map, "map");
 }
