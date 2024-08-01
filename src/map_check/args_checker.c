@@ -20,19 +20,43 @@
  */
 int	args_checker(int argc, char *argv[])
 {
-	(void)argv;
 	if (argc != 2)
 		free_exit(NULL, err_msg(ERR_USAGE, ERROR));
 	/** @TODO add argv checker */
 	//check map path
-	// size_t map_name_len = ft_strlen(argv[1]);
-	// if !(map_name_len == 0) && (ft_strcmp(argv[1] + map_name_len - 4 == ".cub"))
-	// 	&& (ft_strnstr(argv[1], "./maps/", 7) || ft_strnstr(argv[1], "maps/", 5))
-	// {
-	// 	free_exit(NULL, err_msg(ERR_USAGE, ERR));
-	// }
-	// read_map(*cub->map)
-	// //check map content
+	size_t map_name_len = ft_strlen(argv[1]);
+	if (map_name_len == 0 || ft_strcmp(argv[1] + map_name_len - 4, ".cub") != 0 ||
+         !(ft_strnstr(argv[1], "./maps/", 7) || ft_strnstr(argv[1], "maps/", 5)))
+	{
+		//printf("Invalid map path\n");
+		free_exit(NULL, err_msg(ERR_USAGE, ERROR));
+	}
+	int fd = open(argv[1], O_RDONLY);
+    if (fd < 0)
+    {
+        //printf("Invalid map name\n");
+		free_exit(NULL, err_msg(ERR_USAGE, ERROR));
+    }
+    while (1)
+    {
+        char *line = get_next_line(fd);
+        if (line == NULL){
+            break;
+        }
+        //printf("map: %s", line);
+        //free(line);
+		//こっちで読み込んだ内容のマップをチェックする。
+		// 最初の4行は方角 check_dir
+		//	-方角内の順番はなんでもいい、つまり東西南北でも南北東西でもOK）
+		//	-方角の構成は方角名+path
+		// 次の2行は色 check_rgb
+		//  -こちらも順番なんでもいい
+		//  -色の構成は色の識別子+RGB(,で区切られる)
+		// 残りはmap(これは1,0とNSWEのどれか一つで構成されていればOK)
+    }
+	//checkして正しかったmapをinit_mapinfoに格納
+	//read_map(*cub->map)
+	//check map content
 	// if !(is_valid_map(*cub->map))
 	// {
 	// 	//free
