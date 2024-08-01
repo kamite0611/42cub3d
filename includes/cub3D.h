@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/01 20:56:09 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/01 22:06:21 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,14 @@ typedef struct s_mapinfo
 }			t_mapinfo;
 
 /**
+画面座標
+(0, 0) -----> x (正の方向)
+ |
+ |
+ v
+ y (正の方向)
+ */
+/**
  * レイキャスティングで使用する光線情報
  */
 typedef struct s_ray
@@ -86,11 +94,26 @@ typedef struct s_ray
 	double	dist_to_wall;
 }			t_ray;
 
+/**
+ * プレイヤー情報
+ */
 typedef struct s_player
 {
 	/** 方角 N,S,E,W */
 	char	direction;
 
+	/** マップ上の座標 */
+	double	map_x;
+	double	map_y;
+
+	/** プレイヤー向きベクトル */
+	double vec_x_dir; /** x方向ベクトル */
+	double vec_y_dir; /** y方向ベクトル */
+
+	/** カメラ方向ベクトル */
+	/** プレイヤーの視界の中心から片方の端までのベクトル */
+	double vec_x_camera /** x方向ベクトル */;
+	double vec_y_camera /** y方向ベクトル */;
 }			t_player;
 
 /**

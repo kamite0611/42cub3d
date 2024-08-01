@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 01:34:23 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/01 22:09:22 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * Map情報をファイルから取得する
  */
-int	init_mapinfo(t_mapinfo *mapinfo)
+int	init_mapinfo(t_game *game, t_mapinfo *mapinfo)
 {
 	char	**map;
 
