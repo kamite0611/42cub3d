@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/01 23:40:31 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/02 00:07:37 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,13 @@ void	init_game(t_game *game)
 	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	if (!game->win)
 		free_exit(game, err_msg("mlx_new_window() Error.", ERROR));
-	if (init_mapinfo(game, &game->mapinfo))
-		free_exit(game, ERROR);
+	/** init */
+	init_mapinfo(game, &game->mapinfo);
+	init_player_vec(&game->player);
+	init_view_pixels(game);
+	/** debug */
 	put_mapinfo(&game->mapinfo);
 	put_player(&game->player);
-	init_view_pixels(game);
 }
 
 /**

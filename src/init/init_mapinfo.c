@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/01 23:52:48 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/02 00:05:50 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * Map情報をファイルから取得する
  */
-int	init_mapinfo(t_game *game, t_mapinfo *mapinfo)
+void	init_mapinfo(t_game *game, t_mapinfo *mapinfo)
 {
 	char	**map;
 
@@ -50,7 +50,6 @@ int	init_mapinfo(t_game *game, t_mapinfo *mapinfo)
 	game->player.direction = 'N';
 	game->player.map_x = 7.5;
 	game->player.map_y = 7.5;
-	return (SUCCESS);
 }
 
 int	initialize_mapinfo(t_mapinfo *mapinfo, char *map_path)

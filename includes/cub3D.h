@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/01 23:38:02 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/02 00:06:12 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ typedef struct s_game
 /* ------------------- functions ------------------- */
 
 /** inits */
-int			init_mapinfo(t_game *game, t_mapinfo *mapinfo);
+void		init_mapinfo(t_game *game, t_mapinfo *mapinfo);
 int			initialize_mapinfo(t_mapinfo *mapinfo, char *map_path);
 
 void		init_game(t_game *game);
@@ -146,6 +146,7 @@ int			initialize_game(t_game *game, char *map_path);
 void		init_img(t_game *game, t_img *image, int width, int height);
 void		initialize_img(t_img *image);
 
+void		init_player_vec(t_player *player);
 void		initialize_player(t_player *player);
 
 /** Exit */
