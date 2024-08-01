@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 22:05:11 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/01 22:08:02 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/01 23:47:45 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
  */
 void	init_player(t_player *player)
 {
+	(void)player;
 }
 
 /**
@@ -25,10 +26,10 @@ void	init_player(t_player *player)
 void	initialize_player(t_player *player)
 {
 	player->direction = '\0';
-	player->map_x = 0;
-	player->map_y = 0;
-	player->vec_x_dir = 0;
-	player->vec_y_dir = 0;
-	player->vec_x_camera = 0;
-	player->vec_y_camera = 0;
+	player->map_x = 0.0;
+	player->map_y = 0.0;
+	player->vec_x_dir = 0.0;
+	player->vec_y_dir = 0.0;
+	player->vec_x_camera = 0.0;
+	player->vec_y_camera = 0.0;
 }

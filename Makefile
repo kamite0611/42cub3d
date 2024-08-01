@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/07/31 02:13:51 by akamite          ###   ########.fr        #
+#    Updated: 2024/08/01 23:41:38 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC_DIR	= src/
 OBJ_DIR	= obj/
 
 SRC	= \
+	init/init_player.c \
 	init/init_mapinfo.c \
 	init/init_img.c \
 	init/init_game.c \
