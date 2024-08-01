@@ -20,19 +20,18 @@
  */
 int	args_checker(int argc, char *argv[])
 {
-	(void)argv;
 	if (argc != 2)
 		free_exit(NULL, err_msg(ERR_USAGE, ERROR));
 	/** @TODO add argv checker */
 	//check map path
-	// size_t map_name_len = ft_strlen(argv[1]);
-	// if !(map_name_len == 0) && (ft_strcmp(argv[1] + map_name_len - 4 == ".cub"))
-	// 	&& (ft_strnstr(argv[1], "./maps/", 7) || ft_strnstr(argv[1], "maps/", 5))
-	// {
-	// 	free_exit(NULL, err_msg(ERR_USAGE, ERR));
-	// }
-	// read_map(*cub->map)
-	// //check map content
+	size_t map_name_len = ft_strlen(argv[1]);
+	if (map_name_len == 0 || ft_strcmp(argv[1] + map_name_len - 4, ".cub") != 0 ||
+         !(ft_strnstr(argv[1], "./maps/", 7) || ft_strnstr(argv[1], "maps/", 5)))
+	{
+		free_exit(NULL, err_msg(ERR_USAGE, ERROR));
+	}
+	//read_map(*cub->map)
+	//check map content
 	// if !(is_valid_map(*cub->map))
 	// {
 	// 	//free
