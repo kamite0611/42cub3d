@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 22:05:11 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/01 23:47:45 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/02 00:02:32 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,38 @@
 
 /**
  * プレイヤー情報に値を入れる
+ * map_xy, direction は ファイル分析の段階で入れる
  */
-void	init_player(t_player *player)
+void	init_player_vec(t_player *player)
 {
-	(void)player;
+	if (player->direction == 'N')
+	{
+		player->vec_x_dir = 0;
+		player->vec_y_dir = -1;
+		player->vec_x_camera = VIEWING_ANGLE;
+		player->vec_y_camera = 0;
+	}
+	if (player->direction == 'S')
+	{
+		player->vec_x_dir = 0;
+		player->vec_y_dir = 1;
+		player->vec_x_camera = -VIEWING_ANGLE;
+		player->vec_y_camera = 0;
+	}
+	if (player->direction == 'E')
+	{
+		player->vec_x_dir = 1;
+		player->vec_y_dir = 0;
+		player->vec_x_camera = 0;
+		player->vec_y_camera = VIEWING_ANGLE;
+	}
+	if (player->direction == 'W')
+	{
+		player->vec_x_dir = -1;
+		player->vec_y_dir = 0;
+		player->vec_x_camera = 0;
+		player->vec_y_camera = -VIEWING_ANGLE;
+	}
 }
 
 /**

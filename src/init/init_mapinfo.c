@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/01 23:49:23 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/01 23:52:48 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	init_mapinfo(t_game *game, t_mapinfo *mapinfo)
 	map[0] = ft_strdup("111111111111111");
 	map[1] = ft_strdup("111111000111111");
 	map[2] = ft_strdup("111110000011111");
-	// map[3] = ft_strdup("1111000N0001111");
 	map[3] = ft_strdup("111100000001111"); /** Nを0にする */
 	map[4] = ft_strdup("111000000000111");
 	map[5] = ft_strdup("110000000000011");
