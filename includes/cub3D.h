@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 02:16:13 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/01 20:15:23 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@
 
 /* ------------------- structs ------------------- */
 
+/**
+ * ピクセル編集可能な画像情報
+ */
 typedef struct s_img
 {
 	void	*img;
@@ -46,15 +49,20 @@ typedef struct s_img
 	int		endian;
 }			t_img;
 
+/**
+ * マップファイル情報
+ */
 typedef struct s_mapinfo
 {
 	char *path; /** argv[2] */
 
+	/** xpmファイルパス */
 	char	*no_path;
 	char	*so_path;
 	char	*we_path;
 	char	*ea_path;
 
+	/** str配列のマップデータ */
 	char	**map;
 
 	int		floor_rgb[3];
@@ -77,6 +85,10 @@ typedef struct s_game
 	t_mapinfo mapinfo; /** Map関係 */
 }			t_game;
 
+typedef struct s_ray
+{
+}			t_ray;
+
 /* ------------------- functions ------------------- */
 
 /** inits */
@@ -84,6 +96,7 @@ int			init_mapinfo(t_mapinfo *mapinfo);
 int			initialize_mapinfo(t_mapinfo *mapinfo, char *map_path);
 
 void		init_game(t_game *game);
+void		init_view_pixels(t_game *game);
 int			initialize_game(t_game *game, char *map_path);
 
 void		init_img(t_game *game, t_img *image, int width, int height);

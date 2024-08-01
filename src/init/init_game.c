@@ -6,17 +6,31 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 02:16:40 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/01 20:14:45 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/**
+ * t_game.view_pixels の初期値を作成
+ * 640*480 int配列を確保し保存する
+ */
 void	init_view_pixels(t_game *game)
 {
-	game->view_pixels = calloc(sizeof *game->view_pixels, game->win_height);
+	int	i;
+
+	i = 0;
+	game->view_pixels = ft_calloc(sizeof(int **), game->win_height + 1);
 	if (!game->view_pixels)
 		free_exit(game, err_msg(ERR_MALLOC, ERROR));
+	while (i < game->win_height)
+	{
+		game->view_pixels[i] = ft_calloc(sizeof(int **), game->win_width + 1);
+		if (!game->view_pixels[i])
+			free_exit(game, err_msg(ERR_MALLOC, ERROR));
+		i++;
+	}
 }
 
 /**
@@ -34,8 +48,12 @@ void	init_game(t_game *game)
 	if (init_mapinfo(&game->mapinfo))
 		free_exit(game, ERROR);
 	put_mapinfo(&game->mapinfo);
+	init_view_pixels(game);
 }
 
+/**
+ * t_game 構造体を初期化する
+ */
 int	initialize_game(t_game *game, char *map_path)
 {
 	game->mlx = NULL;
