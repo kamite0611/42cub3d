@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/01 20:15:23 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/01 20:56:09 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define WIN_HEIGHT 480
 # define WIN_WIDTH 640
 # define TEX_SIZE 64
+# define VIEWING_ANGLE 0.66 /** 視野角 */
 
 # define ERR_USAGE "Usage: ./cub3D <path/to/map.cub>"
 # define ERR_MALLOC "Error: malloc() failed."
@@ -72,6 +73,29 @@ typedef struct s_mapinfo
 	int		map_height_count;
 }			t_mapinfo;
 
+/**
+ * レイキャスティングで使用する光線情報
+ */
+typedef struct s_ray
+{
+	/** マップ上の座標 */
+	int		map_x;
+	int		map_y;
+
+	/** 壁までの距離 */
+	double	dist_to_wall;
+}			t_ray;
+
+typedef struct s_player
+{
+	/** 方角 N,S,E,W */
+	char	direction;
+
+}			t_player;
+
+/**
+ * cub3d全体で使用する構造体
+ */
 typedef struct s_game
 {
 	void	*mlx;
@@ -84,10 +108,6 @@ typedef struct s_game
 
 	t_mapinfo mapinfo; /** Map関係 */
 }			t_game;
-
-typedef struct s_ray
-{
-}			t_ray;
 
 /* ------------------- functions ------------------- */
 
