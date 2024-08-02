@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/08/01 23:41:38 by akamite          ###   ########.fr        #
+#    Updated: 2024/08/02 19:08:05 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,8 +40,10 @@ SRC	= \
 	init/init_mapinfo.c \
 	init/init_img.c \
 	init/init_game.c \
+	init/init_ray.c \
 	exit/free_exit.c \
 	map_check/args_checker.c \
+	render/raycasting.c \
 	render/render.c \
 	utils/error.c \
 	utils/debug.c \

@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/02 19:05:56 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/02 19:06:45 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ void		free_exit(t_game *game, int status);
 int			args_checker(int argc, char *argv[]);
 
 /** Render */
+void		raycasting(t_game *game);
 void		render_view(t_game *game);
 
 /** Utils */
