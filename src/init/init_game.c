@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/02 00:07:37 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/02 00:09:24 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	init_view_pixels(t_game *game)
 	int	i;
 
 	i = 0;
+	if (game->view_pixels)
+		free_tab((void **)game->view_pixels);
 	game->view_pixels = ft_calloc(sizeof(int **), game->win_height + 1);
 	if (!game->view_pixels)
 		free_exit(game, err_msg(ERR_MALLOC, ERROR));
