@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_ray.c                                         :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/01 20:23:37 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/02 19:01:58 by akamite          ###   ########.fr       */
+/*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
+/*   Updated: 2024/08/02 19:05:08 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 /**
- * データをセットする
+ * 光線を画面の横幅分出す
  */
-void	init_ray(t_ray *ray, t_game *game, int x)
+void	raycasting(t_game *game)
 {
-	initialize_ray(ray);
-	ray->map_x = game->player.map_x;
-}
+	t_ray	ray;
+	int		x;
 
-/**
- * 初期化
- */
-void	initialize_ray(t_ray *ray)
-{
-	ray->map_x = 0;
-	ray->map_y = 0;
-	ray->dist_to_wall = 0.0;
+	x = 0;
+	ray = game->ray;
+	while (x < game->win_width)
+	{
+		x++;
+	}
 }

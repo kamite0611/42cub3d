@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/02 00:06:12 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/02 19:05:56 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ typedef struct s_game
 
 	t_mapinfo mapinfo; /** Map関係 */
 	t_player player /** プレイヤー情報 */;
+	t_ray ray /** 光線情報 */;
 }			t_game;
 
 /* ------------------- functions ------------------- */
@@ -148,6 +149,9 @@ void		initialize_img(t_img *image);
 
 void		init_player_vec(t_player *player);
 void		initialize_player(t_player *player);
+
+void		init_ray(t_ray *ray, t_game *game, int x);
+void		initialize_ray(t_ray *ray);
 
 /** Exit */
 void		free_exit(t_game *game, int status);

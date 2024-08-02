@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/02 00:09:24 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/02 19:05:34 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ int	initialize_game(t_game *game, char *map_path)
 	game->view_pixels = NULL;
 	initialize_mapinfo(&game->mapinfo, map_path);
 	initialize_player(&game->player);
+	initialize_ray(&game->ray);
 	return (SUCCESS);
 }
