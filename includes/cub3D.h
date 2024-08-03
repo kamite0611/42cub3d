@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 22:40:11 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 23:25:17 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct s_ray
 	int		map_x;
 	int		map_y;
 
-	/**  */
+	/** レイがグリット上で進む数 */
 	int		step_x;
 	int		step_y;
 
@@ -122,8 +122,13 @@ typedef struct s_ray
 	double	deltadist_x;
 	double	deltadist_y;
 
-	/** 壁までの距離 */
-	double	dist_to_wall;
+	int wall_height;  /** 壁の高さ */
+	double wall_dist; /** 壁までの距離 */
+	double	wall_x;
+
+	int		draw_start;
+	int		draw_end;
+
 }			t_ray;
 
 /**
