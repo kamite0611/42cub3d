@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:46:23 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 21:54:03 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/04 00:46:51 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 int	main(int argc, char *argv[])
 {
 	t_game	game;
-	t_temp 	temp;
+	t_temp	temp;
 
 	temp.map_count = 0;
 	temp.map_path[0] = '\0';
@@ -26,8 +26,8 @@ int	main(int argc, char *argv[])
 		return (ERROR);
 	initialize_game(&game, argv[1]);
 	init_game(&game, &temp);
-	raycasting(&game);
-	render_view(&game);
+	render_raycasting(&game);
+	hooks_keys(&game);
 	mlx_loop(game.mlx);
 	free_exit(&game, SUCCESS);
 	return (SUCCESS);

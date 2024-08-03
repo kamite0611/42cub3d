@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 23:33:31 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 01:40:15 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 // # define WIN_WIDTH 300
 # define TEX_SIZE 64
 # define VIEWING_ANGLE 0.66 /** 視野角 */
+# define MOVESPEED 0.05
+# define ROTSPEED 0.05
 
 # define WALL_C '1'
 
@@ -114,20 +116,21 @@ typedef struct s_ray
 	double	vec_dir_x;
 	double	vec_dir_y;
 
-	/** プレイヤーの現在地から一番近い整数値までの距離 */
+	/**  */
 	double	sidedist_x;
 	double	sidedist_y;
 
-	/** sidedist から次の整数値までの距離 */
+	/**  */
 	double	deltadist_x;
 	double	deltadist_y;
 
-	int wall_height;  /** 壁の高さ */
-	double wall_dist; /** 壁までの距離 */
-	double	wall_x;
+	/** 壁の高さ */
+	int		wall_height;
+	/** 壁までの距離 */
+	double	wall_dist;
 
-	int		draw_start;
-	int		draw_end;
+	int		wall_start_y;
+	int		wall_end_y;
 
 }			t_ray;
 
@@ -182,6 +185,17 @@ typedef struct s_temp
 
 /* ------------------- functions ------------------- */
 
+/** Actions */
+void		hooks_keys(t_game *game);
+
+void		move_forward(t_player *player);
+void		move_backward(t_player *player);
+void		move_right(t_player *player);
+void		move_left(t_player *player);
+
+void		rotate_left(t_player *player);
+void		rotate_right(t_player *player);
+
 /** inits */
 int			new_init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp);
 void		init_mapinfo(t_game *game, t_mapinfo *mapinfo);
@@ -202,6 +216,7 @@ void		initialize_ray(t_ray *ray);
 
 /** Exit */
 void		free_exit(t_game *game, int status);
+int			finish_game(t_game *game);
 
 /** map_check */
 int			args_checker(int argc, char *argv[], t_temp *temp);
@@ -209,8 +224,7 @@ int			args_checker(int argc, char *argv[], t_temp *temp);
 /** Render */
 void		raycasting(t_game *game);
 void		render_view(t_game *game);
-
-void		run_dda(t_game *game, t_ray *ray);
+void		render_raycasting(t_game *game);
 
 bool		is_hit_wall(t_game *game, t_ray *ray);
 

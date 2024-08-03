@@ -6,11 +6,11 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 20:23:37 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 23:21:18 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 01:40:14 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 /**
  * step_x, deltadist_xなどを設定する
@@ -72,7 +72,6 @@ void	initialize_ray(t_ray *ray)
 	ray->deltadist_y = 0.0;
 	ray->wall_height = 0;
 	ray->wall_dist = 0.0;
-	ray->wall_x = 0.0;
-	ray->draw_start = 0;
-	ray->draw_end = 0;
+	ray->wall_start_y = 0;
+	ray->wall_end_y = 0;
 }
