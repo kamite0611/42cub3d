@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 20:23:37 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 02:01:26 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 17:22:34 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,9 @@ void	initialize_ray(t_ray *ray)
 	ray->camera_x = 0.0;
 	ray->map_x = 0;
 	ray->map_y = 0;
+	ray->vec_dir_x = 0;
+	ray->vec_dir_y = 0;
+	ray->deltadist_x = 0;
+	ray->deltadist_y = 0;
 	ray->dist_to_wall = 0.0;
 }
