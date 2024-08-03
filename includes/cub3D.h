@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 23:33:31 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 00:09:11 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,11 @@ typedef struct s_ray
 	double	vec_dir_x;
 	double	vec_dir_y;
 
-	/** プレイヤーの現在地から一番近い整数値までの距離 */
+	/**  */
 	double	sidedist_x;
 	double	sidedist_y;
 
-	/** sidedist から次の整数値までの距離 */
+	/**  */
 	double	deltadist_x;
 	double	deltadist_y;
 
