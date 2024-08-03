@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 22:28:00 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 23:33:31 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 # define ERROR 1
 # define SUCCESS 0
 
-// # define WIN_HEIGHT 480
-// # define WIN_WIDTH 640
-# define WIN_HEIGHT 200
-# define WIN_WIDTH 300
+# define WIN_HEIGHT 480
+# define WIN_WIDTH 640
+// # define WIN_HEIGHT 200
+// # define WIN_WIDTH 300
 # define TEX_SIZE 64
 # define VIEWING_ANGLE 0.66 /** 視野角 */
 
@@ -73,11 +73,14 @@ typedef struct s_mapinfo
 	/** str配列のマップデータ */
 	char	**map;
 
+	/** 地図の最大横幅・縦幅 */
+	int		map_height;
+	int		map_width;
+
 	int		floor_rgb[3];
 	int		ceiling_rgb[3];
 
 	int		line_count;
-	int		map_height_count;
 }			t_mapinfo;
 
 /**
@@ -103,7 +106,7 @@ typedef struct s_ray
 	int		map_x;
 	int		map_y;
 
-	/**  */
+	/** レイがグリット上で進む数 */
 	int		step_x;
 	int		step_y;
 
@@ -119,8 +122,13 @@ typedef struct s_ray
 	double	deltadist_x;
 	double	deltadist_y;
 
-	/** 壁までの距離 */
-	double	dist_to_wall;
+	int wall_height;  /** 壁の高さ */
+	double wall_dist; /** 壁までの距離 */
+	double	wall_x;
+
+	int		draw_start;
+	int		draw_end;
+
 }			t_ray;
 
 /**
@@ -175,7 +183,8 @@ typedef struct s_temp
 /* ------------------- functions ------------------- */
 
 /** inits */
-int			init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp);
+int			new_init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp);
+void		init_mapinfo(t_game *game, t_mapinfo *mapinfo);
 int			initialize_mapinfo(t_mapinfo *mapinfo, char *map_path);
 
 void		init_game(t_game *game, t_temp *temp);

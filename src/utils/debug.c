@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 01:18:50 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 19:02:13 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 23:05:05 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	put_str_arr(char **str_arr, char *name)
 void	put_ray(t_ray *ray)
 {
 	printf("RAY[%lf]: map(%d, %d) step(%d, %d) dir(%lf, %lf) deltadist(%lf,\
- %lf) sidedist(%lf, %lf)\n",
+ %lf) sidedist(%lf, %lf) wall(%d %lf %lf) draw(%d ~ %d)\n",
 			ray->camera_x,
 			ray->map_x,
 			ray->map_y,
@@ -38,7 +38,12 @@ void	put_ray(t_ray *ray)
 			ray->deltadist_x,
 			ray->deltadist_y,
 			ray->sidedist_x,
-			ray->sidedist_y);
+			ray->sidedist_y,
+			ray->wall_height,
+			ray->wall_dist,
+			ray->wall_x,
+			ray->draw_start,
+			ray->draw_end);
 }
 
 void	put_mapinfo(t_mapinfo *mapinfo)

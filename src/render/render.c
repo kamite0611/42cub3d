@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 00:08:37 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 02:13:27 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 23:45:28 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	render_view(t_game *game)
 		x = 0;
 		while (x < game->win_width)
 		{
-			image.addr[y * (image.size_line / 4) + x] = 1000000;
+			image.addr[y * (image.size_line / 4) + x] = game->view_pixels[y][x];
 			x++;
 		}
 		y++;
