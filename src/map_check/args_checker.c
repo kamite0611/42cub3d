@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 22:28:23 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 22:29:16 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,6 @@ bool	check_dirgb(char **line)
 int	args_checker(int argc, char *argv[], t_temp *temp)
 {
 	size_t	map_name_len;
-	int		fd;
-	int		count;
-	bool	player_flag;
-	char	*line;
-	char	**temp_line;
-	size_t	line_len;
-	size_t	i;
 	int		fd;
 	int		count;
 	bool	player_flag;
