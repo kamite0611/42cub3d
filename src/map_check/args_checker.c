@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 21:55:07 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/03 22:25:21 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
  */
 
 //不要? !(ft_strnstr(argv[1], "./maps/", 7) || ft_strnstr(argv[1], "maps/", 5)))
-
+//strtrim改行
+//texture確認
 
 bool check_rgb(char *line)
 {
