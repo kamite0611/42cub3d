@@ -6,8 +6,12 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 02:04:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 02:04:58 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 19:00:14 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	run_dda(void)
+{
+}

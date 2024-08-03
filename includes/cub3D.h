@@ -3,11 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-
-/*   Updated: 2024/08/03 18:03:26 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/03 19:13:12 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +25,8 @@
 # define TEX_SIZE 64
 # define VIEWING_ANGLE 0.66 /** 視野角 */
 
+# define WALL_C '1'
+
 # define ERR_USAGE "Usage: ./cub3D <path/to/map.cub>"
 # define ERR_MALLOC "Error: malloc() failed."
 # define ERR_MSG "ERROR\n"
@@ -38,6 +39,7 @@
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include <math.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 
@@ -98,11 +100,19 @@ typedef struct s_ray
 	int		map_x;
 	int		map_y;
 
+	/**  */
+	int		step_x;
+	int		step_y;
+
 	/** レイの方向ベクトル */
 	double	vec_dir_x;
 	double	vec_dir_y;
 
-	/** 次のグリッドまでの距離 */
+	/** プレイヤーの現在地から一番近い整数値までの距離 */
+	double	sidedist_x;
+	double	sidedist_y;
+
+	/** sidedist から次の整数値までの距離 */
 	double	deltadist_x;
 	double	deltadist_y;
 
@@ -178,6 +188,8 @@ int			args_checker(int argc, char *argv[]);
 /** Render */
 void		raycasting(t_game *game);
 void		render_view(t_game *game);
+
+void		set_dda(t_ray *ray, t_player *player);
 
 /** Utils */
 int			err_msg(char *msg, int status);

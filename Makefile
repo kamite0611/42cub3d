@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/08/03 00:58:29 by akamite          ###   ########.fr        #
+#    Updated: 2024/08/03 18:57:47 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC	= \
 	init/init_ray.c \
 	exit/free_exit.c \
 	map_check/args_checker.c \
+	render/dda.c \
 	render/raycasting.c \
 	render/render.c \
 	utils/error.c \

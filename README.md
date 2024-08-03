@@ -27,8 +27,10 @@ $ make
 $ ./cub3D
 ```
 
-# 解法
+# 参考文献
 
+Raycasting の基本的な理論
 https://lodev.org/cgtutor/raycasting.html
 
-参考
+実装記事
+https://qiita.com/susasaki/items/c74a228d7ddd48b818bd

@@ -6,11 +6,38 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 20:23:37 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 17:22:34 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 19:10:31 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+/**
+ * step_x, deltadist_xなどを設定する
+ */
+static void	init_ray_dda(t_ray *ray, t_player *player)
+{
+	if (ray->deltadist_x < 0)
+	{
+		ray->step_x = -1;
+		ray->sidedist_x = (player->map_x - ray->map_x) * ray->deltadist_x;
+	}
+	else
+	{
+		ray->step_x = 1;
+		ray->sidedist_x = (ray->map_x + 1.0 - player->map_x) * ray->deltadist_x;
+	}
+	if (ray->deltadist_y < 0)
+	{
+		ray->step_y = -1;
+		ray->sidedist_y = (player->map_y - ray->map_y) * ray->deltadist_y;
+	}
+	else
+	{
+		ray->step_y = 1;
+		ray->sidedist_y = (ray->map_y + 1.0 - player->map_y) * ray->deltadist_y;
+	}
+}
 
 /**
  * データをセットする
@@ -25,7 +52,7 @@ void	init_ray(t_ray *ray, t_player *player, int x)
 	ray->map_y = (int)player->map_y;
 	ray->deltadist_x = fabs(1 / ray->vec_dir_x);
 	ray->deltadist_y = fabs(1 / ray->vec_dir_y);
-	put_ray(ray);
+	init_ray_dda(ray, player);
 }
 
 /**
@@ -38,6 +65,8 @@ void	initialize_ray(t_ray *ray)
 	ray->map_y = 0;
 	ray->vec_dir_x = 0;
 	ray->vec_dir_y = 0;
+	ray->sidedist_x = 0;
+	ray->sidedist_y = 0;
 	ray->deltadist_x = 0;
 	ray->deltadist_y = 0;
 	ray->dist_to_wall = 0.0;
