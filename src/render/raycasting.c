@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 00:21:35 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 00:23:13 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * 壁の高さを計算
  */
-static void	calculate_wall_height(t_ray *ray, t_game *game, t_player *player)
+static void	calculate_wall_height(t_ray *ray, t_game *game)
 {
 	if (ray->side == 0)
 		ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
@@ -77,7 +77,8 @@ void	raycasting(t_game *game)
 	{
 		init_ray(&ray, &game->player, x);
 		run_dda(game, &ray);
-		calculate_wall_height(&ray, game, &game->player);
+		calculate_wall_height(&ray, game);
+		put_ray(&ray);
 		set_ray_pixels(game, &ray, x);
 		x++;
 	}
