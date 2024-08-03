@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 23:25:17 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 23:33:31 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 # define ERROR 1
 # define SUCCESS 0
 
-// # define WIN_HEIGHT 480
-// # define WIN_WIDTH 640
-# define WIN_HEIGHT 200
-# define WIN_WIDTH 300
+# define WIN_HEIGHT 480
+# define WIN_WIDTH 640
+// # define WIN_HEIGHT 200
+// # define WIN_WIDTH 300
 # define TEX_SIZE 64
 # define VIEWING_ANGLE 0.66 /** 視野角 */
 
@@ -183,7 +183,8 @@ typedef struct s_temp
 /* ------------------- functions ------------------- */
 
 /** inits */
-int			init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp);
+int			new_init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp);
+void		init_mapinfo(t_game *game, t_mapinfo *mapinfo);
 int			initialize_mapinfo(t_mapinfo *mapinfo, char *map_path);
 
 void		init_game(t_game *game, t_temp *temp);

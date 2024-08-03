@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 21:47:05 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/03 23:33:42 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	init_view_pixels(t_game *game)
  */
 void	init_game(t_game *game, t_temp *temp)
 {
+	(void)temp;
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		free_exit(game, err_msg("mlx_init() Error.", ERROR));
@@ -48,7 +49,8 @@ void	init_game(t_game *game, t_temp *temp)
 	if (!game->win)
 		free_exit(game, err_msg("mlx_new_window() Error.", ERROR));
 	/** init */
-	init_mapinfo(game, &game->mapinfo, temp);
+	// new_init_mapinfo(game, &game->mapinfo, temp);
+	init_mapinfo(game, &game->mapinfo);
 	init_player_vec(&game->player);
 	init_view_pixels(game);
 	/** debug */
