@@ -6,11 +6,12 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/01 06:39:53 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/03 18:07:12 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+#include <limits.h> //For PATH_MAX
 
 /**
  * コマンドライン引数が正しいかチェックする
@@ -18,6 +19,54 @@
  * - ファイルパスが正しいか
  * - ファイルの内容が正しいか
  */
+
+//不要? !(ft_strnstr(argv[1], "./maps/", 7) || ft_strnstr(argv[1], "maps/", 5)))
+
+bool check_rgb(char *line)
+{
+    char **colors = ft_split(ft_strtrim(line, "\n"), ',');
+    size_t color_len;
+    int i = -1;
+    size_t j = -1;
+    while (colors[++i]){
+        if (i > 3)
+			free_exit(NULL, err_msg(ERR_MSG, "Map inclue too many color elements\n"));
+        color_len = ft_strlen(colors[i]);
+        if (color_len == 0 || color_len > 3)
+			free_exit(NULL, err_msg(ERR_USAGE, "Map inclue invalid color element\n"));
+        while (++j < color_len){
+            if (!ft_isdigit(colors[i][j]) || ft_atoi(colors[i]) > 255)
+				free_exit(NULL, err_msg(ERR_USAGE, "Map inclue invalid color element\n"));
+        }
+    }
+    if (i < 2)
+		free_exit(NULL, err_msg(ERR_USAGE, "Map inclue too few color elements\n"));
+    //free(colors)
+    return SUCCESS;
+}
+
+bool check_dirgb(char **line)
+{
+    static char *dirgb[6] = {"NO", "WE", "SO", "EA", "C", "F"};
+    static bool dirgb_flag[6] = {false};
+
+    if (!dirgb_flag[0] && !ft_strcmp(line[0], dirgb[0]) && line[1] && ft_strcmp(line[1] + ft_strlen(line[1]) - 5, ".xpm\n") == 0)
+        dirgb_flag[0] = true;
+    else if (!dirgb_flag[1] && !ft_strcmp(line[0], dirgb[1]) && line[1] && ft_strcmp(line[1] + ft_strlen(line[1]) - 5, ".xpm\n") == 0)
+        dirgb_flag[1] = true;
+    else if (!dirgb_flag[2] && !ft_strcmp(line[0], dirgb[2]) && line[1] && ft_strcmp(line[1] + ft_strlen(line[1]) - 5, ".xpm\n") == 0)
+        dirgb_flag[2] = true;
+    else if (!dirgb_flag[3] && !ft_strcmp(line[0], dirgb[3]) && line[1] && ft_strcmp(line[1] + ft_strlen(line[1]) - 5, ".xpm\n") == 0)
+        dirgb_flag[3] = true;
+    else if (!dirgb_flag[4] && !ft_strcmp(line[0], dirgb[4]) && line[1] && check_rgb(line[1]) == SUCCESS)
+        dirgb_flag[4] = true;
+    else if (!dirgb_flag[5] && !ft_strcmp(line[0], dirgb[5]) && line[1] && check_rgb(line[1]) == SUCCESS)
+        dirgb_flag[5] = true;
+    else
+		free_exit(NULL, err_msg(ERR_MSG, "Invalid direct or RGB\n"));
+    return (SUCCESS);
+}
+
 int	args_checker(int argc, char *argv[])
 {
 	if (argc != 2)
@@ -28,70 +77,48 @@ int	args_checker(int argc, char *argv[])
 	if (map_name_len == 0 || ft_strcmp(argv[1] + map_name_len - 4, ".cub") != 0 ||
          !(ft_strnstr(argv[1], "./maps/", 7) || ft_strnstr(argv[1], "maps/", 5)))
 	{
-		//printf("Invalid map path\n");
-		free_exit(NULL, err_msg(ERR_USAGE, ERROR));
+		free_exit(NULL, err_msg(ERR_MSG, "Invalid map path\n"));
 	}
 	int fd = open(argv[1], O_RDONLY);
     if (fd < 0)
     {
-        //printf("Invalid map name\n");
-		free_exit(NULL, err_msg(ERR_USAGE, ERROR));
+		free_exit(NULL, err_msg(ERR_MSG, "Invalid map name\n"));
     }
+	int count = 0;
+	bool player_flag = false;
     while (1)
     {
         char *line = get_next_line(fd);
         if (line == NULL){
             break;
+        } else if (ft_strcmp(line, "\n") == 0){
+            continue;
         }
-        //printf("map: %s", line);
-        //free(line);
-		//こっちで読み込んだ内容のマップをチェックする。
-		// 最初の4行は方角 check_dir
-		//	-方角内の順番はなんでもいい、つまり東西南北でも南北東西でもOK）
-		//	-方角の構成は方角名+path
-		// 次の2行は色 check_rgb
-		//  -こちらも順番なんでもいい
-		//  -色の構成は色の識別子+RGB(,で区切られる)
-		// 残りはmap(これは1,0とNSWEのどれか一つで構成されていればOK)
+        count++;
+        if (count <= 6){
+            char **temp_line = ft_split(line, ' ');
+            if (temp_line[0] && check_dirgb(temp_line) == SUCCESS){
+                continue; //free(temp_line)
+            }
+        }else if (count > 6){
+            size_t line_len = ft_strlen(line);
+            size_t i = -1;
+            while(++i < line_len){
+                if (line[i] == '0' || line[i] == '1' || line[i] == ' ' || line[i] == '\n'){
+                    continue;
+                }else if (ft_strchr("NEWS", line[i])){
+                    if (player_flag == true){
+						free_exit(NULL, err_msg(ERR_MSG, "Map include double player point\n"));
+                    }
+                    player_flag = true;
+                }else{
+					free_exit(NULL, err_msg(ERR_MSG, "Map include invalid character\n"));
+                }
+            }
+        }
+        free(line);
     }
-	//checkして正しかったmapをinit_mapinfoに格納
-	//read_map(*cub->map)
-	//check map content
-	// if !(is_valid_map(*cub->map))
-	// {
-	// 	//free
-	// }
+	if (count < 7 || player_flag == false)
+		free_exit(NULL, err_msg(ERR_MSG, "Map not include enought content\n"));
 	return (SUCCESS);
 }
-
-// static void	check_rgb(char *line, t_cub_data *cub)
-// {
-// 	if (!(strncomp(line[0], "NO", 2)) || \
-// 		!(strncomp(line[0], "SO", 2)) || \
-// 		!(strncomp(line[0], "WE", 2)) || \
-// 		!(strncomp(line[0], "EA", 2)))
-// 	else
-// 		dprintf(ERror)
-// }
-
-// void	read_map(t_cub_data *cub)
-// {
-// 	int fd = open()
-// 	while (1)
-// 	{
-// 		line = get_next_line(game->fd);
-// 		if (!line)
-// 			break ;
-// 		if (count <= 5)
-// 			check_dir(line, cub);
-// 		else if (count > 5 && count <= 7)
-// 			check_rgb(line, cub);
-
-
-// 		else if (map_check(&line, &map_buf, game) == 1)
-// 			error("Error\ninvalid input map\n");
-// 		free(line);
-// 		line = NULL;
-// 	}
-// 	close(fd);
-// }
