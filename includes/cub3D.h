@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 00:56:36 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 01:19:42 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 // # define WIN_WIDTH 300
 # define TEX_SIZE 64
 # define VIEWING_ANGLE 0.66 /** 視野角 */
-# define MOVESPEED 0.02
+# define MOVESPEED 0.05
+# define ROTSPEED 0.05
 
 # define WALL_C '1'
 
@@ -184,10 +185,14 @@ typedef struct s_temp
 
 /** Actions */
 void		hooks_keys(t_game *game);
+
 void		move_forward(t_player *player);
 void		move_backward(t_player *player);
 void		move_right(t_player *player);
 void		move_left(t_player *player);
+
+void		rotate_left(t_player *player);
+void		rotate_right(t_player *player);
 
 /** inits */
 int			new_init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp);
