@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 18:07:12 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/03 21:55:07 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 //不要? !(ft_strnstr(argv[1], "./maps/", 7) || ft_strnstr(argv[1], "maps/", 5)))
 
+
 bool check_rgb(char *line)
 {
     char **colors = ft_split(ft_strtrim(line, "\n"), ',');
@@ -30,17 +31,17 @@ bool check_rgb(char *line)
     size_t j = -1;
     while (colors[++i]){
         if (i > 3)
-			free_exit(NULL, err_msg(ERR_MSG, "Map inclue too many color elements\n"));
+			free_exit(NULL, err_msg(ERR_MSG, 1));
         color_len = ft_strlen(colors[i]);
         if (color_len == 0 || color_len > 3)
-			free_exit(NULL, err_msg(ERR_USAGE, "Map inclue invalid color element\n"));
+			free_exit(NULL, err_msg(ERR_USAGE, 1));
         while (++j < color_len){
             if (!ft_isdigit(colors[i][j]) || ft_atoi(colors[i]) > 255)
-				free_exit(NULL, err_msg(ERR_USAGE, "Map inclue invalid color element\n"));
+				free_exit(NULL, err_msg(ERR_USAGE, 1));
         }
     }
     if (i < 2)
-		free_exit(NULL, err_msg(ERR_USAGE, "Map inclue too few color elements\n"));
+		free_exit(NULL, err_msg(ERR_USAGE, 1));
     //free(colors)
     return SUCCESS;
 }
@@ -63,11 +64,11 @@ bool check_dirgb(char **line)
     else if (!dirgb_flag[5] && !ft_strcmp(line[0], dirgb[5]) && line[1] && check_rgb(line[1]) == SUCCESS)
         dirgb_flag[5] = true;
     else
-		free_exit(NULL, err_msg(ERR_MSG, "Invalid direct or RGB\n"));
+		free_exit(NULL, err_msg(ERR_MSG, 1));
     return (SUCCESS);
 }
 
-int	args_checker(int argc, char *argv[])
+int	args_checker(int argc, char *argv[], t_temp *temp)
 {
 	if (argc != 2)
 		free_exit(NULL, err_msg(ERR_USAGE, ERROR));
@@ -77,13 +78,14 @@ int	args_checker(int argc, char *argv[])
 	if (map_name_len == 0 || ft_strcmp(argv[1] + map_name_len - 4, ".cub") != 0 ||
          !(ft_strnstr(argv[1], "./maps/", 7) || ft_strnstr(argv[1], "maps/", 5)))
 	{
-		free_exit(NULL, err_msg(ERR_MSG, "Invalid map path\n"));
+		free_exit(NULL, err_msg(ERR_MSG, 1));
 	}
 	int fd = open(argv[1], O_RDONLY);
     if (fd < 0)
     {
-		free_exit(NULL, err_msg(ERR_MSG, "Invalid map name\n"));
+		free_exit(NULL, err_msg(ERR_MSG, 1));
     }
+    ft_strlcpy(temp->map_path, argv[1], 4095);
 	int count = 0;
 	bool player_flag = false;
     while (1)
@@ -108,17 +110,21 @@ int	args_checker(int argc, char *argv[])
                     continue;
                 }else if (ft_strchr("NEWS", line[i])){
                     if (player_flag == true){
-						free_exit(NULL, err_msg(ERR_MSG, "Map include double player point\n"));
+						free_exit(NULL, err_msg(ERR_MSG, 1));
                     }
+                    temp->player_direction = line[i];
+                    temp->player_mapx = i;
+                    temp->player_mapy = count - 7;
                     player_flag = true;
                 }else{
-					free_exit(NULL, err_msg(ERR_MSG, "Map include invalid character\n"));
+					free_exit(NULL, err_msg(ERR_MSG, 1));
                 }
             }
         }
-        free(line);
+        //free(line);
     }
 	if (count < 7 || player_flag == false)
-		free_exit(NULL, err_msg(ERR_MSG, "Map not include enought content\n"));
+		free_exit(NULL, err_msg(ERR_MSG, 1));
+    temp->map_count = count;
 	return (SUCCESS);
 }

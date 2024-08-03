@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/02 19:05:34 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 21:47:05 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init_view_pixels(t_game *game)
  * t_game 全体の構造体
  * mapinfo,mlx など処理に必要なデータを全てこの段階で入れる
  */
-void	init_game(t_game *game)
+void	init_game(t_game *game, t_temp *temp)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
@@ -48,7 +48,7 @@ void	init_game(t_game *game)
 	if (!game->win)
 		free_exit(game, err_msg("mlx_new_window() Error.", ERROR));
 	/** init */
-	init_mapinfo(game, &game->mapinfo);
+	init_mapinfo(game, &game->mapinfo, temp);
 	init_player_vec(&game->player);
 	init_view_pixels(game);
 	/** debug */
