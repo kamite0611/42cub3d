@@ -10,6 +10,7 @@
     "deltadist",
     "filedata",
     "mapinfo",
+    "MOVESPEED",
     "nextgrid",
     "putstr",
     "raycasting",

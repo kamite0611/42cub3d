@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 00:28:36 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 00:47:33 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 00:58:22 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@ static int	key_press_handler(int key, t_game *game)
 {
 	if (key == XK_Escape)
 		finish_game(game);
+	if (key == XK_w)
+		move_forward(&game->player);
+	if (key == XK_a)
+		move_left(&game->player);
+	if (key == XK_s)
+		move_backward(&game->player);
+	if (key == XK_d)
+		move_right(&game->player);
+	render_raycasting(game);
 	return (SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 00:29:11 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 00:59:46 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	raycasting(t_game *game)
 		init_ray(&ray, &game->player, x);
 		run_dda(game, &ray);
 		calculate_wall(&ray, game);
-		put_ray(&ray);
 		set_ray_pixels(game, &ray, x);
 		x++;
 	}
