@@ -3,10 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 02:01:26 by akamite          ###   ########.fr       */
+
+/*   Updated: 2024/08/03 18:03:26 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +28,7 @@
 
 # define ERR_USAGE "Usage: ./cub3D <path/to/map.cub>"
 # define ERR_MALLOC "Error: malloc() failed."
+# define ERR_MSG "ERROR\n"
 
 /* ------------------- includes ------------------- */
 
