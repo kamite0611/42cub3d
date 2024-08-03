@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 01:19:42 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 01:40:15 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,11 +124,13 @@ typedef struct s_ray
 	double	deltadist_x;
 	double	deltadist_y;
 
-	int wall_height;  /** 壁の高さ */
-	double wall_dist; /** 壁までの距離 */
+	/** 壁の高さ */
+	int		wall_height;
+	/** 壁までの距離 */
+	double	wall_dist;
 
-	int		draw_start;
-	int		draw_end;
+	int		wall_start_y;
+	int		wall_end_y;
 
 }			t_ray;
 
