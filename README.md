@@ -26,3 +26,9 @@ $ pkg-config --libs x11
 $ make
 $ ./cub3D
 ```
+
+# 解法
+
+https://lodev.org/cgtutor/raycasting.html
+
+参考

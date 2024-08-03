@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 18:46:23 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 00:58:15 by akamite          ###   ########.fr       */
+/*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
+/*   Updated: 2024/08/03 01:27:14 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main(int argc, char *argv[])
+/**
+ * 光線を画面の横幅分出す
+ */
+void	raycasting(t_game *game)
 {
-	t_game	game;
+	t_ray	ray;
+	int		x;
 
-	if (args_checker(argc, argv))
-		return (ERROR);
-	initialize_game(&game, argv[1]);
-	init_game(&game);
-	raycasting(&game);
-	render_view(&game);
-	mlx_loop(game.mlx);
-	free_exit(&game, SUCCESS);
-	return (SUCCESS);
+	x = 0;
+	ray = game->ray;
+	while (x < game->win_width)
+	{
+		init_ray(&ray, &game->player, x);
+		x++;
+	}
 }

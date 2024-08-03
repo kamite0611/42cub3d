@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/31 01:34:23 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 01:36:42 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * Map情報をファイルから取得する
  */
-int	init_mapinfo(t_mapinfo *mapinfo)
+void	init_mapinfo(t_game *game, t_mapinfo *mapinfo)
 {
 	char	**map;
 
@@ -35,7 +35,7 @@ int	init_mapinfo(t_mapinfo *mapinfo)
 	map[0] = ft_strdup("111111111111111");
 	map[1] = ft_strdup("111111000111111");
 	map[2] = ft_strdup("111110000011111");
-	map[3] = ft_strdup("1111000N0001111");
+	map[3] = ft_strdup("111100000001111"); /** Nを0にする */
 	map[4] = ft_strdup("111000000000111");
 	map[5] = ft_strdup("110000000000011");
 	map[6] = ft_strdup("100001111100001");
@@ -47,7 +47,9 @@ int	init_mapinfo(t_mapinfo *mapinfo)
 	map[12] = ft_strdup("111111111111111");
 	map[13] = NULL;
 	mapinfo->map = map;
-	return (SUCCESS);
+	game->player.direction = 'N';
+	game->player.map_x = 7.5; /** プレイヤーのIndex + 0.5 */
+	game->player.map_y = 3.5; /** プレイヤーのIndex + 0.5 */
 }
 
 int	initialize_mapinfo(t_mapinfo *mapinfo, char *map_path)

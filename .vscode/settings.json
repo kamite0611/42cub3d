@@ -5,5 +5,13 @@
     "keysym.h": "c",
     "libft.h": "c"
   },
-  "cSpell.words": ["cubdata", "filedata", "mapinfo", "putstr", "texinfo"]
+  "cSpell.words": [
+    "cubdata",
+    "deltadist",
+    "filedata",
+    "mapinfo",
+    "nextgrid",
+    "putstr",
+    "texinfo"
+  ]
 }

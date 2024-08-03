@@ -6,6 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
+
 /*   Updated: 2024/08/03 18:03:26 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -18,9 +19,12 @@
 # define ERROR 1
 # define SUCCESS 0
 
-# define WIN_HEIGHT 480
-# define WIN_WIDTH 640
+// # define WIN_HEIGHT 480
+// # define WIN_WIDTH 640
+# define WIN_HEIGHT 200
+# define WIN_WIDTH 300
 # define TEX_SIZE 64
+# define VIEWING_ANGLE 0.66 /** 視野角 */
 
 # define ERR_USAGE "Usage: ./cub3D <path/to/map.cub>"
 # define ERR_MALLOC "Error: malloc() failed."
@@ -33,11 +37,15 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 
 /* ------------------- structs ------------------- */
 
+/**
+ * ピクセル編集可能な画像情報
+ */
 typedef struct s_img
 {
 	void	*img;
@@ -47,15 +55,20 @@ typedef struct s_img
 	int		endian;
 }			t_img;
 
+/**
+ * マップファイル情報
+ */
 typedef struct s_mapinfo
 {
 	char *path; /** argv[2] */
 
+	/** xpmファイルパス */
 	char	*no_path;
 	char	*so_path;
 	char	*we_path;
 	char	*ea_path;
 
+	/** str配列のマップデータ */
 	char	**map;
 
 	int		floor_rgb[3];
@@ -65,6 +78,63 @@ typedef struct s_mapinfo
 	int		map_height_count;
 }			t_mapinfo;
 
+/**
+画面座標
+(0, 0) -----> x (正の方向)
+ |
+ |
+ v
+ y (正の方向)
+ */
+/**
+ * レイキャスティングで使用する光線情報
+ */
+typedef struct s_ray
+{
+	/** カメラ平面 */
+	double	camera_x;
+
+	/** マップ上の座標 */
+	int		map_x;
+	int		map_y;
+
+	/** レイの方向ベクトル */
+	double	vec_dir_x;
+	double	vec_dir_y;
+
+	/** 次のグリッドまでの距離 */
+	double	deltadist_x;
+	double	deltadist_y;
+
+	/** 壁までの距離 */
+	double	dist_to_wall;
+}			t_ray;
+
+/**
+ * プレイヤー情報
+ */
+typedef struct s_player
+{
+	/** 方角 N,S,E,W */
+	char	direction;
+
+	/** マップ上の座標 */
+	double	map_x;
+	double	map_y;
+
+	/** プレイヤー向きベクトル */
+	double vec_dir_x; /** x方向ベクトル */
+	double vec_dir_y; /** y方向ベクトル */
+
+	/** カメラ方向ベクトル */
+	/** プレイヤーの視界の中心から片方の端までのベクトル */
+	double vec_plane_x /** x方向ベクトル */;
+	double vec_plane_y /** y方向ベクトル */;
+}			t_player;
+
+/**
+ * cub3d全体で使用する構造体
+ */
 typedef struct s_game
 {
 	void	*mlx;
@@ -76,19 +146,28 @@ typedef struct s_game
 	int		**view_pixels;
 
 	t_mapinfo mapinfo; /** Map関係 */
+	t_player player /** プレイヤー情報 */;
+	t_ray ray /** 光線情報 */;
 }			t_game;
 
 /* ------------------- functions ------------------- */
 
 /** inits */
-int			init_mapinfo(t_mapinfo *mapinfo);
+void		init_mapinfo(t_game *game, t_mapinfo *mapinfo);
 int			initialize_mapinfo(t_mapinfo *mapinfo, char *map_path);
 
 void		init_game(t_game *game);
+void		init_view_pixels(t_game *game);
 int			initialize_game(t_game *game, char *map_path);
 
 void		init_img(t_game *game, t_img *image, int width, int height);
 void		initialize_img(t_img *image);
+
+void		init_player_vec(t_player *player);
+void		initialize_player(t_player *player);
+
+void		init_ray(t_ray *ray, t_player *player, int x);
+void		initialize_ray(t_ray *ray);
 
 /** Exit */
 void		free_exit(t_game *game, int status);
@@ -97,11 +176,14 @@ void		free_exit(t_game *game, int status);
 int			args_checker(int argc, char *argv[]);
 
 /** Render */
+void		raycasting(t_game *game);
 void		render_view(t_game *game);
 
 /** Utils */
 int			err_msg(char *msg, int status);
 void		put_mapinfo(t_mapinfo *mapinfo);
+void		put_player(t_player *player);
+void		put_ray(t_ray *ray);
 void		free_tab(void **tab);
 
 #endif
