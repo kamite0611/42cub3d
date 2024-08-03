@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 22:28:00 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 22:40:11 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,14 @@ typedef struct s_mapinfo
 	/** str配列のマップデータ */
 	char	**map;
 
+	/** 地図の最大横幅・縦幅 */
+	int		map_height;
+	int		map_width;
+
 	int		floor_rgb[3];
 	int		ceiling_rgb[3];
 
 	int		line_count;
-	int		map_height_count;
 }			t_mapinfo;
 
 /**

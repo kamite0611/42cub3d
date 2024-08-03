@@ -24,6 +24,8 @@ int			init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
     if (fd < 0)
 		return (ERROR);
 	int count = 0;
+	mapinfo->map_height = 15; /** @TODO fix */
+	mapinfo->map_width = 13; /** @TODO fix */
 	game->mapinfo.line_count = temp->map_count;
 	game->player.direction = temp->player_direction;
 	game->player.map_x = temp->player_mapx;
@@ -85,6 +87,9 @@ int	initialize_mapinfo(t_mapinfo *mapinfo, char *map_path)
 	mapinfo->so_path = NULL;
 	mapinfo->we_path = NULL;
 	mapinfo->ea_path = NULL;
+	mapinfo->map = NULL;
+	mapinfo->map_height = 0;
+	mapinfo->map_width = 0;
 	mapinfo->floor_rgb[0] = 0;
 	mapinfo->floor_rgb[1] = 0;
 	mapinfo->floor_rgb[2] = 0;
