@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 02:04:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 19:16:30 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 21:52:49 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	run_dda(t_game *game, t_ray *ray)
 {
+	(void)game;
+	(void)ray;
 	int	is_hit;
 
 	is_hit = 0;

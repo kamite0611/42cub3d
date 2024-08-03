@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 19:17:22 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 21:49:05 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,13 +160,23 @@ typedef struct s_game
 	t_ray ray /** 光線情報 */;
 }			t_game;
 
+
+typedef struct s_temp
+{
+	int		map_count;
+	char	map_path[4096];
+	char	player_direction;
+	int		player_mapx;
+	int		player_mapy;
+}			t_temp;
+
 /* ------------------- functions ------------------- */
 
 /** inits */
-void		init_mapinfo(t_game *game, t_mapinfo *mapinfo);
+int			init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp);
 int			initialize_mapinfo(t_mapinfo *mapinfo, char *map_path);
 
-void		init_game(t_game *game);
+void		init_game(t_game *game, t_temp *temp);
 void		init_view_pixels(t_game *game);
 int			initialize_game(t_game *game, char *map_path);
 
@@ -183,7 +193,7 @@ void		initialize_ray(t_ray *ray);
 void		free_exit(t_game *game, int status);
 
 /** map_check */
-int			args_checker(int argc, char *argv[]);
+int			args_checker(int argc, char *argv[], t_temp *temp);
 
 /** Render */
 void		raycasting(t_game *game);
