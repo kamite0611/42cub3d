@@ -6,8 +6,8 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 02:04:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 23:28:20 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 00:29:11 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"

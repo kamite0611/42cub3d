@@ -6,11 +6,11 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:56:49 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/02 00:07:12 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 00:29:11 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 /**
  * t_mapinfoの中身でmallocしているものをfreeする

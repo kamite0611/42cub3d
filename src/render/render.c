@@ -6,11 +6,11 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 00:08:37 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 00:20:43 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 00:29:11 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 void	render_view(t_game *game)
 {

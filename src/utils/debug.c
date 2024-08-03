@@ -6,11 +6,11 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 01:18:50 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 00:22:00 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 00:29:11 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 void	put_str_arr(char **str_arr, char *name)
 {
