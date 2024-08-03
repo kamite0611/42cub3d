@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 21:49:05 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/03 22:28:00 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,9 @@ typedef struct s_ray
 	/** カメラ平面 */
 	double	camera_x;
 
+	/** 垂直方向の場合1, 水平方向の場合0 */
+	int		side;
+
 	/** マップ上の座標 */
 	int		map_x;
 	int		map_y;
@@ -160,7 +163,6 @@ typedef struct s_game
 	t_ray ray /** 光線情報 */;
 }			t_game;
 
-
 typedef struct s_temp
 {
 	int		map_count;
@@ -199,7 +201,7 @@ int			args_checker(int argc, char *argv[], t_temp *temp);
 void		raycasting(t_game *game);
 void		render_view(t_game *game);
 
-void		set_dda(t_ray *ray, t_player *player);
+void		run_dda(t_game *game, t_ray *ray);
 
 bool		is_hit_wall(t_game *game, t_ray *ray);
 

@@ -4,10 +4,11 @@
 
 - pkg-config `brew install pkg-config`
 - libx11 `brew install libx11`
+- xquartz `brew cask install xquartz`
+- libxext `brew install libxext`
 
 その他必要かもしれないライブラリ
 
-- libxext `brew install libxext`
 - libxrandr `brew install libxrandr`
 - libxrender `brew install libxrender`
 
