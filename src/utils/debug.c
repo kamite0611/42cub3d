@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 01:18:50 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 23:05:05 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 00:21:46 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	put_ray(t_ray *ray)
 			ray->sidedist_y,
 			ray->wall_height,
 			ray->wall_dist,
-			ray->wall_x,
 			ray->draw_start,
 			ray->draw_end);
 }

@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 00:09:11 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 00:21:40 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ typedef struct s_ray
 
 	int wall_height;  /** 壁の高さ */
 	double wall_dist; /** 壁までの距離 */
-	double	wall_x;
 
 	int		draw_start;
 	int		draw_end;
@@ -209,8 +208,7 @@ int			args_checker(int argc, char *argv[], t_temp *temp);
 /** Render */
 void		raycasting(t_game *game);
 void		render_view(t_game *game);
-
-void		run_dda(t_game *game, t_ray *ray);
+void		render_raycasting(t_game *game);
 
 bool		is_hit_wall(t_game *game, t_ray *ray);
 

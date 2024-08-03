@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 00:16:17 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 00:21:35 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ static void	calculate_wall_height(t_ray *ray, t_game *game, t_player *player)
 	ray->draw_end = ray->wall_height / 2 + game->win_height / 2;
 	if (ray->draw_end >= game->win_height)
 		ray->draw_end = game->win_height - 1;
-	if (ray->side == 0)
-		ray->wall_x = player->map_y + ray->wall_dist * ray->vec_dir_y;
-	else
-		ray->wall_x = player->map_x + ray->wall_dist * ray->vec_dir_x;
-	ray->wall_x -= floor(ray->wall_x);
 }
 
 void	set_ray_pixels(t_game *game, t_ray *ray, int x)

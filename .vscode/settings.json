@@ -12,6 +12,7 @@
     "mapinfo",
     "nextgrid",
     "putstr",
+    "raycasting",
     "sidedist",
     "texinfo"
   ]
