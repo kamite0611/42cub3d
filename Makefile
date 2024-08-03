@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/08/03 18:57:47 by akamite          ###   ########.fr        #
+#    Updated: 2024/08/03 21:50:51 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRC	= \
 	map_check/args_checker.c \
 	render/dda.c \
 	render/raycasting.c \
+	render/render_utils.c \
 	render/render.c \
 	utils/error.c \
 	utils/debug.c \

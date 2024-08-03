@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 19:17:22 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 21:51:26 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,9 @@ typedef struct s_ray
 {
 	/** カメラ平面 */
 	double	camera_x;
+
+	/** 垂直方向の場合1, 水平方向の場合0 */
+	int		side;
 
 	/** マップ上の座標 */
 	int		map_x;
@@ -189,7 +192,7 @@ int			args_checker(int argc, char *argv[]);
 void		raycasting(t_game *game);
 void		render_view(t_game *game);
 
-void		set_dda(t_ray *ray, t_player *player);
+void		run_dda(t_game *game, t_ray *ray);
 
 bool		is_hit_wall(t_game *game, t_ray *ray);
 

@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 02:04:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 19:16:30 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 21:57:24 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,19 @@
 
 void	run_dda(t_game *game, t_ray *ray)
 {
-	int	is_hit;
-
-	is_hit = 0;
-	while (is_hit)
+	while (!is_hit_wall(game, ray))
 	{
+		if (ray->sidedist_x < ray->sidedist_y)
+		{
+			ray->sidedist_x += ray->deltadist_x;
+			ray->map_x += ray->step_x;
+			ray->side = 0;
+		}
+		else
+		{
+			ray->sidedist_x += ray->deltadist_x;
+			ray->map_x += ray->step_x;
+			ray->side = 1;
+		}
 	}
 }

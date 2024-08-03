@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 19:17:41 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 21:53:50 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ void	raycasting(t_game *game)
 	while (x < game->win_width)
 	{
 		init_ray(&ray, &game->player, x);
+		printf("\n##############\n");
+		put_ray(&ray);
+		run_dda(game, &ray);
 		put_ray(&ray);
 		x++;
 	}
