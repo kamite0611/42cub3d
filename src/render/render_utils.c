@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda.c                                              :+:      :+:    :+:   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/03 02:04:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 19:16:30 by akamite          ###   ########.fr       */
+/*   Created: 2024/08/03 19:17:01 by akamite           #+#    #+#             */
+/*   Updated: 2024/08/03 19:17:37 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	run_dda(t_game *game, t_ray *ray)
+/**
+ * 壁に当たったかどうか
+ */
+bool	is_hit_wall(t_game *game, t_ray *ray)
 {
-	int	is_hit;
+	char	**map;
 
-	is_hit = 0;
-	while (is_hit)
-	{
-	}
+	map = game->mapinfo.map;
+	if (map[ray->map_y][ray->map_x] == WALL_C)
+		return (true);
+	return (false);
 }

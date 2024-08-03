@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 19:13:12 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 19:17:22 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,8 @@ void		raycasting(t_game *game);
 void		render_view(t_game *game);
 
 void		set_dda(t_ray *ray, t_player *player);
+
+bool		is_hit_wall(t_game *game, t_ray *ray);
 
 /** Utils */
 int			err_msg(char *msg, int status);
