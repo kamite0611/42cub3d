@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 23:34:12 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 23:36:49 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
  */
 static void	calculate_wall_height(t_ray *ray, t_game *game, t_player *player)
 {
-	(void)ray;
-	(void)game;
-	(void)player;
 	if (ray->side == 0)
 		ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
 	else
@@ -74,7 +71,6 @@ void	raycasting(t_game *game)
 		init_ray(&ray, &game->player, x);
 		run_dda(game, &ray);
 		calculate_wall_height(&ray, game, &game->player);
-		put_ray(&ray);
 		x++;
 	}
 }
