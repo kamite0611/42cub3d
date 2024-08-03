@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 20:15:57 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 22:28:23 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,16 @@ bool	check_dirgb(char **line)
 	return (SUCCESS);
 }
 
-int	args_checker(int argc, char *argv[])
+int	args_checker(int argc, char *argv[], t_temp *temp)
 {
 	size_t	map_name_len;
+	int		fd;
+	int		count;
+	bool	player_flag;
+	char	*line;
+	char	**temp_line;
+	size_t	line_len;
+	size_t	i;
 	int		fd;
 	int		count;
 	bool	player_flag;
@@ -106,6 +113,7 @@ int	args_checker(int argc, char *argv[])
 	{
 		free_exit(NULL, err_msg(ERR_MSG, 1));
 	}
+	ft_strlcpy(temp->map_path, argv[1], 4095);
 	count = 0;
 	player_flag = false;
 	while (1)
@@ -145,6 +153,9 @@ int	args_checker(int argc, char *argv[])
 					{
 						free_exit(NULL, err_msg(ERR_MSG, 1));
 					}
+					temp->player_direction = line[i];
+					temp->player_mapx = i;
+					temp->player_mapy = count - 7;
 					player_flag = true;
 				}
 				else
@@ -153,9 +164,10 @@ int	args_checker(int argc, char *argv[])
 				}
 			}
 		}
-		free(line);
+		// free(line);
 	}
 	if (count < 7 || player_flag == false)
 		free_exit(NULL, err_msg(ERR_MSG, 1));
+	temp->map_count = count;
 	return (SUCCESS);
 }
