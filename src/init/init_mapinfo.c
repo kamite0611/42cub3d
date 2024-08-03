@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 23:33:20 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 23:52:00 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ void	init_mapinfo(t_game *game, t_mapinfo *mapinfo)
 	map[12] = ft_strdup("111111111111111");
 	map[13] = NULL;
 	mapinfo->map = map;
-	game->player.direction = 'N';
+	game->player.direction = 'E';
 	game->player.map_x = 7.5; /** プレイヤーのIndex + 0.5 */
 	game->player.map_y = 3.5; /** プレイヤーのIndex + 0.5 */
 }
