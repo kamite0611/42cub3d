@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 23:36:49 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/03 23:48:37 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@ static void	calculate_wall_height(t_ray *ray, t_game *game, t_player *player)
 	else
 		ray->wall_x = player->map_x + ray->wall_dist * ray->vec_dir_x;
 	ray->wall_x -= floor(ray->wall_x);
+}
+
+void	set_ray_pixels(t_game *game, t_ray *ray, int x)
+{
+	int	y;
+
+	y = ray->draw_start;
+	while (y < ray->draw_end)
+	{
+		game->view_pixels[y][x] = 100000;
+		y++;
+	}
 }
 
 void	run_dda(t_game *game, t_ray *ray)
@@ -71,6 +83,8 @@ void	raycasting(t_game *game)
 		init_ray(&ray, &game->player, x);
 		run_dda(game, &ray);
 		calculate_wall_height(&ray, game, &game->player);
+		set_ray_pixels(game, &ray, x);
+		put_ray(&ray);
 		x++;
 	}
 }
