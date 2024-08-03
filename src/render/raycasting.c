@@ -6,14 +6,18 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 00:24:45 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 00:26:08 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 /**
- * 壁の高さを計算
+ * 壁周りのデータを計算
+ * wall_dist 壁までの距離
+ * wall_height 壁の高さ
+ * draw_start 壁を描画開始する座標
+ * draw_end 壁を描画終了する座標
  */
 static void	calculate_wall(t_ray *ray, t_game *game)
 {
