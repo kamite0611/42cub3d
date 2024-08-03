@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:56:49 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 00:29:11 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 00:35:49 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,10 @@ void	free_exit(t_game *game, int status)
 	}
 	free_game(game);
 	exit(status);
+}
+
+int	finish_game(t_game *game)
+{
+	free_exit(game, 0);
+	return (0);
 }

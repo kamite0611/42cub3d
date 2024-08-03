@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 00:08:37 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 00:29:11 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 00:40:48 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	render_view(t_game *game)
  */
 void	render_raycasting(t_game *game)
 {
+	init_view_pixels(game);
 	raycasting(game);
 	render_view(game);
 }

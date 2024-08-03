@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/08/03 22:27:55 by akamite          ###   ########.fr        #
+#    Updated: 2024/08/04 00:46:34 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC_DIR	= src/
 OBJ_DIR	= obj/
 
 SRC	= \
+	actions/key_handler.c \
 	init/init_player.c \
 	init/init_mapinfo.c \
 	init/init_img.c \
@@ -66,6 +67,7 @@ all: dirs buildLibs $(NAME)
 
 dirs:
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/actions
 	@mkdir -p $(OBJ_DIR)/init
 	@mkdir -p $(OBJ_DIR)/exit
 	@mkdir -p $(OBJ_DIR)/map_check

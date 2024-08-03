@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 00:21:40 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 00:46:00 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,9 @@ typedef struct s_temp
 
 /* ------------------- functions ------------------- */
 
+/** Actions */
+void		hooks_keys(t_game *game);
+
 /** inits */
 int			new_init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp);
 void		init_mapinfo(t_game *game, t_mapinfo *mapinfo);
@@ -201,6 +204,7 @@ void		initialize_ray(t_ray *ray);
 
 /** Exit */
 void		free_exit(t_game *game, int status);
+int			finish_game(t_game *game);
 
 /** map_check */
 int			args_checker(int argc, char *argv[], t_temp *temp);
