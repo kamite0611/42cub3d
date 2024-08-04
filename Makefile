@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/08/04 01:32:42 by akamite          ###   ########.fr        #
+#    Updated: 2024/08/04 19:09:17 by mnakashi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,3 +100,6 @@ re: fclean all
 
 debug: re
 	./$(NAME) maps/good_map1.cub
+
+test_map: re
+	sh test_map.sh

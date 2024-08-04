@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 00:41:16 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 19:09:34 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	init_game(t_game *game, t_temp *temp)
 	init_player_vec(&game->player);
 	init_view_pixels(game);
 	/** debug */
-	put_mapinfo(&game->mapinfo);
+	print_mapinfo(&game->mapinfo);
 	put_player(&game->player);
 }
 
