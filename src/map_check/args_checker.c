@@ -6,22 +6,13 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 16:22:31 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/04 17:21:10 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	free_lines(char **lines)
-{
-	int	i;
-
-	i = 0;
-	while (lines[i])
-		free(lines[i++]);
-	free(lines);
-	return ;
-}
+//confirm strnstr
 
 bool	check_rgb(char *line)
 {
@@ -48,7 +39,7 @@ bool	check_rgb(char *line)
 	}
 	if (i < 2)
 		free_exit(NULL, err_msg(ERR_MAP_CONTENT, 1));
-	return (free_lines(colors), SUCCESS);
+	return (free_tab((void **)colors), SUCCESS);
 }
 
 bool	check_dirgb(char **line)
@@ -65,11 +56,11 @@ bool	check_dirgb(char **line)
 		while (++i < 6)
 		{
 			if (!ft_strcmp(line[0], dirgb[i]) && !dirgb_fl[i] && line[1]
-				&& ((i < 4 && open(ft_strtrim(line[1], "\n"), 644) >= 0)
+				&& ((i < 4 && ft_strnstr(line[1], "text", 4))
 					|| (i >= 4 && check_rgb(line[1]) == SUCCESS)) && !line[2])
 			{
 				dirgb_fl[i] = true;
-				return (free_lines(line), SUCCESS);
+				return (free_tab((void **)line), SUCCESS);
 			}
 		}
 	}
@@ -80,7 +71,7 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 {
 	size_t		i;
 
-	if (count <= 5)
+	if (count < 6)
 		return (check_dirgb(ft_split(line, ' ')));
 	i = -1;
 	while (++i < line_len)
@@ -121,6 +112,7 @@ int	args_checker(int argc, char *argv[], t_temp *temp)
 		else if (ft_strcmp(line, "\n") == 0)
 			continue ;
 		read_map(line, count++, temp, ft_strlen(line));
+		free(line);
 	}
 	if (count < 6 || temp->player_flag == false)
 		free_exit(NULL, err_msg(ERR_MAP_CONTENT, 1));

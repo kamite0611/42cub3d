@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 16:24:04 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/04 17:18:00 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,66 +15,84 @@
 /**
  * Map情報をファイルから取得する
  */
-int			init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
+
+static void	put_map_direct(char **line, t_mapinfo *mapinfo)
+{
+	if (ft_strcmp(line[0], "NO") == 0)
+		mapinfo->no_path = ft_strtrim(ft_strdup(line[1]), "\n");
+	else if (ft_strcmp(line[0], "SO") == 0)
+		mapinfo->so_path = ft_strtrim(ft_strdup(line[1]), "\n");
+	else if (ft_strcmp(line[0], "WE") == 0)
+		mapinfo->we_path = ft_strtrim(ft_strdup(line[1]), "\n");
+	else if (ft_strcmp(line[0], "EA") == 0)
+		mapinfo->ea_path = ft_strtrim(ft_strdup(line[1]), "\n");
+}
+
+static void	put_map_rgb(char **line, t_mapinfo *mapinfo)
+{
+	char	**colors;
+
+	colors = ft_split(ft_strtrim(line[1], "\n"), ',');
+	if (ft_strcmp(line[0], "C") == 0)
+	{
+		mapinfo->ceiling_rgb[0] = ft_atoi(colors[0]);
+		mapinfo->ceiling_rgb[1] = ft_atoi(colors[1]);
+		mapinfo->ceiling_rgb[2] = ft_atoi(colors[2]);
+	}
+	else if (ft_strcmp(line[0], "F") == 0)
+	{
+		mapinfo->floor_rgb[0] = ft_atoi(colors[0]);
+		mapinfo->floor_rgb[1] = ft_atoi(colors[1]);
+		mapinfo->floor_rgb[2] = ft_atoi(colors[2]);
+	}
+	free_tab((void **)colors);
+}
+
+void	put_mapinfo(char *line, int count, t_mapinfo *mapinfo, char **map)
+{
+	char	**temp_line;
+
+	if (count < 6)
+	{
+		temp_line = ft_split(line, ' ');
+		if (count < 4)
+			put_map_direct(temp_line, mapinfo);
+		else if (count < 6)
+			put_map_rgb(temp_line, mapinfo);
+		free_tab((void **)temp_line);
+	}
+	else
+		map[count - 6] = ft_strtrim(ft_strdup(line), "\n");
+	free(line);
+}
+
+int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
 {
 	char	**map;
+	int		fd;
+	int		count;
+	char	*line;
 
-	/** @TODO ファイルから取得する */
-	int fd = open(temp->map_path, O_RDONLY);
-    if (fd < 0)
+	fd = open(temp->map_path, O_RDONLY);
+	if (fd < 0)
 		return (ERROR);
-	int count = 0;
+	count = 0;
 	game->mapinfo.line_count = temp->map_count;
 	game->player.direction = temp->player_direction;
 	game->player.map_x = temp->player_mapx;
 	game->player.map_y = temp->player_mapy;
-	map = (char **)malloc(sizeof(char *) * (temp->map_count - 5));
-    while (1)
-    {
-        char *line = get_next_line(fd);
-        if (line == NULL){
-            break;
-        } else if (ft_strcmp(line, "\n") == 0){
-            continue;
-        }
-        count++;
-        if (count <= 6){
-            char **temp_line = ft_split(line, ' ');
-            if (count <= 4)
-			{
-				if (ft_strcmp(temp_line[0], "NO") == 0)
-					mapinfo->no_path = ft_strdup(temp_line[1]);
-				if (ft_strcmp(temp_line[0], "SO") == 0)
-					mapinfo->so_path = ft_strdup(temp_line[1]);
-				if (ft_strcmp(temp_line[0], "WE") == 0)
-					mapinfo->we_path = ft_strdup(temp_line[1]);
-				if (ft_strcmp(temp_line[0], "EA") == 0)
-					mapinfo->ea_path = ft_strdup(temp_line[1]);
-            }
-			else
-			{
-				char **colors = ft_split(ft_strtrim(line, "\n"), ',');
-				if (ft_strcmp(temp_line[0], "C") == 0)
-				{
-					mapinfo->ceiling_rgb[0] = ft_atoi(colors[0]);
-					mapinfo->ceiling_rgb[1] = ft_atoi(colors[1]);
-					mapinfo->ceiling_rgb[2] = ft_atoi(colors[2]);
-				}
-				else if (ft_strcmp(temp_line[0], "F") == 0)
-				{
-					mapinfo->floor_rgb[0] = ft_atoi(colors[0]);
-					mapinfo->floor_rgb[1] = ft_atoi(colors[1]);
-					mapinfo->floor_rgb[2] = ft_atoi(colors[2]);
-				}
-			}
-        }else if (count > 6)
-			map[count-7] = ft_strtrim(ft_strdup(line), "\n");
-        //free(line);
-    }
-	map[count-7] = NULL;
+	map = (char **)ft_calloc(sizeof(char *), (temp->map_count + 1));
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
+		else if (ft_strcmp(line, "\n") == 0)
+			continue ;
+		put_mapinfo(line, count++, mapinfo, map);
+	}
 	mapinfo->map = map;
-	close(fd);
-	return (SUCCESS);
+	return (close(fd), SUCCESS);
 }
 
 int	initialize_mapinfo(t_mapinfo *mapinfo, char *map_path)

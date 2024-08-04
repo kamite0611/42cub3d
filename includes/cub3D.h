@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 14:41:59 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/04 16:30:55 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ bool		is_hit_wall(t_game *game, t_ray *ray);
 
 /** Utils */
 int			err_msg(char *msg, int status);
-void		put_mapinfo(t_mapinfo *mapinfo);
+void		print_mapinfo(t_mapinfo *mapinfo);
 void		put_player(t_player *player);
 void		put_ray(t_ray *ray);
 void		free_tab(void **tab);
