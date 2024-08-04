@@ -10,8 +10,11 @@
     "deltadist",
     "filedata",
     "mapinfo",
+    "MOVESPEED",
     "nextgrid",
     "putstr",
+    "raycasting",
+    "ROTSPEED",
     "sidedist",
     "texinfo"
   ]

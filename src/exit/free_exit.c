@@ -6,11 +6,11 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:56:49 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 13:37:29 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/04 19:09:30 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 /**
  * t_mapinfoの中身でmallocしているものをfreeする
@@ -58,4 +58,10 @@ void	free_exit(t_game *game, int status)
 	}
 	free_game(game);
 	exit(status);
+}
+
+int	finish_game(t_game *game)
+{
+	free_exit(game, 0);
+	return (0);
 }

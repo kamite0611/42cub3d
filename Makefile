@@ -6,7 +6,7 @@
 #    By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/08/04 18:54:42 by mnakashi         ###   ########.fr        #
+#    Updated: 2024/08/04 19:09:17 by mnakashi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,9 @@ SRC_DIR	= src/
 OBJ_DIR	= obj/
 
 SRC	= \
+	actions/key_handler.c \
+	actions/move.c \
+	actions/rotate.c \
 	init/init_player.c \
 	init/init_mapinfo.c \
 	init/init_img.c \
@@ -43,7 +46,6 @@ SRC	= \
 	init/init_ray.c \
 	exit/free_exit.c \
 	map_check/args_checker.c \
-	render/dda.c \
 	render/raycasting.c \
 	render/render_utils.c \
 	render/render.c \
@@ -66,6 +68,7 @@ all: dirs buildLibs $(NAME)
 
 dirs:
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/actions
 	@mkdir -p $(OBJ_DIR)/init
 	@mkdir -p $(OBJ_DIR)/exit
 	@mkdir -p $(OBJ_DIR)/map_check

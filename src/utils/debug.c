@@ -6,11 +6,11 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 01:18:50 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 16:30:55 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/04 19:11:17 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 void	put_str_arr(char **str_arr, char *name)
 {
@@ -27,7 +27,7 @@ void	put_str_arr(char **str_arr, char *name)
 void	put_ray(t_ray *ray)
 {
 	printf("RAY[%lf]: map(%d, %d) step(%d, %d) dir(%lf, %lf) deltadist(%lf,\
- %lf) sidedist(%lf, %lf)\n",
+ %lf) sidedist(%lf, %lf) wall(%d %lf) draw(%d ~ %d)\n",
 			ray->camera_x,
 			ray->map_x,
 			ray->map_y,
@@ -38,7 +38,11 @@ void	put_ray(t_ray *ray)
 			ray->deltadist_x,
 			ray->deltadist_y,
 			ray->sidedist_x,
-			ray->sidedist_y);
+			ray->sidedist_y,
+			ray->wall_height,
+			ray->wall_dist,
+			ray->wall_start_y,
+			ray->wall_end_y);
 }
 
 void	print_mapinfo(t_mapinfo *mapinfo)

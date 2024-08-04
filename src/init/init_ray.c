@@ -6,18 +6,18 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 20:23:37 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 19:10:31 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 01:49:27 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 /**
  * step_x, deltadist_xなどを設定する
  */
 static void	init_ray_dda(t_ray *ray, t_player *player)
 {
-	if (ray->deltadist_x < 0)
+	if (ray->vec_dir_x < 0)
 	{
 		ray->step_x = -1;
 		ray->sidedist_x = (player->map_x - ray->map_x) * ray->deltadist_x;
@@ -27,7 +27,7 @@ static void	init_ray_dda(t_ray *ray, t_player *player)
 		ray->step_x = 1;
 		ray->sidedist_x = (ray->map_x + 1.0 - player->map_x) * ray->deltadist_x;
 	}
-	if (ray->deltadist_y < 0)
+	if (ray->vec_dir_y < 0)
 	{
 		ray->step_y = -1;
 		ray->sidedist_y = (player->map_y - ray->map_y) * ray->deltadist_y;
@@ -61,13 +61,17 @@ void	init_ray(t_ray *ray, t_player *player, int x)
 void	initialize_ray(t_ray *ray)
 {
 	ray->camera_x = 0.0;
+	ray->side = 0;
 	ray->map_x = 0;
 	ray->map_y = 0;
-	ray->vec_dir_x = 0;
-	ray->vec_dir_y = 0;
-	ray->sidedist_x = 0;
-	ray->sidedist_y = 0;
-	ray->deltadist_x = 0;
-	ray->deltadist_y = 0;
-	ray->dist_to_wall = 0.0;
+	ray->vec_dir_x = 0.0;
+	ray->vec_dir_y = 0.0;
+	ray->sidedist_x = 0.0;
+	ray->sidedist_y = 0.0;
+	ray->deltadist_x = 0.0;
+	ray->deltadist_y = 0.0;
+	ray->wall_height = 0;
+	ray->wall_dist = 0.0;
+	ray->wall_start_y = 0;
+	ray->wall_end_y = 0;
 }
