@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/08/03 22:27:55 by akamite          ###   ########.fr        #
+#    Updated: 2024/08/04 13:56:00 by mnakashi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3D
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -g -fsanitize=address
 
 # minilibX
 MLX_DIR 		= minilibx-linux
@@ -97,3 +97,6 @@ re: fclean all
 
 debug: re
 	./$(NAME) maps/good_map1.cub
+
+test_map: re
+	sh test_map.sh
