@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/03 21:55:39 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/04 16:24:04 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int			init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
 				}
 			}
         }else if (count > 6)
-			map[count-7] = ft_strdup(line);
+			map[count-7] = ft_strtrim(ft_strdup(line), "\n");
         //free(line);
     }
 	map[count-7] = NULL;

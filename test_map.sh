@@ -1,5 +1,6 @@
 #only test invalid maps
 
+./cub3D maps/invalidmap_direct_2xpm.cub
 ./cub3D maps/invalidmap_doubledirect.cub
 ./cub3D maps/invalidmap_dupplayer.cub
 ./cub3D maps/invalidmap_elementdup.cub

@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 16:12:50 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/04 16:22:31 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ bool	check_rgb(char *line)
 bool	check_dirgb(char **line)
 {
 	static char	*dirgb[6] = {"NO", "WE", "SO", "EA", "C", "F"};
-	static bool	dirgb_flag[6] = {false};
+	static bool	dirgb_fl[6] = {false};
 	int			i;
 
 	if (!line || !line[0])
@@ -63,17 +63,17 @@ bool	check_dirgb(char **line)
 	{
 		i = -1;
 		while (++i < 6)
-		{ //split_count > 2
-			if (!ft_strcmp(line[0], dirgb[i]) && !dirgb_flag[i] && line[1]
-				&& ((i < 4 && ft_strcmp(line[1], "textures/bookshelf.xpm\n") == 0)
-					|| (i >= 4 && check_rgb(line[1]) == SUCCESS)))
+		{
+			if (!ft_strcmp(line[0], dirgb[i]) && !dirgb_fl[i] && line[1]
+				&& ((i < 4 && open(ft_strtrim(line[1], "\n"), 644) >= 0)
+					|| (i >= 4 && check_rgb(line[1]) == SUCCESS)) && !line[2])
 			{
-				dirgb_flag[i] = true;
+				dirgb_fl[i] = true;
 				return (free_lines(line), SUCCESS);
 			}
 		}
 	}
-	return (free_exit(NULL, err_msg(ERR_MSG, 1)), ERROR);
+	return (free_exit(NULL, err_msg(ERR_MAP_CONTENT, 1)), ERROR);
 }
 
 bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
@@ -110,7 +110,7 @@ int	args_checker(int argc, char *argv[], t_temp *temp)
 		free_exit(NULL, err_msg(ERR_USAGE, 1));
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		return(free_exit(NULL, err_msg(ERR_ARGMAP, 1)), close(fd), ERROR);
+		return (free_exit(NULL, err_msg(ERR_ARGMAP, 1)), close(fd), ERROR);
 	ft_strlcpy(temp->map_path, argv[1], 4095);
 	count = 0;
 	while (1)
