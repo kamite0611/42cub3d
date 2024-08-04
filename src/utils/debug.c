@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 01:18:50 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 01:49:46 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 19:11:17 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	put_ray(t_ray *ray)
 			ray->wall_end_y);
 }
 
-void	put_mapinfo(t_mapinfo *mapinfo)
+void	print_mapinfo(t_mapinfo *mapinfo)
 {
 	printf("\n################## mapinfo ##################\n");
 	printf("path\t\t: \"%s\"\n", mapinfo->path);

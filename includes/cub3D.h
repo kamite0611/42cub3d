@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 01:50:17 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 19:16:24 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@
 
 # define WALL_C '1'
 
-# define ERR_USAGE "Usage: ./cub3D <path/to/map.cub>"
-# define ERR_MALLOC "Error: malloc() failed."
-# define ERR_MSG "ERROR\n"
+# define ERR_USAGE "ERROR\nUsage: ./cub3D <path/to/map.cub>"
+# define ERR_MALLOC "Error\n: malloc() failed."
+# define ERR_ARGMAP "Error\nConfirm map name or map path"
+# define ERR_MSG "Error\n"
+# define ERR_MAP_CONTENT "Error\nInvalid map content"
 
 /* ------------------- includes ------------------- */
 
@@ -178,6 +180,7 @@ typedef struct s_temp
 {
 	int		map_count;
 	char	map_path[4096];
+	bool	player_flag;
 	char	player_direction;
 	int		player_mapx;
 	int		player_mapy;
@@ -198,7 +201,7 @@ void		rotate_right(t_player *player);
 
 /** inits */
 int			new_init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp);
-void		init_mapinfo(t_game *game, t_mapinfo *mapinfo);
+int			init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp);
 int			initialize_mapinfo(t_mapinfo *mapinfo, char *map_path);
 
 void		init_game(t_game *game, t_temp *temp);
@@ -230,7 +233,7 @@ bool		is_hit_wall(t_game *game, t_ray *ray);
 
 /** Utils */
 int			err_msg(char *msg, int status);
-void		put_mapinfo(t_mapinfo *mapinfo);
+void		print_mapinfo(t_mapinfo *mapinfo);
 void		put_player(t_player *player);
 void		put_ray(t_ray *ray);
 void		free_tab(void **tab);
