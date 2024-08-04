@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 20:10:16 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/04 20:18:13 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,41 @@ static void	calculate_wall(t_ray *ray, t_game *game)
 		ray->wall_end_y = game->win_height - 1;
 }
 
-//wall_color
+static int	get_wall_color(t_game *game, t_ray *ray)
+{
+	(void)game;
+	if (ray->side == 1)
+		return (ray->vec_dir_y < 0 ? 100000 : 200000);
+	else
+		return (ray->vec_dir_x < 0 ? 600000 : 700000);
+}
+
+// wall_color
 void	set_ray_pixels(t_game *game, t_ray *ray, int x)
 {
 	int	y;
-	int color;
+	int	color;
+	int	wall_color;
 
 	y = -1;
+	wall_color = get_wall_color(game, ray);
 	while (++y < game->win_height)
 	{
 		if (y < ray->wall_start_y)
 		{
-			color = game->mapinfo.ceiling_rgb[0]*256*256 + game->mapinfo.ceiling_rgb[1]*256 + game->mapinfo.ceiling_rgb[2];
+			color = game->mapinfo.ceiling_rgb[0] * 256 * 256
+				+ game->mapinfo.ceiling_rgb[1] * 256
+				+ game->mapinfo.ceiling_rgb[2];
 			game->view_pixels[y][x] = color;
 		}
 		else if (y > ray->wall_end_y)
 		{
-			color = game->mapinfo.floor_rgb[0]*256*256 + game->mapinfo.floor_rgb[1]*256 + game->mapinfo.floor_rgb[2];
+			color = game->mapinfo.floor_rgb[0] * 256 * 256
+				+ game->mapinfo.floor_rgb[1] * 256 + game->mapinfo.floor_rgb[2];
 			game->view_pixels[y][x] = color;
 		}
 		else
-			game->view_pixels[y][x] = 100000;
+			game->view_pixels[y][x] = wall_color;
 	}
 }
 
