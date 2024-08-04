@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 19:09:23 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/04 19:16:24 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ void		rotate_right(t_player *player);
 
 /** inits */
 int			new_init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp);
-void		init_mapinfo(t_game *game, t_mapinfo *mapinfo);
+int			init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp);
 int			initialize_mapinfo(t_mapinfo *mapinfo, char *map_path);
 
 void		init_game(t_game *game, t_temp *temp);
