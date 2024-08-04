@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 19:06:23 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 19:56:24 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	set_ray_pixels(t_game *game, t_ray *ray, int x)
 	y = ray->wall_start_y;
 	while (y < ray->wall_end_y)
 	{
-		game->view_pixels[y][x] = 100000;
+		game->view_pixels[y][x] = ray->side == 0 ? 100000 : 50000;
 		y++;
 	}
 }
