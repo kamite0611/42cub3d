@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 01:55:37 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/04 20:10:16 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,27 @@ static void	calculate_wall(t_ray *ray, t_game *game)
 		ray->wall_end_y = game->win_height - 1;
 }
 
+//wall_color
 void	set_ray_pixels(t_game *game, t_ray *ray, int x)
 {
 	int	y;
+	int color;
 
-	y = ray->wall_start_y;
-	while (y < ray->wall_end_y)
+	y = -1;
+	while (++y < game->win_height)
 	{
-		game->view_pixels[y][x] = 100000;
-		y++;
+		if (y < ray->wall_start_y)
+		{
+			color = game->mapinfo.ceiling_rgb[0]*256*256 + game->mapinfo.ceiling_rgb[1]*256 + game->mapinfo.ceiling_rgb[2];
+			game->view_pixels[y][x] = color;
+		}
+		else if (y > ray->wall_end_y)
+		{
+			color = game->mapinfo.floor_rgb[0]*256*256 + game->mapinfo.floor_rgb[1]*256 + game->mapinfo.floor_rgb[2];
+			game->view_pixels[y][x] = color;
+		}
+		else
+			game->view_pixels[y][x] = 100000;
 	}
 }
 
