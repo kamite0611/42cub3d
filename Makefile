@@ -6,12 +6,12 @@
 #    By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/08/04 13:56:00 by mnakashi         ###   ########.fr        #
+#    Updated: 2024/08/04 18:54:42 by mnakashi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3D
-CFLAGS	= -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra
 
 # minilibX
 MLX_DIR 		= minilibx-linux
