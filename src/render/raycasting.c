@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/10 23:21:48 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/10 23:30:47 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ static void	set_ray_pixels(t_game *game, t_ray *ray, int x)
 	while (++y < game->win_height)
 	{
 		if (y < ray->wall_start_y)
-			set_ceiling_texture(game, ray, y, x);
+			game->view_pixels[y][x] = get_ceiling_color(game);
 		else if (y > ray->wall_end_y)
-			set_floor_texture(game, ray, y, x);
+			game->view_pixels[y][x] = get_floor_color(game);
 		else
 			game->view_pixels[y][x] = get_wall_color(game, wall_tex, &tex_ray);
 	}
