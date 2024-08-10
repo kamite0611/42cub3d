@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/10 22:37:29 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/10 23:21:42 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,19 @@ typedef struct s_ray
 }			t_ray;
 
 /**
+ *
+ */
+typedef struct s_tex_ray
+{
+	int		x;
+	int		y;
+
+	double	step;
+	double	pos;
+
+}			t_tex_ray;
+
+/**
  * プレイヤー情報
  */
 typedef struct s_player
@@ -189,7 +202,6 @@ typedef struct s_game
 	t_texinfo texinfo; /** テクスチャ情報 */
 	t_mapinfo mapinfo; /** Map関係 */
 	t_player player;   /** プレイヤー情報 */
-	t_ray ray;         /** 光線情報 */
 }			t_game;
 
 typedef struct s_temp
@@ -234,6 +246,9 @@ void		initialize_player(t_player *player);
 void		init_ray(t_ray *ray, t_player *player, int x);
 void		initialize_ray(t_ray *ray);
 
+void		init_tex_ray(t_game *game, t_ray *ray, t_tex_ray *tex_ray);
+void		initialize_tex_ray(t_tex_ray *tex_ray);
+
 void		init_texinfo(t_game *game, t_texinfo *texinfo);
 void		initialize_texinfo(t_texinfo *texinfo);
 
@@ -255,13 +270,15 @@ bool		is_hit_wall(t_game *game, t_ray *ray);
 void		set_ceiling_texture(t_game *game, t_ray *ray, int y, int x);
 void		set_floor_texture(t_game *game, t_ray *ray, int y, int x);
 
-int			get_wall_color(t_game *game, t_ray *ray);
+int			**get_wall_texture(t_game *game, t_ray *ray);
+int			get_wall_color(t_game *game, int **wall_tex, t_tex_ray *tex_ray);
 
 /** Utils */
 int			err_msg(char *msg, int status);
 void		print_mapinfo(t_mapinfo *mapinfo);
 void		put_player(t_player *player);
 void		put_ray(t_ray *ray);
+void		put_tex_ray(t_tex_ray *tex_ray);
 void		put_texinfo(t_texinfo *texinfo);
 
 void		free_tab(void **tab);

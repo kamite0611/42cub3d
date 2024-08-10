@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 01:18:50 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/10 22:33:36 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/10 23:06:48 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,12 @@ void	put_ray(t_ray *ray)
 			ray->wall_start_y,
 			ray->wall_end_y,
 			ray->wall_x);
+}
+
+void	put_tex_ray(t_tex_ray *tex_ray)
+{
+	printf("TEX_RAY xy(%d %d) step(%lf) pos(%lf)\n", tex_ray->x, tex_ray->y,
+		tex_ray->step, tex_ray->pos);
 }
 
 void	print_mapinfo(t_mapinfo *mapinfo)

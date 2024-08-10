@@ -5,7 +5,16 @@
     "keysym.h": "c",
     "libft.h": "c",
     "__tree": "c",
-    "map": "c"
+    "map": "c",
+    "__hash_table": "c",
+    "__split_buffer": "c",
+    "array": "c",
+    "bitset": "c",
+    "initializer_list": "c",
+    "string": "c",
+    "string_view": "c",
+    "unordered_map": "c",
+    "vector": "c"
   },
   "cSpell.words": [
     "cubdata",

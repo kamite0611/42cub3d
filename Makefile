@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/08/10 21:35:11 by akamite          ###   ########.fr        #
+#    Updated: 2024/08/10 22:59:06 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRC	= \
 	init/init_img.c \
 	init/init_game.c \
 	init/init_ray.c \
+	init/init_tex_ray.c \
 	init/init_texture.c \
 	exit/free_exit.c \
 	map_check/args_checker.c \

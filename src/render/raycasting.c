@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/10 21:36:48 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/10 23:21:48 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ static void	calculate_wall(t_ray *ray, t_game *game, t_player *player)
  */
 static void	set_ray_pixels(t_game *game, t_ray *ray, int x)
 {
-	int	y;
-	int	wall_color;
+	t_tex_ray	tex_ray;
+	int			y;
+	int			**wall_tex;
 
 	y = -1;
-	wall_color = get_wall_color(game, ray);
+	wall_tex = get_wall_texture(game, ray);
+	init_tex_ray(game, ray, &tex_ray);
 	while (++y < game->win_height)
 	{
 		if (y < ray->wall_start_y)
@@ -56,7 +58,7 @@ static void	set_ray_pixels(t_game *game, t_ray *ray, int x)
 		else if (y > ray->wall_end_y)
 			set_floor_texture(game, ray, y, x);
 		else
-			game->view_pixels[y][x] = wall_color;
+			game->view_pixels[y][x] = get_wall_color(game, wall_tex, &tex_ray);
 	}
 }
 
@@ -96,7 +98,6 @@ void	raycasting(t_game *game)
 	int		x;
 
 	x = 0;
-	ray = game->ray;
 	while (x < game->win_width)
 	{
 		init_ray(&ray, &game->player, x);
