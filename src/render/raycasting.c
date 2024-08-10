@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/10 15:44:52 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/10 15:51:06 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,10 @@ static void	calculate_wall(t_ray *ray, t_game *game)
 		ray->wall_end_y = game->win_height - 1;
 }
 
-static int	get_wall_color(t_game *game, t_ray *ray)
-{
-	(void)game;
-	if (ray->side == 1)
-		return (ray->vec_dir_y < 0 ? 100000 : 200000);
-	else
-		return (ray->vec_dir_x < 0 ? 600000 : 700000);
-}
-
-// wall_color
-void	set_ray_pixels(t_game *game, t_ray *ray, int x)
+/**
+ * レイを使用して縦軸のテクスチャを貼る
+ */
+static void	set_ray_pixels(t_game *game, t_ray *ray, int x)
 {
 	int	y;
 	int	wall_color;
@@ -62,7 +55,13 @@ void	set_ray_pixels(t_game *game, t_ray *ray, int x)
 	}
 }
 
-void	run_dda(t_game *game, t_ray *ray)
+/**
+ * DDAアルゴリズム
+ * 壁への距離を取得する
+ * ray.sidedist_yx	壁への距離
+ * ray.side			x,y軸どちらの壁にぶつかったか side=0の場合x軸の壁
+ */
+static void	run_dda(t_game *game, t_ray *ray)
 {
 	while (1)
 	{

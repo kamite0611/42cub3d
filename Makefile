@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/08/10 15:45:51 by akamite          ###   ########.fr        #
+#    Updated: 2024/08/10 15:47:37 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC	= \
 	render/render_utils.c \
 	render/render.c \
 	texture/floor_ceiling.c \
+	texture/wall.c \
 	utils/error.c \
 	utils/debug.c \
 	utils/free.c \

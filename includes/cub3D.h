@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/10 15:43:47 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/10 15:47:28 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,6 +234,8 @@ bool		is_hit_wall(t_game *game, t_ray *ray);
 /** Textures */
 void		set_ceiling_texture(t_game *game, t_ray *ray, int y, int x);
 void		set_floor_texture(t_game *game, t_ray *ray, int y, int x);
+
+int			get_wall_color(t_game *game, t_ray *ray);
 
 /** Utils */
 int			err_msg(char *msg, int status);
