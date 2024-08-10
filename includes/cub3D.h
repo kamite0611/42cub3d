@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 19:16:24 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/10 15:43:47 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,6 +230,10 @@ void		render_view(t_game *game);
 void		render_raycasting(t_game *game);
 
 bool		is_hit_wall(t_game *game, t_ray *ray);
+
+/** Textures */
+void		set_ceiling_texture(t_game *game, t_ray *ray, int y, int x);
+void		set_floor_texture(t_game *game, t_ray *ray, int y, int x);
 
 /** Utils */
 int			err_msg(char *msg, int status);

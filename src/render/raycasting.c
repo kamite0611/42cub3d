@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 20:18:13 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/10 15:44:52 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static int	get_wall_color(t_game *game, t_ray *ray)
 void	set_ray_pixels(t_game *game, t_ray *ray, int x)
 {
 	int	y;
-	int	color;
 	int	wall_color;
 
 	y = -1;
@@ -55,18 +54,9 @@ void	set_ray_pixels(t_game *game, t_ray *ray, int x)
 	while (++y < game->win_height)
 	{
 		if (y < ray->wall_start_y)
-		{
-			color = game->mapinfo.ceiling_rgb[0] * 256 * 256
-				+ game->mapinfo.ceiling_rgb[1] * 256
-				+ game->mapinfo.ceiling_rgb[2];
-			game->view_pixels[y][x] = color;
-		}
+			set_ceiling_texture(game, ray, y, x);
 		else if (y > ray->wall_end_y)
-		{
-			color = game->mapinfo.floor_rgb[0] * 256 * 256
-				+ game->mapinfo.floor_rgb[1] * 256 + game->mapinfo.floor_rgb[2];
-			game->view_pixels[y][x] = color;
-		}
+			set_floor_texture(game, ray, y, x);
 		else
 			game->view_pixels[y][x] = wall_color;
 	}
