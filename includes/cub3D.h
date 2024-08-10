@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/10 15:47:28 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/10 22:17:14 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,16 @@ typedef struct s_img
 	int		size_line;
 	int		endian;
 }			t_img;
+
+typedef struct s_texinfo
+{
+	int		**tex_north;
+	int		**tex_south;
+	int		**tex_west;
+	int		**tex_east;
+
+	int		size;
+}			t_texinfo;
 
 /**
  * マップファイル情報
@@ -134,6 +144,8 @@ typedef struct s_ray
 	int		wall_start_y;
 	int		wall_end_y;
 
+	/** レイが壁に当たった壁のx座標 0.0~1.0の範囲 */
+	double	wall_x;
 }			t_ray;
 
 /**
@@ -154,8 +166,8 @@ typedef struct s_player
 
 	/** カメラ方向ベクトル */
 	/** プレイヤーの視界の中心から片方の端までのベクトル */
-	double vec_plane_x /** x方向ベクトル */;
-	double vec_plane_y /** y方向ベクトル */;
+	double vec_plane_x; /** x方向ベクトル */
+	double vec_plane_y; /** y方向ベクトル */
 }			t_player;
 
 /**
@@ -171,9 +183,10 @@ typedef struct s_game
 	/** 画面全体のピクセル 640*480 */
 	int		**view_pixels;
 
+	t_texinfo texinfo; /** テクスチャ情報 */
 	t_mapinfo mapinfo; /** Map関係 */
-	t_player player /** プレイヤー情報 */;
-	t_ray ray /** 光線情報 */;
+	t_player player;   /** プレイヤー情報 */
+	t_ray ray;         /** 光線情報 */
 }			t_game;
 
 typedef struct s_temp
@@ -209,6 +222,7 @@ void		init_view_pixels(t_game *game);
 int			initialize_game(t_game *game, char *map_path);
 
 void		init_img(t_game *game, t_img *image, int width, int height);
+void		init_xpm_img(t_game *game, t_img *image, char *path);
 void		initialize_img(t_img *image);
 
 void		init_player_vec(t_player *player);
@@ -216,6 +230,9 @@ void		initialize_player(t_player *player);
 
 void		init_ray(t_ray *ray, t_player *player, int x);
 void		initialize_ray(t_ray *ray);
+
+void		init_texinfo(t_game *game, t_texinfo *texinfo);
+void		initialize_texinfo(t_texinfo *texinfo);
 
 /** Exit */
 void		free_exit(t_game *game, int status);
@@ -242,6 +259,8 @@ int			err_msg(char *msg, int status);
 void		print_mapinfo(t_mapinfo *mapinfo);
 void		put_player(t_player *player);
 void		put_ray(t_ray *ray);
+void		put_texinfo(t_texinfo *texinfo);
+
 void		free_tab(void **tab);
 
 #endif

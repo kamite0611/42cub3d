@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/10 15:51:06 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/10 21:36:48 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * wall_start_y 壁を描画開始する座標
  * wall_end_y 壁を描画終了する座標
  */
-static void	calculate_wall(t_ray *ray, t_game *game)
+static void	calculate_wall(t_ray *ray, t_game *game, t_player *player)
 {
 	if (ray->side == 0)
 		ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
@@ -32,6 +32,11 @@ static void	calculate_wall(t_ray *ray, t_game *game)
 	ray->wall_end_y = ray->wall_height / 2 + game->win_height / 2;
 	if (ray->wall_end_y >= game->win_height)
 		ray->wall_end_y = game->win_height - 1;
+	if (ray->side == 0)
+		ray->wall_x = player->map_y + ray->wall_dist * ray->vec_dir_y;
+	else
+		ray->wall_x = player->map_x + ray->wall_dist * ray->vec_dir_x;
+	ray->wall_x -= floor(ray->wall_x);
 }
 
 /**
@@ -96,7 +101,8 @@ void	raycasting(t_game *game)
 	{
 		init_ray(&ray, &game->player, x);
 		run_dda(game, &ray);
-		calculate_wall(&ray, game);
+		calculate_wall(&ray, game, &game->player);
+		// put_ray(&ray);
 		set_ray_pixels(game, &ray, x);
 		x++;
 	}

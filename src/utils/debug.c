@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 01:18:50 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 19:11:17 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/10 22:33:36 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,34 @@ void	put_str_arr(char **str_arr, char *name)
 	}
 }
 
+void	put_tab_arr(int **tab_arr, int size, int max, char *name)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size)
+	{
+		j = 0;
+		printf("%s[%d]\t: ", name, i);
+		while (j < size)
+		{
+			if (i * size + j > max)
+				break ;
+			printf("%d, ", tab_arr[i][j]);
+			j++;
+		}
+		printf("\n");
+		if (i * size + j > max)
+			break ;
+		i++;
+	}
+}
+
 void	put_ray(t_ray *ray)
 {
 	printf("RAY[%lf]: map(%d, %d) step(%d, %d) dir(%lf, %lf) deltadist(%lf,\
- %lf) sidedist(%lf, %lf) wall(%d %lf) draw(%d ~ %d)\n",
+ %lf) sidedist(%lf, %lf) wall(%d %lf) draw(%d ~ %d) wall_x(%lf)\n",
 			ray->camera_x,
 			ray->map_x,
 			ray->map_y,
@@ -42,7 +66,8 @@ void	put_ray(t_ray *ray)
 			ray->wall_height,
 			ray->wall_dist,
 			ray->wall_start_y,
-			ray->wall_end_y);
+			ray->wall_end_y,
+			ray->wall_x);
 }
 
 void	print_mapinfo(t_mapinfo *mapinfo)
@@ -70,4 +95,14 @@ void	put_player(t_player *player)
 		player->vec_dir_y);
 	printf("vec_xy_plane\t: X[%lf] Y[%lf]\n", player->vec_plane_x,
 		player->vec_plane_y);
+}
+
+void	put_texinfo(t_texinfo *texinfo)
+{
+	printf("\n################## texinfo ##################\n");
+	printf("size\t\t: %d\n", texinfo->size);
+	put_tab_arr(texinfo->tex_north, texinfo->size, 10, "tex_north");
+	put_tab_arr(texinfo->tex_south, texinfo->size, 10, "tex_south");
+	put_tab_arr(texinfo->tex_east, texinfo->size, 10, "tex_east");
+	put_tab_arr(texinfo->tex_west, texinfo->size, 10, "tex_west");
 }

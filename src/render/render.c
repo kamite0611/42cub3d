@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 00:08:37 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 00:40:48 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/10 22:05:47 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	render_view(t_game *game)
 		y++;
 	}
 	mlx_put_image_to_window(game->mlx, game->win, image.img, 0, 0);
+	mlx_destroy_image(game->mlx, image.img);
 }
 
 /**

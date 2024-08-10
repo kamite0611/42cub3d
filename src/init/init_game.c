@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 19:15:44 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/10 22:10:07 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	init_view_pixels(t_game *game)
 	i = 0;
 	if (game->view_pixels)
 		free_tab((void **)game->view_pixels);
-	game->view_pixels = ft_calloc(sizeof(int **), game->win_height + 1);
+	game->view_pixels = ft_calloc(sizeof(int *), game->win_height + 1);
 	if (!game->view_pixels)
 		free_exit(game, err_msg(ERR_MALLOC, ERROR));
 	while (i < game->win_height)
 	{
-		game->view_pixels[i] = ft_calloc(sizeof(int **), game->win_width + 1);
+		game->view_pixels[i] = ft_calloc(sizeof(int *), game->win_width + 1);
 		if (!game->view_pixels[i])
 			free_exit(game, err_msg(ERR_MALLOC, ERROR));
 		i++;
@@ -49,13 +49,14 @@ void	init_game(t_game *game, t_temp *temp)
 	if (!game->win)
 		free_exit(game, err_msg("mlx_new_window() Error.", ERROR));
 	/** init */
-	// new_init_mapinfo(game, &game->mapinfo, temp);
-	init_mapinfo(game, &game->mapinfo, temp); /** TODO fix */
+	init_mapinfo(game, &game->mapinfo, temp);
 	init_player_vec(&game->player);
 	init_view_pixels(game);
+	init_texinfo(game, &game->texinfo);
 	/** debug */
 	print_mapinfo(&game->mapinfo);
 	put_player(&game->player);
+	put_texinfo(&game->texinfo);
 }
 
 /**
@@ -71,5 +72,6 @@ int	initialize_game(t_game *game, char *map_path)
 	initialize_mapinfo(&game->mapinfo, map_path);
 	initialize_player(&game->player);
 	initialize_ray(&game->ray);
+	initialize_texinfo(&game->texinfo);
 	return (SUCCESS);
 }

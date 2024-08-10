@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:46:23 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 19:09:26 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/10 22:10:49 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ int	main(int argc, char *argv[])
 	free_exit(&game, SUCCESS);
 	return (SUCCESS);
 }
-
