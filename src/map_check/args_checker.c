@@ -6,13 +6,14 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 19:16:46 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/11 14:46:41 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 //confirm strnstr
+//close(fd) 確認！！！！！（map_error）
 
 bool	check_rgb(char *line)
 {
@@ -71,8 +72,11 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 {
 	size_t		i;
 
-	if (count < 6)
+	if (count < 6) //|| line[0] == '0'
 		return (check_dirgb(ft_split(line, ' ')));
+	// if (line[0] == '0' || line[ft_strlen(line) - 1] == '0'
+	// 	|| (count == 6 && ft_strchr(line, '0')))
+	// 	return (free_exit(NULL, err_msg(ERR_MSG, 1)));
 	i = -1;
 	while (++i < line_len)
 	{

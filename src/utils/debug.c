@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 01:18:50 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/10 23:06:48 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/11 14:14:30 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	print_mapinfo(t_mapinfo *mapinfo)
 	printf("so_path\t\t: \"%s\"\n", mapinfo->so_path);
 	printf("we_path\t\t: \"%s\"\n", mapinfo->we_path);
 	printf("ea_path\t\t: \"%s\"\n", mapinfo->ea_path);
+	printf("map_height\t: %d\n", mapinfo->map_height);
+	printf("map_width\t: %d\n", mapinfo->map_width);
 	printf("line_count\t: %d\n", mapinfo->line_count);
 	printf("floor_rgb\t: R[%d], G[%d], B[%d]\n", mapinfo->floor_rgb[0],
 		mapinfo->floor_rgb[1], mapinfo->floor_rgb[2]);
