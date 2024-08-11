@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:46:23 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/07 19:22:01 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/11 13:53:32 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,3 @@ int	main(int argc, char *argv[])
 	free_exit(&game, SUCCESS);
 	return (SUCCESS);
 }
-

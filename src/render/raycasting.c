@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 20:18:13 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/10 23:30:47 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * wall_start_y 壁を描画開始する座標
  * wall_end_y 壁を描画終了する座標
  */
-static void	calculate_wall(t_ray *ray, t_game *game)
+static void	calculate_wall(t_ray *ray, t_game *game, t_player *player)
 {
 	if (ray->side == 0)
 		ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
@@ -32,47 +32,43 @@ static void	calculate_wall(t_ray *ray, t_game *game)
 	ray->wall_end_y = ray->wall_height / 2 + game->win_height / 2;
 	if (ray->wall_end_y >= game->win_height)
 		ray->wall_end_y = game->win_height - 1;
-}
-
-static int	get_wall_color(t_game *game, t_ray *ray)
-{
-	(void)game;
-	if (ray->side == 1)
-		return (ray->vec_dir_y < 0 ? 100000 : 200000);
+	if (ray->side == 0)
+		ray->wall_x = player->map_y + ray->wall_dist * ray->vec_dir_y;
 	else
-		return (ray->vec_dir_x < 0 ? 600000 : 700000);
+		ray->wall_x = player->map_x + ray->wall_dist * ray->vec_dir_x;
+	ray->wall_x -= floor(ray->wall_x);
 }
 
-// wall_color
-void	set_ray_pixels(t_game *game, t_ray *ray, int x)
+/**
+ * レイを使用して縦軸のテクスチャを貼る
+ */
+static void	set_ray_pixels(t_game *game, t_ray *ray, int x)
 {
-	int	y;
-	int	color;
-	int	wall_color;
+	t_tex_ray	tex_ray;
+	int			y;
+	int			**wall_tex;
 
 	y = -1;
-	wall_color = get_wall_color(game, ray);
+	wall_tex = get_wall_texture(game, ray);
+	init_tex_ray(game, ray, &tex_ray);
 	while (++y < game->win_height)
 	{
 		if (y < ray->wall_start_y)
-		{
-			color = game->mapinfo.ceiling_rgb[0] * 256 * 256
-				+ game->mapinfo.ceiling_rgb[1] * 256
-				+ game->mapinfo.ceiling_rgb[2];
-			game->view_pixels[y][x] = color;
-		}
+			game->view_pixels[y][x] = get_ceiling_color(game);
 		else if (y > ray->wall_end_y)
-		{
-			color = game->mapinfo.floor_rgb[0] * 256 * 256
-				+ game->mapinfo.floor_rgb[1] * 256 + game->mapinfo.floor_rgb[2];
-			game->view_pixels[y][x] = color;
-		}
+			game->view_pixels[y][x] = get_floor_color(game);
 		else
-			game->view_pixels[y][x] = wall_color;
+			game->view_pixels[y][x] = get_wall_color(game, wall_tex, &tex_ray);
 	}
 }
 
-void	run_dda(t_game *game, t_ray *ray)
+/**
+ * DDAアルゴリズム
+ * 壁への距離を取得する
+ * ray.sidedist_yx	壁への距離
+ * ray.side			x,y軸どちらの壁にぶつかったか side=0の場合x軸の壁
+ */
+static void	run_dda(t_game *game, t_ray *ray)
 {
 	while (1)
 	{
@@ -102,12 +98,12 @@ void	raycasting(t_game *game)
 	int		x;
 
 	x = 0;
-	ray = game->ray;
 	while (x < game->win_width)
 	{
 		init_ray(&ray, &game->player, x);
 		run_dda(game, &ray);
-		calculate_wall(&ray, game);
+		calculate_wall(&ray, game, &game->player);
+		// put_ray(&ray);
 		set_ray_pixels(game, &ray, x);
 		x++;
 	}

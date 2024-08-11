@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 20:23:37 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 01:49:27 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/10 17:27:49 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,5 @@ void	initialize_ray(t_ray *ray)
 	ray->wall_dist = 0.0;
 	ray->wall_start_y = 0;
 	ray->wall_end_y = 0;
+	ray->wall_x = 0.0;
 }

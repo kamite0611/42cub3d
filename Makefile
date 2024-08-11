@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+         #
+#    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/08/04 19:09:17 by mnakashi         ###   ########.fr        #
+#    Updated: 2024/08/10 22:59:06 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,11 +44,15 @@ SRC	= \
 	init/init_img.c \
 	init/init_game.c \
 	init/init_ray.c \
+	init/init_tex_ray.c \
+	init/init_texture.c \
 	exit/free_exit.c \
 	map_check/args_checker.c \
 	render/raycasting.c \
 	render/render_utils.c \
 	render/render.c \
+	texture/floor_ceiling.c \
+	texture/wall.c \
 	utils/error.c \
 	utils/debug.c \
 	utils/free.c \
@@ -73,6 +77,7 @@ dirs:
 	@mkdir -p $(OBJ_DIR)/exit
 	@mkdir -p $(OBJ_DIR)/map_check
 	@mkdir -p $(OBJ_DIR)/render
+	@mkdir -p $(OBJ_DIR)/texture
 	@mkdir -p $(OBJ_DIR)/utils
 
 buildLibs:

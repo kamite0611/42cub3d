@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/07 19:23:11 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/11 13:54:03 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,19 @@ typedef struct s_img
 	int		size_line;
 	int		endian;
 }			t_img;
+
+/**
+ * テクスチャ情報
+ */
+typedef struct s_texinfo
+{
+	int		**tex_north;
+	int		**tex_south;
+	int		**tex_west;
+	int		**tex_east;
+
+	int		size;
+}			t_texinfo;
 
 /**
  * マップファイル情報
@@ -135,7 +148,22 @@ typedef struct s_ray
 	int		wall_start_y;
 	int		wall_end_y;
 
+	/** レイが壁に当たった壁のx座標 0.0~1.0の範囲 */
+	double	wall_x;
 }			t_ray;
+
+/**
+ *
+ */
+typedef struct s_tex_ray
+{
+	int		x;
+	int		y;
+
+	double	step;
+	double	pos;
+
+}			t_tex_ray;
 
 /**
  * プレイヤー情報
@@ -155,8 +183,8 @@ typedef struct s_player
 
 	/** カメラ方向ベクトル */
 	/** プレイヤーの視界の中心から片方の端までのベクトル */
-	double vec_plane_x /** x方向ベクトル */;
-	double vec_plane_y /** y方向ベクトル */;
+	double vec_plane_x; /** x方向ベクトル */
+	double vec_plane_y; /** y方向ベクトル */
 }			t_player;
 
 /**
@@ -172,6 +200,7 @@ typedef struct s_game
 	/** 画面全体のピクセル 640*480 */
 	int		**view_pixels;
 
+	t_texinfo texinfo; /** テクスチャ情報 */
 	t_mapinfo mapinfo; /** Map関係 */
 	t_player player /** プレイヤー情報 */;
 	t_ray ray /** 光線情報 */;
@@ -213,6 +242,7 @@ void		init_view_pixels(t_game *game);
 int			initialize_game(t_game *game, char *map_path);
 
 void		init_img(t_game *game, t_img *image, int width, int height);
+void		init_xpm_img(t_game *game, t_img *image, char *path);
 void		initialize_img(t_img *image);
 
 int			init_texture(t_game *game, t_temp *temp);
@@ -223,6 +253,12 @@ void		initialize_player(t_player *player);
 
 void		init_ray(t_ray *ray, t_player *player, int x);
 void		initialize_ray(t_ray *ray);
+
+void		init_tex_ray(t_game *game, t_ray *ray, t_tex_ray *tex_ray);
+void		initialize_tex_ray(t_tex_ray *tex_ray);
+
+void		init_texinfo(t_game *game, t_texinfo *texinfo);
+void		initialize_texinfo(t_texinfo *texinfo);
 
 /** Exit */
 void		free_exit(t_game *game, int status);
@@ -238,11 +274,21 @@ void		render_raycasting(t_game *game);
 
 bool		is_hit_wall(t_game *game, t_ray *ray);
 
+/** Textures */
+int			get_ceiling_color(t_game *game);
+int			get_floor_color(t_game *game);
+
+int			**get_wall_texture(t_game *game, t_ray *ray);
+int			get_wall_color(t_game *game, int **wall_tex, t_tex_ray *tex_ray);
+
 /** Utils */
 int			err_msg(char *msg, int status);
 void		print_mapinfo(t_mapinfo *mapinfo);
 void		put_player(t_player *player);
 void		put_ray(t_ray *ray);
+void		put_tex_ray(t_tex_ray *tex_ray);
+void		put_texinfo(t_texinfo *texinfo);
+
 void		free_tab(void **tab);
 
 #endif
