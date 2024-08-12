@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 02:10:38 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/12 17:26:46 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/12 17:28:17 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,4 @@ void	initialize_img(t_img *image)
 	image->pixel_bits = 0;
 	image->size_line = 0;
 	image->endian = 0;
-}
-
-void	init_texture_img(t_game *game, t_img *image, char *path, t_temp *temp)
-{
-	initialize_img(image);
-	image->img = mlx_xpm_file_to_image(game->mlx, path, &temp->texture_size,
-			&temp->texture_size);
-	if (image->img == NULL)
-		free_exit(game, err_msg(ERR_MLX, 1));
-	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits,
-			&image->size_line, &image->endian);
-	return ;
 }
