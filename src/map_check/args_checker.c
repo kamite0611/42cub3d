@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/11 14:46:41 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/12 15:25:24 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 {
 	size_t		i;
 
-	if (count < 6) //|| line[0] == '0'
+	if (count < 6)
 		return (check_dirgb(ft_split(line, ' ')));
-	// if (line[0] == '0' || line[ft_strlen(line) - 1] == '0'
-	// 	|| (count == 6 && ft_strchr(line, '0')))
-	// 	return (free_exit(NULL, err_msg(ERR_MSG, 1)));
+	if (line[0] == '0' || line[ft_strlen(line) - 2] == '0'
+		|| (count == 6 && ft_strchr(line, '0')))
+		return (free_exit(NULL, err_msg(ERR_MSG, 1)), ERROR);
 	i = -1;
 	while (++i < line_len)
 	{
