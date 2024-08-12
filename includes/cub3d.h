@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/12 17:26:12 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/12 18:33:41 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,8 @@ typedef struct s_player
 	/** プレイヤーの視界の中心から片方の端までのベクトル */
 	double vec_plane_x; /** x方向ベクトル */
 	double vec_plane_y; /** y方向ベクトル */
+
+	//int temp;
 }			t_player;
 
 /**
@@ -268,6 +270,11 @@ void		render_view(t_game *game);
 void		render_raycasting(t_game *game);
 
 bool		is_hit_wall(t_game *game, t_ray *ray);
+
+//
+int	render(t_game *game);
+//
+
 
 /** Textures */
 int			get_ceiling_color(t_game *game);

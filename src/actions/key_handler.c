@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 00:28:36 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 19:05:39 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/12 18:39:51 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,31 @@ static int	key_press_handler(int key, t_game *game)
 	return (SUCCESS);
 }
 
+//
+// static int	key_release_handler(int key, t_game *game)
+// {
+// 	if (key == XK_Escape)
+// 		finish_game(game);
+// 	if (key == XK_w && game->player.map_x == 1)
+// 		game->player.map_x = 0;
+// 	if (key == XK_s && game->player.map_y == -1)
+// 		game->player.map_y = 0;
+// 	if (key == XK_a && game->player.map_x == -1)
+// 		game->player.map_x += 1;
+// 	if (key == XK_d && game->player.map_x == 1)
+// 		game->player.map_x -= 1;
+// 	// if (key == XK_Left && game->player. <= 1)
+// 	// 	game->player.rotate = 0;
+// 	// if (key == XK_Right && game->player.rotate >= -1)
+// 	// 	game->player.rotate = 0;
+// 	return (0);
+// }
+//
+
 void	hooks_keys(t_game *game)
 {
 	mlx_hook(game->win, ClientMessage, NoEventMask, finish_game, game);
 	mlx_hook(game->win, KeyPress, KeyPressMask, key_press_handler, game);
+	//
+	//mlx_hook(game->win, KeyRelease, KeyReleaseMask, key_release_handler, game);
 }

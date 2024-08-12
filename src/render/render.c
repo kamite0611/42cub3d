@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 00:08:37 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/10 22:05:47 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/12 18:37:34 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,16 @@ void	render_raycasting(t_game *game)
 	init_view_pixels(game);
 	raycasting(game);
 	render_view(game);
+}
+
+////
+int	render(t_game *game)
+{
+	// game->player.has_moved += move_player(data);
+	// if (data->player.has_moved == 0)
+	// 	return (0);
+	// game->player.map_x = 7;
+	// game->player.map_y = 3;
+	render_raycasting(game);
+	return (0);
 }
