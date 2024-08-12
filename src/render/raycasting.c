@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/10 23:30:47 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/12 15:50:46 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,28 @@ static void	set_ray_pixels(t_game *game, t_ray *ray, int x)
  */
 static void	run_dda(t_game *game, t_ray *ray)
 {
+	int	tmp; //
+
 	while (1)
 	{
 		if (ray->sidedist_x < ray->sidedist_y)
 		{
+			//
+			tmp = ray->map_x + ray->step_x;
+			if (tmp < 0 || tmp >= game->mapinfo.map_width)
+				return;
+			//
 			ray->sidedist_x += ray->deltadist_x;
 			ray->map_x += ray->step_x;
 			ray->side = 0;
 		}
 		else
 		{
+			//
+			tmp = ray->map_y + ray->step_y;
+			if (tmp < 0 || tmp >= game->mapinfo.map_width)
+				return;
+			//
 			ray->sidedist_y += ray->deltadist_y;
 			ray->map_y += ray->step_y;
 			ray->side = 1;
