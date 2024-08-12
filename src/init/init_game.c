@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/10 22:54:58 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/11 13:59:11 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ void	init_game(t_game *game, t_temp *temp)
 	if (!game->win)
 		free_exit(game, err_msg("mlx_new_window() Error.", ERROR));
 	/** init */
+	game->mapinfo.line_count = temp->map_count;
+	game->player.direction = temp->player_direction;
+	game->player.map_x = temp->player_mapx;
+	game->player.map_y = temp->player_mapy;
 	init_mapinfo(game, &game->mapinfo, temp);
 	init_player_vec(&game->player);
 	init_view_pixels(game);

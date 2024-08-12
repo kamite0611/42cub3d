@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 20:02:28 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/12 15:29:09 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,16 @@ int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
 	char	**map;
 	int		fd;
 	int		count;
+	size_t	max_width;
 	char	*line;
 
 	fd = open(temp->map_path, O_RDONLY);
 	if (fd < 0)
 		return (ERROR);
 	count = 0;
-	game->mapinfo.line_count = temp->map_count;
-	game->player.direction = temp->player_direction;
-	game->player.map_x = temp->player_mapx;
-	game->player.map_y = temp->player_mapy;
+	max_width = 0;
+	(void)game;
+	mapinfo->map_height = temp->map_count - 6;
 	map = (char **)ft_calloc(sizeof(char *), (temp->map_count + 1));
 	while (1)
 	{
@@ -89,9 +89,14 @@ int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
 			break ;
 		else if (ft_strcmp(line, "\n") == 0)
 			continue ;
+		if (count > 5 || max_width < ft_strlen(line) - 1)
+			max_width = ft_strlen(line) - 1;
+		if (count == temp->map_count - 1 && ft_strchr(line, '0'))
+			return (close(fd), free_exit(game, err_msg(ERR_MSG, 1)), 1);
 		put_mapinfo(line, count++, mapinfo, map);
 	}
 	mapinfo->map = map;
+	mapinfo->map_width = max_width;
 	return (close(fd), SUCCESS);
 }
 

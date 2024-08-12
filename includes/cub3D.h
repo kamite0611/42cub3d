@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/10 23:30:40 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/11 13:54:03 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define ERR_ARGMAP "Error\nConfirm map name or map path"
 # define ERR_MSG "Error\n"
 # define ERR_MAP_CONTENT "Error\nInvalid map content"
+# define ERR_MLX "Error\nMLX"
 
 /* ------------------- includes ------------------- */
 
@@ -201,7 +202,10 @@ typedef struct s_game
 
 	t_texinfo texinfo; /** テクスチャ情報 */
 	t_mapinfo mapinfo; /** Map関係 */
-	t_player player;   /** プレイヤー情報 */
+	t_player player /** プレイヤー情報 */;
+	t_ray ray /** 光線情報 */;
+	int			**texture_pixels;
+	int			**textures;
 }			t_game;
 
 typedef struct s_temp
@@ -212,6 +216,7 @@ typedef struct s_temp
 	char	player_direction;
 	int		player_mapx;
 	int		player_mapy;
+	int		texture_size;
 }			t_temp;
 
 /* ------------------- functions ------------------- */
@@ -239,6 +244,9 @@ int			initialize_game(t_game *game, char *map_path);
 void		init_img(t_game *game, t_img *image, int width, int height);
 void		init_xpm_img(t_game *game, t_img *image, char *path);
 void		initialize_img(t_img *image);
+
+int			init_texture(t_game *game, t_temp *temp);
+
 
 void		init_player_vec(t_player *player);
 void		initialize_player(t_player *player);
