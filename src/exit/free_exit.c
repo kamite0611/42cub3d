@@ -32,17 +32,17 @@ static void	free_mapinfo(t_mapinfo *mapinfo)
 /**
  *
  */
-static void	free_texinfo(t_texinfo *texinfo)
-{
-	if (texinfo->tex_north)
-		free_tab((void **)texinfo->tex_north);
-	if (texinfo->tex_south)
-		free_tab((void **)texinfo->tex_south);
-	if (texinfo->tex_west)
-		free_tab((void **)texinfo->tex_west);
-	if (texinfo->tex_south)
-		free_tab((void **)texinfo->tex_south);
-}
+// static void	free_texinfo(t_texinfo *texinfo)
+// {
+// 	if (texinfo->tex_north)
+// 		free_tab((void **)texinfo->tex_north);
+// 	if (texinfo->tex_south)
+// 		free_tab((void **)texinfo->tex_south);
+// 	if (texinfo->tex_west)
+// 		free_tab((void **)texinfo->tex_west);
+// 	if (texinfo->tex_south)
+// 		free_tab((void **)texinfo->tex_south);
+// }
 
 /**
  * t_gameの中身でmallocしているものをfreeする
@@ -52,7 +52,7 @@ static void	free_game(t_game *game)
 	if (game)
 	{
 		free_mapinfo(&game->mapinfo);
-		free_texinfo(&game->texinfo);
+		//free_texinfo(&game->texinfo);
 		free_tab((void **)game->view_pixels);
 	}
 }
