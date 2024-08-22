@@ -3,36 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   init_mapinfo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/12 15:29:09 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/23 00:03:08 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /**
- * Map情報をファイルから取得する
+ * Get Map information from file.
  */
-
 static void	put_map_direct(char **line, t_mapinfo *mapinfo)
 {
 	if (ft_strcmp(line[0], "NO") == 0)
-		mapinfo->no_path = ft_strtrim(ft_strdup(line[1]), "\n");
+		mapinfo->no_path = ft_strtrim(line[1], "\n");
 	else if (ft_strcmp(line[0], "SO") == 0)
-		mapinfo->so_path = ft_strtrim(ft_strdup(line[1]), "\n");
+		mapinfo->so_path = ft_strtrim(line[1], "\n");
 	else if (ft_strcmp(line[0], "WE") == 0)
-		mapinfo->we_path = ft_strtrim(ft_strdup(line[1]), "\n");
+		mapinfo->we_path = ft_strtrim(line[1], "\n");
 	else if (ft_strcmp(line[0], "EA") == 0)
-		mapinfo->ea_path = ft_strtrim(ft_strdup(line[1]), "\n");
+		mapinfo->ea_path = ft_strtrim(line[1], "\n");
 }
 
 static void	put_map_rgb(char **line, t_mapinfo *mapinfo)
 {
 	char	**colors;
+	char *trimedline = ft_strtrim(line[1], "\n");
 
-	colors = ft_split(ft_strtrim(line[1], "\n"), ',');
+	colors = ft_split(trimedline, ',');
+	free(trimedline);
 	if (ft_strcmp(line[0], "C") == 0)
 	{
 		mapinfo->ceiling_rgb[0] = ft_atoi(colors[0]);
@@ -62,7 +63,7 @@ void	put_mapinfo(char *line, int count, t_mapinfo *mapinfo, char **map)
 		free_tab((void **)temp_line);
 	}
 	else
-		map[count - 6] = ft_strtrim(ft_strdup(line), "\n");
+		map[count - 6] = ft_strtrim(line, "\n");
 	free(line);
 }
 
@@ -77,9 +78,9 @@ int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
 	fd = open(temp->map_path, O_RDONLY);
 	if (fd < 0)
 		return (ERROR);
+	line = NULL;
 	count = 0;
 	max_width = 0;
-	(void)game;
 	mapinfo->map_height = temp->map_count - 6;
 	map = (char **)ft_calloc(sizeof(char *), (temp->map_count + 1));
 	while (1)
@@ -87,12 +88,14 @@ int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		else if (ft_strcmp(line, "\n") == 0)
-			continue ;
+		else if (ft_strcmp(line, "\n") == 0){
+			free(line);
+		continue ;	
+		}
 		if (count > 5 || max_width < ft_strlen(line) - 1)
 			max_width = ft_strlen(line) - 1;
 		if (count == temp->map_count - 1 && ft_strchr(line, '0'))
-			return (close(fd), free_exit(game, err_msg(ERR_MSG, 1)), 1);
+			return (free(line), close(fd), free_exit(game, err_msg(ERR_MSG, 1)), 1);
 		put_mapinfo(line, count++, mapinfo, map);
 	}
 	mapinfo->map = map;

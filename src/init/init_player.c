@@ -6,17 +6,13 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 22:05:11 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 00:29:11 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/22 23:57:21 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/**
- * プレイヤー情報に値を入れる
- * map_xy, direction は ファイル分析の段階で入れる
- */
-void	init_player_vec(t_player *player)
+static void	init_player_vec_ns(t_player *player)
 {
 	if (player->direction == 'N')
 	{
@@ -32,6 +28,10 @@ void	init_player_vec(t_player *player)
 		player->vec_plane_x = -VIEWING_ANGLE;
 		player->vec_plane_y = 0;
 	}
+}
+
+static void	init_player_vec_ew(t_player *player)
+{
 	if (player->direction == 'E')
 	{
 		player->vec_dir_x = 1;
@@ -49,7 +49,17 @@ void	init_player_vec(t_player *player)
 }
 
 /**
- * プレイヤー情報を初期化
+ * put values in player info.
+ * map_xy, direction are put in at the file analysis stage
+ */
+void	init_player_vec(t_player *player)
+{
+	init_player_vec_ns(player);
+	init_player_vec_ew(player);
+}
+
+/**
+ * Initialise player information.
  */
 void	initialize_player(t_player *player)
 {

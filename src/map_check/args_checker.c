@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   args_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/12 15:25:24 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/23 01:26:56 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-//confirm strnstr
-//close(fd) 確認！！！！！（map_error）
 
 bool	check_rgb(char *line)
 {
@@ -21,8 +18,11 @@ bool	check_rgb(char *line)
 	size_t	color_len;
 	int		i;
 	size_t	j;
+	char	*trimedline;
 
-	colors = ft_split(ft_strtrim(line, "\n"), ',');
+	trimedline = ft_strtrim(line, "\n");
+	colors = ft_split(trimedline, ',');
+	free(trimedline);
 	i = -1;
 	j = -1;
 	while (colors[++i])
@@ -57,8 +57,8 @@ bool	check_dirgb(char **line)
 		while (++i < 6)
 		{
 			if (!ft_strcmp(line[0], dirgb[i]) && !dirgb_fl[i] && line[1]
-				&& ((i < 4 && ft_strnstr(line[1], "text", 4))
-					|| (i >= 4 && check_rgb(line[1]) == SUCCESS)) && !line[2])
+				&& ((i < 4 && ft_strnstr(line[1], "text", 4)) || (i >= 4
+						&& check_rgb(line[1]) == SUCCESS)) && !line[2])
 			{
 				dirgb_fl[i] = true;
 				return (free_tab((void **)line), SUCCESS);
@@ -70,12 +70,12 @@ bool	check_dirgb(char **line)
 
 bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 {
-	size_t		i;
+	size_t	i;
 
 	if (count < 6)
 		return (check_dirgb(ft_split(line, ' ')));
-	if (line[0] == '0' || line[ft_strlen(line) - 2] == '0'
-		|| (count == 6 && ft_strchr(line, '0')))
+	if (line[0] == '0' || line[ft_strlen(line) - 2] == '0' || (count == 6
+			&& ft_strchr(line, '0')))
 		return (free_exit(NULL, err_msg(ERR_MSG, 1)), ERROR);
 	i = -1;
 	while (++i < line_len)
@@ -108,15 +108,17 @@ int	args_checker(int argc, char *argv[], t_temp *temp)
 		return (free_exit(NULL, err_msg(ERR_ARGMAP, 1)), close(fd), ERROR);
 	ft_strlcpy(temp->map_path, argv[1], 4095);
 	count = 0;
+	line = NULL;
 	while (1)
 	{
+		if (line)
+			free(line);
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
 		else if (ft_strcmp(line, "\n") == 0)
 			continue ;
 		read_map(line, count++, temp, ft_strlen(line));
-		free(line);
 	}
 	if (count < 6 || temp->player_flag == false)
 		free_exit(NULL, err_msg(ERR_MAP_CONTENT, 1));

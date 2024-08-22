@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/11 13:59:11 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/23 01:27:11 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /**
- * t_game.view_pixels の初期値を作成
- * 640*480 int配列を確保し保存する
+ * Create initial values for t_game.view_pixels
+ * Allocate and store 640*480 int array
  */
 void	init_view_pixels(t_game *game)
 {
@@ -36,8 +36,9 @@ void	init_view_pixels(t_game *game)
 }
 
 /**
- * t_game 全体の構造体
- * mapinfo,mlx など処理に必要なデータを全てこの段階で入れる
+ * The entire t_game structure.
+ * All data necessary for processing, such as mapinfo, mlx, etc.,
+	are put in at this stage.
  */
 void	init_game(t_game *game, t_temp *temp)
 {
@@ -48,23 +49,18 @@ void	init_game(t_game *game, t_temp *temp)
 	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	if (!game->win)
 		free_exit(game, err_msg("mlx_new_window() Error.", ERROR));
-	/** init */
 	game->mapinfo.line_count = temp->map_count;
 	game->player.direction = temp->player_direction;
-	game->player.map_x = temp->player_mapx;
-	game->player.map_y = temp->player_mapy;
+	game->player.map_x = temp->player_mapx + 0.5;
+	game->player.map_y = temp->player_mapy + 0.5;
 	init_mapinfo(game, &game->mapinfo, temp);
 	init_player_vec(&game->player);
 	init_view_pixels(game);
 	init_texinfo(game, &game->texinfo);
-	/** debug */
-	print_mapinfo(&game->mapinfo);
-	put_player(&game->player);
-	put_texinfo(&game->texinfo);
 }
 
 /**
- * t_game 構造体を初期化する
+ * Initialise the t_game structure.
  */
 int	initialize_game(t_game *game, char *map_path)
 {
