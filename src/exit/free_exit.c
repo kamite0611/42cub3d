@@ -6,14 +6,14 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:56:49 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/10 22:44:44 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/23 00:24:42 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /**
- * t_mapinfoの中身でmallocしているものをfreeする
+ * Free what is malloc'd in the contents of t_mapinfo.
  */
 static void	free_mapinfo(t_mapinfo *mapinfo)
 {
@@ -32,17 +32,17 @@ static void	free_mapinfo(t_mapinfo *mapinfo)
 /**
  *
  */
-// static void	free_texinfo(t_texinfo *texinfo)
-// {
-// 	if (texinfo->tex_north)
-// 		free_tab((void **)texinfo->tex_north);
-// 	if (texinfo->tex_south)
-// 		free_tab((void **)texinfo->tex_south);
-// 	if (texinfo->tex_west)
-// 		free_tab((void **)texinfo->tex_west);
-// 	if (texinfo->tex_south)
-// 		free_tab((void **)texinfo->tex_south);
-// }
+static void	free_texinfo(t_texinfo *texinfo)
+{
+	if (texinfo->tex_north)
+		free_tab((void **)texinfo->tex_north);
+	if (texinfo->tex_south)
+		free_tab((void **)texinfo->tex_south);
+	if (texinfo->tex_west)
+		free_tab((void **)texinfo->tex_west);
+	if (texinfo->tex_east)
+		free_tab((void **)texinfo->tex_east);
+}
 
 /**
  * t_gameの中身でmallocしているものをfreeする
@@ -52,13 +52,13 @@ static void	free_game(t_game *game)
 	if (game)
 	{
 		free_mapinfo(&game->mapinfo);
-		//free_texinfo(&game->texinfo);
+		free_texinfo(&game->texinfo);
 		free_tab((void **)game->view_pixels);
 	}
 }
 
 /**
- * 全てをfree後,statusで渡された値でexitする
+ * Exit with the value passed in status after all are free.
  */
 void	free_exit(t_game *game, int status)
 {

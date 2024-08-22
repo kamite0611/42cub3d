@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/12 17:26:12 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/23 01:19:02 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,239 +51,216 @@
 /* ------------------- structs ------------------- */
 
 /**
- * ピクセル編集可能な画像情報
+ * Pixel editable image information.
  */
 typedef struct s_img
 {
-	void	*img;
-	int		*addr;
-	int		pixel_bits;
-	int		size_line;
-	int		endian;
-}			t_img;
+	void		*img;
+	int			*addr;
+	int			pixel_bits;
+	int			size_line;
+	int			endian;
+}				t_img;
 
 /**
- * テクスチャ情報
+ * Texture information.
  */
 typedef struct s_texinfo
 {
-	int		**tex_north;
-	int		**tex_south;
-	int		**tex_west;
-	int		**tex_east;
+	int			**tex_north;
+	int			**tex_south;
+	int			**tex_west;
+	int			**tex_east;
 
-	int		size;
-}			t_texinfo;
+	int			size;
+}				t_texinfo;
 
 /**
- * マップファイル情報
+ * Map file information.
  */
 typedef struct s_mapinfo
 {
-	char *path; /** argv[2] */
+	char		*path;
 
-	/** xpmファイルパス */
-	char	*no_path;
-	char	*so_path;
-	char	*we_path;
-	char	*ea_path;
+	char		*no_path;
+	char		*so_path;
+	char		*we_path;
+	char		*ea_path;
 
-	/** str配列のマップデータ */
-	char	**map;
+	char		**map;
 
-	/** 地図の最大横幅・縦幅 */
-	int		map_height;
-	int		map_width;
+	int			map_height;
+	int			map_width;
 
-	int		floor_rgb[3];
-	int		ceiling_rgb[3];
+	int			floor_rgb[3];
+	int			ceiling_rgb[3];
 
-	int		line_count;
-}			t_mapinfo;
+	int			line_count;
+}				t_mapinfo;
 
 /**
-画面座標
-(0, 0) -----> x (正の方向)
+Screen coordinates.
+(0, 0) -----> x (positive direction)
  |
  |
  v
- y (正の方向)
+ y (positive direction)
  */
 /**
- * レイキャスティングで使用する光線情報
+ * Ray information used for raycasting.
  */
 typedef struct s_ray
 {
-	/** カメラ平面 */
-	double	camera_x;
+	double		camera_x;
 
-	/** 垂直方向の場合1, 水平方向の場合0 */
-	int		side;
+	int			side;
 
-	/** マップ上の座標 */
-	int		map_x;
-	int		map_y;
+	int			map_x;
+	int			map_y;
 
-	/** レイがグリット上で進む数 */
-	int		step_x;
-	int		step_y;
+	int			step_x;
+	int			step_y;
 
-	/** レイの方向ベクトル */
-	double	vec_dir_x;
-	double	vec_dir_y;
+	double		vec_dir_x;
+	double		vec_dir_y;
 
-	/**  */
-	double	sidedist_x;
-	double	sidedist_y;
+	double		sidedist_x;
+	double		sidedist_y;
 
-	/**  */
-	double	deltadist_x;
-	double	deltadist_y;
+	double		deltadist_x;
+	double		deltadist_y;
 
-	/** 壁の高さ */
-	int		wall_height;
-	/** 壁までの距離 */
-	double	wall_dist;
+	int			wall_height;
+	double		wall_dist;
 
-	int		wall_start_y;
-	int		wall_end_y;
+	int			wall_start_y;
+	int			wall_end_y;
 
-	/** レイが壁に当たった壁のx座標 0.0~1.0の範囲 */
-	double	wall_x;
-}			t_ray;
+	double		wall_x;
+}				t_ray;
 
 /**
  *
  */
 typedef struct s_tex_ray
 {
-	int		x;
-	int		y;
+	int			x;
+	int			y;
 
-	double	step;
-	double	pos;
+	double		step;
+	double		pos;
 
-}			t_tex_ray;
+}				t_tex_ray;
 
-/**
- * プレイヤー情報
- */
 typedef struct s_player
 {
-	/** 方角 N,S,E,W */
-	char	direction;
+	char		direction;
 
-	/** マップ上の座標 */
-	double	map_x;
-	double	map_y;
+	double		map_x;
+	double		map_y;
 
-	/** プレイヤー向きベクトル */
-	double vec_dir_x; /** x方向ベクトル */
-	double vec_dir_y; /** y方向ベクトル */
+	double		vec_dir_x;
+	double		vec_dir_y;
 
-	/** カメラ方向ベクトル */
-	/** プレイヤーの視界の中心から片方の端までのベクトル */
-	double vec_plane_x; /** x方向ベクトル */
-	double vec_plane_y; /** y方向ベクトル */
-}			t_player;
+	double		vec_plane_x;
+	double		vec_plane_y;
+}				t_player;
 
-/**
- * cub3d全体で使用する構造体
- */
 typedef struct s_game
 {
-	void	*mlx;
-	void	*win;
-	int		win_height;
-	int		win_width;
+	void		*mlx;
+	void		*win;
+	int			win_height;
+	int			win_width;
 
-	/** 画面全体のピクセル 640*480 */
-	int		**view_pixels;
+	int			**view_pixels;
 
-	t_texinfo texinfo; /** テクスチャ情報 */
-	t_mapinfo mapinfo; /** Map関係 */
-	t_player player /** プレイヤー情報 */;
-	t_ray ray /** 光線情報 */;
-}			t_game;
+	t_texinfo	texinfo;
+	t_mapinfo	mapinfo;
+	t_player	player;
+	t_ray		ray;
+}				t_game;
 
 typedef struct s_temp
 {
-	int		map_count;
-	char	map_path[4096];
-	bool	player_flag;
-	char	player_direction;
-	int		player_mapx;
-	int		player_mapy;
-	int		texture_size;
-}			t_temp;
+	int			map_count;
+	char		map_path[4096];
+	bool		player_flag;
+	char		player_direction;
+	int			player_mapx;
+	int			player_mapy;
+	int			texture_size;
+}				t_temp;
 
 /* ------------------- functions ------------------- */
 
 /** Actions */
-void		hooks_keys(t_game *game);
+void			hooks_keys(t_game *game);
 
-void		move_forward(t_player *player);
-void		move_backward(t_player *player);
-void		move_right(t_player *player);
-void		move_left(t_player *player);
+void			move_forward(t_player *player);
+void			move_backward(t_player *player);
+void			move_right(t_player *player);
+void			move_left(t_player *player);
 
-void		rotate_left(t_player *player);
-void		rotate_right(t_player *player);
+void			rotate_left(t_player *player);
+void			rotate_right(t_player *player);
 
 /** inits */
-int			new_init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp);
-int			init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp);
-int			initialize_mapinfo(t_mapinfo *mapinfo, char *map_path);
+int				new_init_mapinfo(t_game *game, t_mapinfo *mapinfo,
+					t_temp *temp);
+int				init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp);
+int				initialize_mapinfo(t_mapinfo *mapinfo, char *map_path);
 
-void		init_game(t_game *game, t_temp *temp);
-void		init_view_pixels(t_game *game);
-int			initialize_game(t_game *game, char *map_path);
+void			init_game(t_game *game, t_temp *temp);
+void			init_view_pixels(t_game *game);
+int				initialize_game(t_game *game, char *map_path);
 
-void		init_img(t_game *game, t_img *image, int width, int height);
-void		init_xpm_img(t_game *game, t_img *image, char *path);
-void		initialize_img(t_img *image);
+void			init_img(t_game *game, t_img *image, int width, int height);
+void			init_xpm_img(t_game *game, t_img *image, char *path);
+void			initialize_img(t_img *image);
 
-void		init_player_vec(t_player *player);
-void		initialize_player(t_player *player);
+void			init_player_vec(t_player *player);
+void			initialize_player(t_player *player);
 
-void		init_ray(t_ray *ray, t_player *player, int x);
-void		initialize_ray(t_ray *ray);
+void			init_ray(t_ray *ray, t_player *player, int x);
+void			initialize_ray(t_ray *ray);
 
-void		init_tex_ray(t_game *game, t_ray *ray, t_tex_ray *tex_ray);
-void		initialize_tex_ray(t_tex_ray *tex_ray);
+void			init_tex_ray(t_game *game, t_ray *ray, t_tex_ray *tex_ray);
+void			initialize_tex_ray(t_tex_ray *tex_ray);
 
-void		init_texinfo(t_game *game, t_texinfo *texinfo);
-void		initialize_texinfo(t_texinfo *texinfo);
+void			init_texinfo(t_game *game, t_texinfo *texinfo);
+void			initialize_texinfo(t_texinfo *texinfo);
 
 /** Exit */
-void		free_exit(t_game *game, int status);
-int			finish_game(t_game *game);
+void			free_exit(t_game *game, int status);
+int				finish_game(t_game *game);
 
 /** map_check */
-int			args_checker(int argc, char *argv[], t_temp *temp);
+int				args_checker(int argc, char *argv[], t_temp *temp);
 
 /** Render */
-void		raycasting(t_game *game);
-void		render_view(t_game *game);
-void		render_raycasting(t_game *game);
+void			raycasting(t_game *game);
+void			render_view(t_game *game);
+void			render_raycasting(t_game *game);
 
-bool		is_hit_wall(t_game *game, t_ray *ray);
+bool			is_hit_wall(t_game *game, t_ray *ray);
 
 /** Textures */
-int			get_ceiling_color(t_game *game);
-int			get_floor_color(t_game *game);
+int				get_ceiling_color(t_game *game);
+int				get_floor_color(t_game *game);
 
-int			**get_wall_texture(t_game *game, t_ray *ray);
-int			get_wall_color(t_game *game, int **wall_tex, t_tex_ray *tex_ray);
+int				**get_wall_texture(t_game *game, t_ray *ray);
+int				get_wall_color(t_game *game, int **wall_tex,
+					t_tex_ray *tex_ray);
 
 /** Utils */
-int			err_msg(char *msg, int status);
-void		print_mapinfo(t_mapinfo *mapinfo);
-void		put_player(t_player *player);
-void		put_ray(t_ray *ray);
-void		put_tex_ray(t_tex_ray *tex_ray);
-void		put_texinfo(t_texinfo *texinfo);
+int				err_msg(char *msg, int status);
+void			print_mapinfo(t_mapinfo *mapinfo);
+void			put_player(t_player *player);
+void			put_ray(t_ray *ray);
+void			put_tex_ray(t_tex_ray *tex_ray);
+void			put_texinfo(t_texinfo *texinfo);
 
-void		free_tab(void **tab);
+void			free_tab(void **tab);
 
 #endif

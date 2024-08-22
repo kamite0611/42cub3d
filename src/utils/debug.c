@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 01:18:50 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/11 14:14:30 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/22 23:51:25 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,22 @@ void	put_ray(t_ray *ray)
 {
 	printf("RAY[%lf]: map(%d, %d) step(%d, %d) dir(%lf, %lf) deltadist(%lf,\
  %lf) sidedist(%lf, %lf) wall(%d %lf) draw(%d ~ %d) wall_x(%lf)\n",
-			ray->camera_x,
-			ray->map_x,
-			ray->map_y,
-			ray->step_x,
-			ray->step_y,
-			ray->vec_dir_x,
-			ray->vec_dir_y,
-			ray->deltadist_x,
-			ray->deltadist_y,
-			ray->sidedist_x,
-			ray->sidedist_y,
-			ray->wall_height,
-			ray->wall_dist,
-			ray->wall_start_y,
-			ray->wall_end_y,
-			ray->wall_x);
+		ray->camera_x,
+		ray->map_x,
+		ray->map_y,
+		ray->step_x,
+		ray->step_y,
+		ray->vec_dir_x,
+		ray->vec_dir_y,
+		ray->deltadist_x,
+		ray->deltadist_y,
+		ray->sidedist_x,
+		ray->sidedist_y,
+		ray->wall_height,
+		ray->wall_dist,
+		ray->wall_start_y,
+		ray->wall_end_y,
+		ray->wall_x);
 }
 
 void	put_tex_ray(t_tex_ray *tex_ray)
@@ -94,23 +94,23 @@ void	print_mapinfo(t_mapinfo *mapinfo)
 	put_str_arr(mapinfo->map, "map");
 }
 
-void	put_player(t_player *player)
-{
-	printf("\n################## player ##################\n");
-	printf("direction\t: \'%c\'\n", player->direction);
-	printf("map_xy\t\t: X[%lf] Y[%lf]\n", player->map_x, player->map_y);
-	printf("vec_xy_dir\t: X[%lf] Y[%lf]\n", player->vec_dir_x,
-		player->vec_dir_y);
-	printf("vec_xy_plane\t: X[%lf] Y[%lf]\n", player->vec_plane_x,
-		player->vec_plane_y);
-}
+// void	put_player(t_player *player)
+// {
+// 	printf("\n################## player ##################\n");
+// 	printf("direction\t: \'%c\'\n", player->direction);
+// 	printf("map_xy\t\t: X[%lf] Y[%lf]\n", player->map_x, player->map_y);
+// 	printf("vec_xy_dir\t: X[%lf] Y[%lf]\n", player->vec_dir_x,
+// 		player->vec_dir_y);
+// 	printf("vec_xy_plane\t: X[%lf] Y[%lf]\n", player->vec_plane_x,
+// 		player->vec_plane_y);
+// }
 
-void	put_texinfo(t_texinfo *texinfo)
-{
-	printf("\n################## texinfo ##################\n");
-	printf("size\t\t: %d\n", texinfo->size);
-	put_tab_arr(texinfo->tex_north, texinfo->size, 10, "tex_north");
-	put_tab_arr(texinfo->tex_south, texinfo->size, 10, "tex_south");
-	put_tab_arr(texinfo->tex_east, texinfo->size, 10, "tex_east");
-	put_tab_arr(texinfo->tex_west, texinfo->size, 10, "tex_west");
-}
+// void	put_texinfo(t_texinfo *texinfo)
+// {
+// 	printf("\n################## texinfo ##################\n");
+// 	printf("size\t\t: %d\n", texinfo->size);
+// 	put_tab_arr(texinfo->tex_north, texinfo->size, 10, "tex_north");
+// 	put_tab_arr(texinfo->tex_south, texinfo->size, 10, "tex_south");
+// 	put_tab_arr(texinfo->tex_east, texinfo->size, 10, "tex_east");
+// 	put_tab_arr(texinfo->tex_west, texinfo->size, 10, "tex_west");
+// }

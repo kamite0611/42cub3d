@@ -6,15 +6,16 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 02:10:38 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/12 17:28:17 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/23 00:01:01 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /**
- * MLX ピクセル画像データを t_img 構造体に取得
- * t_img 画像データだけでなく、addr を書き換えることで1ピクセル単位で編集が可能
+ * Get MLX pixel image data into the t_img structure
+ * Editing is possible in units of one pixel by rewriting
+ * addr as well as t_img image data.
  */
 void	init_img(t_game *game, t_img *image, int width, int height)
 {
@@ -29,8 +30,9 @@ void	init_img(t_game *game, t_img *image, int width, int height)
 }
 
 /**
- * MLX ピクセル画像データを t_img 構造体に取得
- * t_img 画像データだけでなく、addr を書き換えることで1ピクセル単位で編集が可能
+ * Get MLX XPM data into the t_img structure
+ * Editing is possible in units of one pixel by rewriting
+ * addr as well as t_img image data.
  */
 void	init_xpm_img(t_game *game, t_img *image, char *path)
 {

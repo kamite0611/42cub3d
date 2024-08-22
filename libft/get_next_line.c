@@ -6,10 +6,9 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:28:37 by akamite           #+#    #+#             */
-/*   Updated: 2024/07/30 00:29:30 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/23 00:03:19 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "libft.h"
 
@@ -67,7 +66,7 @@ void	ft_get_the_spare(char *buffer)
 
 char	*ft_line_results(int ret, char *stock, char *buffer)
 {
-	char		*line;
+	char	*line;
 
 	line = NULL;
 	if (ft_strlen(stock) == 0)
