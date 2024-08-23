@@ -6,16 +6,16 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 01:04:50 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 01:27:30 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/23 00:02:26 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /**
- * 視点を回転させる
- * 回転行列 https://ja.wikipedia.org/wiki/%E5%9B%9E%E8%BB%A2%E8%A1%8C%E5%88%97
- * newX = x * cos(θ) − y * sin(θ)
+ * Rotate viewpoint.
+ * https://ja.wikipedia.org/wiki/%E5%9B%9E%E8%BB%A2%E8%A1%8C%E5%88%97
+ * newX = x * cos(θ) - y * sin(θ)
  * newY = y * sin(θ) + y * cos(θ)
  */
 static void	rotate(t_player *player, double rotspeed)

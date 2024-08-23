@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 21:13:22 by mnakashi          #+#    #+#             */
-/*   Updated: 2024/07/30 01:41:28 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/23 00:02:55 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	return (trimmed);
 }
 
-char	*ft_strtrim_both(char const *s1, char const *startStr, char const *endStr)
+char	*ft_strtrim_both(char const *s1, char const *startStr,
+		char const *endStr)
 {
 	char	*trimmed;
 	size_t	start;
@@ -53,9 +54,7 @@ char	*ft_strtrim_both(char const *s1, char const *startStr, char const *endStr)
 	return (trimmed);
 }
 
-
-
-// int	main()
+// int	main(void)
 // {
 // 	printf("'bonjour' : '%s\n'", ft_strtrim("bonjour", " "));
 // 	printf("'bonjour' : '%s'\n", ft_strtrim(" bonjour ", " "));

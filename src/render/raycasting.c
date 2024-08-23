@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:54 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/12 15:50:46 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/22 23:55:03 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /**
- * 壁周りのデータを計算
- * wall_dist 壁までの距離
- * wall_height 壁の高さ
- * wall_start_y 壁を描画開始する座標
- * wall_end_y 壁を描画終了する座標
+ * Calculate data around the wall.
+ * wall_dist Distance to wall
+ * wall_height Height of the wall
+ * wall_start_y Coordinates to start drawing the wall
+ * wall_end_y Coordinates where the wall ends to be drawn.
  */
 static void	calculate_wall(t_ray *ray, t_game *game, t_player *player)
 {
@@ -40,7 +40,7 @@ static void	calculate_wall(t_ray *ray, t_game *game, t_player *player)
 }
 
 /**
- * レイを使用して縦軸のテクスチャを貼る
+ * Use ray to texture vertical axis.
  */
 static void	set_ray_pixels(t_game *game, t_ray *ray, int x)
 {
@@ -63,35 +63,32 @@ static void	set_ray_pixels(t_game *game, t_ray *ray, int x)
 }
 
 /**
- * DDAアルゴリズム
- * 壁への距離を取得する
- * ray.sidedist_yx	壁への距離
- * ray.side			x,y軸どちらの壁にぶつかったか side=0の場合x軸の壁
+ * DDA algorithm.
+ * Get distance to wall.
+ * ray.sideist_yx Distance to the wall
+ * ray.side Which wall in the x or y axis was hit If side=0,
+	the wall in the x axis
  */
 static void	run_dda(t_game *game, t_ray *ray)
 {
-	int	tmp; //
+	int	tmp;
 
 	while (1)
 	{
 		if (ray->sidedist_x < ray->sidedist_y)
 		{
-			//
 			tmp = ray->map_x + ray->step_x;
 			if (tmp < 0 || tmp >= game->mapinfo.map_width)
-				return;
-			//
+				return ;
 			ray->sidedist_x += ray->deltadist_x;
 			ray->map_x += ray->step_x;
 			ray->side = 0;
 		}
 		else
 		{
-			//
 			tmp = ray->map_y + ray->step_y;
 			if (tmp < 0 || tmp >= game->mapinfo.map_width)
-				return;
-			//
+				return ;
 			ray->sidedist_y += ray->deltadist_y;
 			ray->map_y += ray->step_y;
 			ray->side = 1;
@@ -102,7 +99,7 @@ static void	run_dda(t_game *game, t_ray *ray)
 }
 
 /**
- * 光線を画面の横幅分出す
+ * Put out rays of light for the width of the screen.
  */
 void	raycasting(t_game *game)
 {
@@ -115,7 +112,6 @@ void	raycasting(t_game *game)
 		init_ray(&ray, &game->player, x);
 		run_dda(game, &ray);
 		calculate_wall(&ray, game, &game->player);
-		// put_ray(&ray);
 		set_ray_pixels(game, &ray, x);
 		x++;
 	}
