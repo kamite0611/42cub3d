@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: akamite <akamite@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/08/23 01:29:48 by akamite          ###   ########.fr        #
+#    Updated: 2024/08/23 20:30:02 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3D
-CFLAGS	= -Wall -Werror -Wextra -fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra -g
 
 # minilibX
 MLX_DIR 		= minilibx-linux
