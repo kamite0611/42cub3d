@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/23 01:26:56 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/23 21:10:03 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,49 +43,52 @@ bool	check_rgb(char *line)
 	return (free_tab((void **)colors), SUCCESS);
 }
 
-bool	check_dirgb(char **line)
+bool	check_dirgb(char **splitline, char *line)
 {
 	static char	*dirgb[6] = {"NO", "WE", "SO", "EA", "C", "F"};
 	static bool	dirgb_fl[6] = {false};
 	int			i;
 
-	if (!line || !line[0])
-		return (free_exit(NULL, err_msg(ERR_MAP_CONTENT, 1)), ERROR);
-	if (line[0])
+	if (!splitline || !splitline[0])
+		return (free(line), free_tab((void **)splitline), free_exit(NULL, err_msg(ERR_MAP_CONTENT, 1)), ERROR);
+	if (splitline[0])
 	{
 		i = -1;
 		while (++i < 6)
 		{
-			if (!ft_strcmp(line[0], dirgb[i]) && !dirgb_fl[i] && line[1]
-				&& ((i < 4 && ft_strnstr(line[1], "text", 4)) || (i >= 4
-						&& check_rgb(line[1]) == SUCCESS)) && !line[2])
+			if (!ft_strcmp(splitline[0], dirgb[i]) && !dirgb_fl[i] && splitline[1]
+				&& ((i < 4 && ft_strnstr(splitline[1], "text", 4)) || (i >= 4
+						&& check_rgb(splitline[1]) == SUCCESS)) && !splitline[2])
 			{
 				dirgb_fl[i] = true;
-				return (free_tab((void **)line), SUCCESS);
+				return (free_tab((void **)splitline), SUCCESS);
 			}
 		}
 	}
-	return (free_exit(NULL, err_msg(ERR_MAP_CONTENT, 1)), ERROR);
+	return (free(line), free_tab((void **)splitline), free_exit(NULL, err_msg(ERR_MAP_CONTENT, 1)), ERROR);
 }
 
 bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 {
 	size_t	i;
+	char **splitedLine;
 
-	if (count < 6)
-		return (check_dirgb(ft_split(line, ' ')));
+	if (count < 6) {
+		splitedLine = ft_split(line, ' ');
+		return (check_dirgb(splitedLine, line));
+	}
 	if (line[0] == '0' || line[ft_strlen(line) - 2] == '0' || (count == 6
 			&& ft_strchr(line, '0')))
-		return (free_exit(NULL, err_msg(ERR_MSG, 1)), ERROR);
+		free(line), free_exit(NULL, err_msg(ERR_MSG, 1));
 	i = -1;
 	while (++i < line_len)
 	{
 		if (!ft_strchr("NEWS01\n ", line[i]))
-			return (free_exit(NULL, err_msg(ERR_MAP_CONTENT, 1)), ERROR);
+			free(line), free_exit(NULL, err_msg(ERR_MAP_CONTENT, 1));
 		if (ft_strchr("NEWS", line[i]))
 		{
 			if (temp->player_flag == true)
-				free_exit(NULL, err_msg(ERR_MAP_CONTENT, 1));
+				free(line), free_exit(NULL, err_msg(ERR_MAP_CONTENT, 1));
 			temp->player_direction = line[i];
 			temp->player_mapx = i;
 			temp->player_mapy = count - 6;
@@ -114,7 +117,7 @@ int	args_checker(int argc, char *argv[], t_temp *temp)
 		if (line)
 			free(line);
 		line = get_next_line(fd);
-		if (line == NULL)
+		if (line == NULL) 
 			break ;
 		else if (ft_strcmp(line, "\n") == 0)
 			continue ;
