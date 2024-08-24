@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/24 00:04:26 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/24 13:54:48 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define ERR_MALLOC "Error\n: malloc() failed."
 # define ERR_ARGMAP "Error\nConfirm map name or map path"
 # define ERR_MSG "Error\n"
-# define ERR_MAP_CONTENT "Error\nInvalid map content"
+# define ERR_MAP "Error\nInvalid map content"
 # define ERR_MLX "Error\nMLX"
 
 /* ------------------- includes ------------------- */

@@ -6,21 +6,28 @@
 #    By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/08/24 00:03:18 by mnakashi         ###   ########.fr        #
+#    Updated: 2024/08/12 15:31:58 by mnakashi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3D
-CFLAGS	= -Wall -Werror -Wextra -g
+CFLAGS	= -Wall -Werror -Wextra -fsanitize=address
 
 # minilibX
 MLX_DIR 		= minilibx-linux
 MLX_A				= $(MLX_DIR)/libmlx.a
 
+#modified
+X11_PREFIX = $(shell brew --prefix libx11)
+XCB_PREFIX = $(shell brew --prefix libxcb)
+
 MLX_INCS = \
+	-I$(X11_PREFIX)/include -I$(XCB_PREFIX)/include -I$(shell brew --prefix libxau)/include -I$(shell brew --prefix libxdmcp)/include -I$(shell brew --prefix xorgproto)/include \
 	-I $(MLX_DIR)
 
 MLX_LIBS = \
+	-L$(X11_PREFIX)/lib \
+	-L $(shell brew --prefix libxext)/lib \
 	-L $(MLX_DIR) \
 	-lmlx -lXext -lX11 -lm -lz
 
@@ -78,8 +85,8 @@ dirs:
 	@mkdir -p $(OBJ_DIR)/utils
 
 buildLibs:
-	@make -C $(MLX_DIR)/
-	@make -C $(LIBFT_DIR)/
+	make -C $(MLX_DIR)/
+	make -C $(LIBFT_DIR)/
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(INCS) $(OBJS) $(A_FILES) $(MLX_LIBS) -o $(NAME)
@@ -94,7 +101,6 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 
 clean:
 	$(RM) -r $(OBJ_DIR)
-
 
 fclean: clean
 	$(RM) $(NAME)
