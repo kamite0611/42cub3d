@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mapinfo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/23 21:06:02 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/24 14:22:58 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ static void	put_map_direct(char **line, t_mapinfo *mapinfo)
 static void	put_map_rgb(char **line, t_mapinfo *mapinfo)
 {
 	char	**colors;
-	char *trimedline = ft_strtrim(line[1], "\n");
+	char	*trimedline;
 
+	trimedline = ft_strtrim(line[1], "\n");
 	colors = ft_split(trimedline, ',');
 	free(trimedline);
 	if (ft_strcmp(line[0], "C") == 0)
@@ -49,10 +50,12 @@ static void	put_map_rgb(char **line, t_mapinfo *mapinfo)
 	free_tab((void **)colors);
 }
 
-void	put_mapinfo(char *line, int count, t_mapinfo *mapinfo, char **map)
+bool	put_mapinfo(char *line, int count, t_mapinfo *mapinfo, char **map)
 {
 	char	**temp_line;
 
+	if (ft_strcmp(line, "\n") == 0)
+		return (free(line), 0);
 	if (count < 6)
 	{
 		temp_line = ft_split(line, ' ');
@@ -64,20 +67,17 @@ void	put_mapinfo(char *line, int count, t_mapinfo *mapinfo, char **map)
 	}
 	else
 		map[count - 6] = ft_strtrim(line, "\n");
-	free(line);
+	return (free(line), 1);
 }
 
 int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
 {
-	char	**map;
-	int		fd;
-	int		count;
-	size_t	max_width;
-	char	*line;
+	char			**map;
+	const int		fd = open(temp->map_path, O_RDONLY);
+	int				count;
+	size_t			max_width;
+	char			*line;
 
-	fd = open(temp->map_path, O_RDONLY);
-	if (fd < 0)
-		return (ERROR);
 	line = NULL;
 	count = 0;
 	max_width = 0;
@@ -88,15 +88,11 @@ int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		else if (ft_strcmp(line, "\n") == 0){
-			free(line);
-		continue ;	
-		}
 		if (count > 5 || max_width < ft_strlen(line) - 1)
 			max_width = ft_strlen(line) - 1;
 		if (count == temp->map_count - 1 && ft_strchr(line, '0'))
-			return (free_tab((void **)map), free(line), close(fd), free_exit(game, err_msg(ERR_MSG, 1)), 1);
-		put_mapinfo(line, count++, mapinfo, map);
+			return (close(fd), free_exit(game, err_msg(ERR_MSG, 1)), 1);
+		count += put_mapinfo(line, count, mapinfo, map);
 	}
 	mapinfo->map = map;
 	mapinfo->map_width = max_width;

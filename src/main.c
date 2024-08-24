@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:46:23 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/23 00:21:28 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/24 00:03:31 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char *argv[])
 	init_game(&game, &temp);
 	render_raycasting(&game);
 	hooks_keys(&game);
+	mlx_loop_hook(game.mlx, render, &game);
 	mlx_loop(game.mlx);
 	free_exit(&game, SUCCESS);
 	return (SUCCESS);
