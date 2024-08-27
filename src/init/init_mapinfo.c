@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/24 14:22:58 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/27 21:45:37 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
 	}
 	mapinfo->map = map;
 	mapinfo->map_width = max_width;
-	return (close(fd), SUCCESS);
+	return (close(fd), validate_round_player(mapinfo, game), validate_round_space(mapinfo, game), SUCCESS);
 }
 
 int	initialize_mapinfo(t_mapinfo *mapinfo, char *map_path)
