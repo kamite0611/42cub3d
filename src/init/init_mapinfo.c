@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mapinfo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/28 18:32:07 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/01 00:17:39 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
 	}
 	mapinfo->map = map;
 	mapinfo->map_width = max_width;
-	return (close(fd), SUCCESS);
+	return (close(fd), validate_round_player(mapinfo, game), validate_round_space(mapinfo, game), SUCCESS);
 }
 
 int	initialize_mapinfo(t_mapinfo *mapinfo, char *map_path)

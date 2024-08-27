@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/24 14:10:27 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/27 21:51:41 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,19 @@ bool	check_rgb(char *line)
 	colors = ft_split(trimedline, ',');
 	free(trimedline);
 	i = -1;
-	j = -1;
 	while (colors[++i])
 	{
 		if (i > 3)
-			free_exit(NULL, err_msg(ERR_MAP, 1));
+			return (free_tab((void **)colors), free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 1);
+		j = -1;
 		while (++j < ft_strlen(colors[i]))
 		{
 			if (!ft_isdigit(colors[i][j]) || ft_atoi(colors[i]) > 255)
-				free_exit(NULL, err_msg(ERR_MAP, 1));
+				return (free_tab((void **)colors), free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 1);
 		}
 	}
 	if (i < 2)
-		free_exit(NULL, err_msg(ERR_MAP, 1));
+		return (free_tab((void **)colors), free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 1);
 	return (free_tab((void **)colors), SUCCESS);
 }
 
