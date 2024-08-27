@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 00:28:36 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/12 18:39:51 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/24 15:32:09 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,4 @@ void	hooks_keys(t_game *game)
 {
 	mlx_hook(game->win, ClientMessage, NoEventMask, finish_game, game);
 	mlx_hook(game->win, KeyPress, KeyPressMask, key_press_handler, game);
-	//
-	//mlx_hook(game->win, KeyRelease, KeyReleaseMask, key_release_handler, game);
 }
