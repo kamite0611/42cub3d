@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/24 14:10:27 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/28 18:46:02 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ bool	check_dirgb(char **spline)
 		while (++i < 6)
 		{
 			if (!ft_strcmp(spline[0], dirgb[i]) && !dirgb_fl[i] && spline[1]
-				&& ((i < 4 && ft_strnstr(spline[1], "text", 4)) || (i >= 4
+				&& ((i < 4 && ft_strnstr(spline[1], "text", 4)
+						&& xpm_file_check(spline[1])) || (i >= 4
 						&& check_rgb(spline[1]) == SUCCESS)) && !spline[2])
 			{
 				dirgb_fl[i] = true;
