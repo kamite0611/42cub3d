@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/28 18:41:50 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/28 19:34:53 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define ROTSPEED 0.05
 
 # define WALL_C '1'
+# define FILLED_C 'F'
+# define EMPTY_C ' '
 
 # define ERR_USAGE "Error\nUsage: ./cub3D <path/to/map.cub>"
 # define ERR_MALLOC "Error\n: malloc() failed."
@@ -237,7 +239,8 @@ int				finish_game(t_game *game);
 
 /** map_check */
 int				args_checker(int argc, char *argv[], t_temp *temp);
-bool	xpm_file_check(char *path);
+bool			xpm_file_check(char *path);
+void			check_other_island(t_game *game);
 
 /** Render */
 void			raycasting(t_game *game);
@@ -247,9 +250,8 @@ void			render_raycasting(t_game *game);
 bool			is_hit_wall(t_game *game, t_ray *ray);
 
 //
-int	render(t_game *game);
+int				render(t_game *game);
 //
-
 
 /** Textures */
 int				get_ceiling_color(t_game *game);
@@ -260,6 +262,7 @@ int				get_wall_color(t_game *game, int **wall_tex,
 					t_tex_ray *tex_ray);
 
 /** Utils */
+void			put_str_arr(char **str_arr, char *name);
 int				err_msg(char *msg, int status);
 void			print_mapinfo(t_mapinfo *mapinfo);
 void			put_player(t_player *player);
@@ -268,5 +271,6 @@ void			put_tex_ray(t_tex_ray *tex_ray);
 void			put_texinfo(t_texinfo *texinfo);
 
 void			free_tab(void **tab);
+size_t			strarr_size(char **strarr);
 
 #endif

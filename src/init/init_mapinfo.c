@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/28 18:32:07 by akamite          ###   ########.fr       */
+/*   Updated: 2024/08/28 19:34:53 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ bool	put_mapinfo(char *line, int count, t_mapinfo *mapinfo, char **map)
 
 int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
 {
-	char			**map;
-	const int		fd = open(temp->map_path, O_RDONLY);
-	int				count;
-	size_t			max_width;
-	char			*line;
+	char		**map;
+	const int	fd = open(temp->map_path, O_RDONLY);
+	int			count;
+	size_t		max_width;
+	char		*line;
 
 	line = NULL;
 	count = 0;
@@ -96,6 +96,7 @@ int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
 	}
 	mapinfo->map = map;
 	mapinfo->map_width = max_width;
+	check_other_island(game);
 	return (close(fd), SUCCESS);
 }
 

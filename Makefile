@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/08/28 18:44:06 by akamite          ###   ########.fr        #
+#    Updated: 2024/08/28 19:34:53 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRC	= \
 	exit/free_exit.c \
 	map_check/args_checker.c \
 	map_check/check_xpm.c \
+	map_check/check_other_island.c \
 	render/raycasting.c \
 	render/render_utils.c \
 	render/render.c \
@@ -54,6 +55,7 @@ SRC	= \
 	utils/error.c \
 	utils/debug.c \
 	utils/free.c \
+	utils/length.c \
 	main.c
 
 A_FILES	= $(LIBFT_A)
