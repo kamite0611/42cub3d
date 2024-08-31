@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/31 18:05:38 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/31 18:54:28 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@
 # define ERR_USAGE "Error\nUsage: ./cub3D <path/to/map.cub>"
 # define ERR_MALLOC "Error\n: malloc() failed."
 # define ERR_ARGMAP "Error\nConfirm map name or map path"
-# define ERR_MSG "Error\n"
+# define ERR_MSG "Error\nINVALID"
 # define ERR_MAP "Error\nInvalid map content"
+# define ERR_ISLAND "Error\nNot allow to exist hanarekojima"
 # define ERR_MLX "Error\nMLX"
 
 /* ------------------- includes ------------------- */

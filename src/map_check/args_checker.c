@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/31 18:36:43 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/31 23:29:08 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,13 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 
 	if (count < 6)
 		return (check_dirgb(ft_split(line, ' ')));
-	if (ft_strchr("NEWS0", line[0]) || (count == 6 && ft_strchr(line, '0'))
-		|| ft_strchr("NEWS0", line[line_len - 2]))
+	if (ft_strchr("NEWS0", line[0]) || ft_strchr("NEWS0 ", line[line_len - 2]))
 		return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
 	i = -1;
 	while (++i < line_len)
 	{
+		if (count == 6 && ft_strchr("NEWS0", line[i]))
+			return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
 		if (ft_strchr("NEWS01\n ", line[i]) == NULL)
 			return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
 		if (ft_strchr("NEWS", line[i]))
