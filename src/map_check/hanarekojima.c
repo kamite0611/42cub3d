@@ -6,13 +6,13 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 00:24:55 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/01 00:25:57 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	validate_round_player(t_mapinfo *mapinfo, t_game *game)
+bool	vrp(t_mapinfo *mapinfo, t_game *game)
 {
 	int			i;
 	size_t		j;
@@ -40,7 +40,7 @@ bool	validate_round_player(t_mapinfo *mapinfo, t_game *game)
 	return (0);
 }
 
-bool	validate_round_space(t_mapinfo *mapinfo, t_game *game)
+bool	vrs(t_mapinfo *mapinfo, t_game *game)
 {
 	int			i;
 	size_t		j;

@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 00:23:48 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/01 00:25:44 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,8 +237,8 @@ void			free_exit(t_game *game, int status);
 int				finish_game(t_game *game);
 
 /** map_check */
-bool			validate_round_player(t_mapinfo *mapinfo, t_game *game);
-bool			validate_round_space(t_mapinfo *mapinfo, t_game *game);
+bool			vrp(t_mapinfo *mapinfo, t_game *game);
+bool			vrs(t_mapinfo *mapinfo, t_game *game);
 int				args_checker(int argc, char *argv[], t_temp *temp);
 
 /** Render */
