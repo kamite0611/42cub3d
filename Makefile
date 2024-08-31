@@ -6,28 +6,21 @@
 #    By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/08/27 21:52:50 by mnakashi         ###   ########.fr        #
+#    Updated: 2024/09/01 00:25:15 by mnakashi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3D
-CFLAGS	= -Wall -Werror -Wextra -fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra -g
 
 # minilibX
 MLX_DIR 		= minilibx-linux
 MLX_A				= $(MLX_DIR)/libmlx.a
 
-#modified
-X11_PREFIX = $(shell brew --prefix libx11)
-XCB_PREFIX = $(shell brew --prefix libxcb)
-
 MLX_INCS = \
-	-I$(X11_PREFIX)/include -I$(XCB_PREFIX)/include -I$(shell brew --prefix libxau)/include -I$(shell brew --prefix libxdmcp)/include -I$(shell brew --prefix xorgproto)/include \
 	-I $(MLX_DIR)
 
 MLX_LIBS = \
-	-L$(X11_PREFIX)/lib \
-	-L $(shell brew --prefix libxext)/lib \
 	-L $(MLX_DIR) \
 	-lmlx -lXext -lX11 -lm -lz
 
@@ -52,7 +45,6 @@ SRC	= \
 	init/init_texture.c \
 	exit/free_exit.c \
 	map_check/args_checker.c \
-	map_check/hanarekojima.c \
 	render/raycasting.c \
 	render/render_utils.c \
 	render/render.c \
@@ -86,8 +78,8 @@ dirs:
 	@mkdir -p $(OBJ_DIR)/utils
 
 buildLibs:
-	make -C $(MLX_DIR)/
-	make -C $(LIBFT_DIR)/
+	@make -C $(MLX_DIR)/
+	@make -C $(LIBFT_DIR)/
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(INCS) $(OBJS) $(A_FILES) $(MLX_LIBS) -o $(NAME)
@@ -102,6 +94,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 
 clean:
 	$(RM) -r $(OBJ_DIR)
+
 
 fclean: clean
 	$(RM) $(NAME)
