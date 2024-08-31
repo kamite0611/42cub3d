@@ -6,11 +6,18 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 00:24:38 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/01 00:38:43 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	matomete_free(char **tab, char *line)
+{
+	free_tab((void **)tab);
+	free(line);
+	free_exit(NULL, err_msg(ERR_MAP, 1));
+}
 
 bool	check_rgb(char *line)
 {
@@ -26,7 +33,7 @@ bool	check_rgb(char *line)
 	while (colors[++i])
 	{
 		if (i > 3)
-			return (free_tab((void **)colors), free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 1);
+			return (matomete_free(colors, line), 1);
 		j = -1;
 		while (++j < ft_strlen(colors[i]))
 		{
@@ -35,7 +42,7 @@ bool	check_rgb(char *line)
 		}
 	}
 	if (i < 2)
-		return (free_tab((void **)colors), free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 1);
+		return (matomete_free(colors, line), 1);
 	return (free_tab((void **)colors), SUCCESS);
 }
 
