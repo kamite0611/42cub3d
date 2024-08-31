@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/27 21:51:41 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/01 00:24:38 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,14 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 
 	if (count < 6)
 		return (check_dirgb(ft_split(line, ' ')));
-	if (line[0] == '0' || line[ft_strlen(line) - 2] == '0' || (count == 6
-			&& ft_strchr(line, '0')))
-		return (free(line), free_exit(NULL, err_msg(ERR_MSG, 1)), 0);
+	if (ft_strchr("NEWS0", line[0]) || ft_strchr("NEWS0 ", line[line_len - 2]))
+		return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
 	i = -1;
 	while (++i < line_len)
 	{
-		if (!ft_strchr("NEWS01\n ", line[i]))
+		if (count == 6 && ft_strchr("NEWS0", line[i]))
+			return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
+		if (ft_strchr("NEWS01\n ", line[i]) == NULL)
 			return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
 		if (ft_strchr("NEWS", line[i]))
 		{

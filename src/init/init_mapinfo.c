@@ -6,11 +6,12 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 00:17:39 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/01 00:24:16 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
 
 /**
  * Get Map information from file.
@@ -78,19 +79,19 @@ int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
 	size_t			max_width;
 	char			*line;
 
-	line = NULL;
 	count = 0;
 	max_width = 0;
 	mapinfo->map_height = temp->map_count - 6;
-	map = (char **)ft_calloc(sizeof(char *), (temp->map_count + 1));
-	while (1)
+	map = (char **)ft_calloc(sizeof(char *), (mapinfo->map_height + 1));
+	while (count < temp->map_count)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
 		if (count > 5 && max_width < ft_strlen(line) - 1)
 			max_width = ft_strlen(line) - 1;
-		if (count == temp->map_count - 1 && ft_strchr(line, '0'))
+		if ((count == temp->map_count - 1 && ft_strchr(line, '0'))
+			|| (count > 6 && ft_strcmp(line, "\n") == 0))
 			return (close(fd), free_exit(game, err_msg(ERR_MSG, 1)), 1);
 		count += put_mapinfo(line, count, mapinfo, map);
 	}

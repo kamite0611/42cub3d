@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/27 22:07:01 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/01 00:24:55 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,26 @@
 
 bool	validate_round_player(t_mapinfo *mapinfo, t_game *game)
 {
-	int	i;
-	int	j;
+	int			i;
+	size_t		j;
+	const char	**map = (const char **)mapinfo->map;
 
-	i = 4;
-	while (mapinfo->map[++i])
+	i = -1;
+	while (map[++i])
 	{
 		j = -1;
-		while (mapinfo->map[++j])
+		while (map[i][++j])
 		{
-			if ((ft_strchr("NEWS", mapinfo->map[i][j]) != NULL)
-				&& !(i == 0 || i + 1 >= mapinfo->map_height || j == 0 || j == (int)ft_strlen(mapinfo->map[i]))
-				&& !(mapinfo->map[i][j-1] == ' ' || mapinfo->map[i][j+1] == ' ' || mapinfo->map[i+1][j] == ' ' || mapinfo->map[i-1][j] == ' ')
-				&& !(mapinfo->map[i-1][j-1] == ' ' || mapinfo->map[i-1][j+1] == ' ' || mapinfo->map[i+1][j-1] == ' ' || mapinfo->map[i+1][j+1] == ' '))
+			if (ft_strchr("NEWS", map[i][j]) != NULL
+				&& (i + 1 == mapinfo->map_height || j + 1 == ft_strlen(map[i])
+					|| i == 6 || j == 0 || !map[i - 1][j - 1] || !map[i - 1][j]
+					|| !map[i + 1][j] || !map[i + 1][j - 1] || !map[i][j + 1]
+					|| !map[i + 1][j + 1] || !map[i][j - 1]
+					|| !map[i - 1][j + 1] || map[i][j - 1] == ' '
+					|| map[i][j + 1] == ' ' || map[i + 1][j] == ' '
+					|| map[i - 1][j] == ' ' || map[i - 1][j - 1] == ' '
+					|| map[i - 1][j + 1] == ' ' || map[i + 1][j - 1] == ' '
+					|| map[i + 1][j + 1] == ' '))
 				return (free_exit(game, err_msg(ERR_MAP, 1)), 1);
 		}
 	}
@@ -35,18 +42,26 @@ bool	validate_round_player(t_mapinfo *mapinfo, t_game *game)
 
 bool	validate_round_space(t_mapinfo *mapinfo, t_game *game)
 {
-	int	i;
-	int	j;
+	int			i;
+	size_t		j;
+	const char	**map = (const char **)mapinfo->map;
+	const int	h = mapinfo->map_height;
 
-	i = 4;
-	while (mapinfo->map[++i])
+	i = -1;
+	while (map[++i])
 	{
 		j = -1;
-		while (mapinfo->map[++j])
+		while (map[i][++j])
 		{
 			if ((mapinfo->map[i][j] == ' ')
-			&& (mapinfo->map[i][j-1] == '0' || mapinfo->map[i][j+1] == '0' || mapinfo->map[i+1][j] == '0' || mapinfo->map[i-1][j] == '0')
-			&& (mapinfo->map[i-1][j-1] == '0' || mapinfo->map[i-1][j+1] == '0' || mapinfo->map[i+1][j-1] == '0' || mapinfo->map[i+1][j+1] == '0'))
+				&& ((i > 0 && j > 0 && map[i - 1][j - 1] == '0')
+					|| (i > 0 && map[i - 1][j] == '0')
+					|| (i > 0 && map[i - 1][j + 1] && map[i - 1][j + 1] == '0')
+					|| (j > 0 && map[i][j - 1] && map[i][j - 1] == '0')
+					|| (map[i][j + 1] && map[i][j + 1] == '0')
+					|| (i < h - 1 && j > 0 && ft_strlen(map[i + 1]) > j
+						&& (map[i + 1][j - 1] == '0' || map[i + 1][j] == '0'
+							|| map[i + 1][j + 1] == '0'))))
 				return (free_exit(game, err_msg(ERR_MAP, 1)), 1);
 		}
 	}
