@@ -15,6 +15,13 @@
 ./cub3D maps/invalidmap_nowall_right.cub
 ./cub3D maps/invalidmap_nowall_top.cub
 ./cub3D maps/invalidmap_nowall_bottom.cub
-./cub3D .cub
-./cub3D a.cub.cub
-./cub3D cub
+./cub3D maps/.cub
+./cub3D maps/a.cub.cub
+./cub3D maps/cub
+./cub3D maps/hanarekojima1.cub
+./cub3D maps/hanarekojima2.cub
+./cub3D maps/hanarekojima3.cub
+./cub3D maps/leftS.cub
+./cub3D maps/rightW.cub
+./cub3D maps/topN.cub
+./cub3D maps/underN.cub

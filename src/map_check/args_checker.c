@@ -6,11 +6,18 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/27 21:51:41 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/31 18:36:43 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	matomete_free(char **tab, char *line)
+{
+	free_tab((void **)tab);
+	free(line);
+	free_exit(NULL, err_msg(ERR_MAP, 1));
+}
 
 bool	check_rgb(char *line)
 {
@@ -26,16 +33,16 @@ bool	check_rgb(char *line)
 	while (colors[++i])
 	{
 		if (i > 3)
-			return (free_tab((void **)colors), free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 1);
+			return (matomete_free(colors, line), 1);
 		j = -1;
 		while (++j < ft_strlen(colors[i]))
 		{
 			if (!ft_isdigit(colors[i][j]) || ft_atoi(colors[i]) > 255)
-				return (free_tab((void **)colors), free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 1);
+				return (matomete_free(colors, line), 1);
 		}
 	}
 	if (i < 2)
-		return (free_tab((void **)colors), free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 1);
+		return (matomete_free(colors, line), 1);
 	return (free_tab((void **)colors), SUCCESS);
 }
 
@@ -70,13 +77,13 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 
 	if (count < 6)
 		return (check_dirgb(ft_split(line, ' ')));
-	if (line[0] == '0' || line[ft_strlen(line) - 2] == '0' || (count == 6
-			&& ft_strchr(line, '0')))
-		return (free(line), free_exit(NULL, err_msg(ERR_MSG, 1)), 0);
+	if (ft_strchr("NEWS0", line[0]) || (count == 6 && ft_strchr(line, '0'))
+		|| ft_strchr("NEWS0", line[line_len - 2]))
+		return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
 	i = -1;
 	while (++i < line_len)
 	{
-		if (!ft_strchr("NEWS01\n ", line[i]))
+		if (ft_strchr("NEWS01\n ", line[i]) == NULL)
 			return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
 		if (ft_strchr("NEWS", line[i]))
 		{

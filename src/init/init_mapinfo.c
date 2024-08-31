@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/27 21:45:37 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/08/31 18:34:55 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ bool	put_mapinfo(char *line, int count, t_mapinfo *mapinfo, char **map)
 {
 	char	**temp_line;
 
-	if (ft_strcmp(line, "\n") == 0)
-		return (free(line), 0);
+	if (ft_strcmp(line, "\n"))
+			return (free(line), 0);
 	if (count < 6)
 	{
 		temp_line = ft_split(line, ' ');
@@ -91,12 +91,12 @@ int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
 		if (count > 5 || max_width < ft_strlen(line) - 1)
 			max_width = ft_strlen(line) - 1;
 		if (count == temp->map_count - 1 && ft_strchr(line, '0'))
-			return (close(fd), free_exit(game, err_msg(ERR_MSG, 1)), 1);
+			return (close(fd), free_exit(game, err_msg(ERR_MAP, 1)), 1);
 		count += put_mapinfo(line, count, mapinfo, map);
 	}
 	mapinfo->map = map;
 	mapinfo->map_width = max_width;
-	return (close(fd), validate_round_player(mapinfo, game), validate_round_space(mapinfo, game), SUCCESS);
+	return (close(fd), validate_round_player(mapinfo, game), SUCCESS);
 }
 
 int	initialize_mapinfo(t_mapinfo *mapinfo, char *map_path)
