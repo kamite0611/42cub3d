@@ -3,47 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   args_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 14:54:50 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/01 16:03:51 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	matomete_free(char **tab, char *line)
+void	matomete_free(char **tab, char **spline, char *line)
 {
 	free_tab((void **)tab);
+	free_tab((void **)spline);
 	free(line);
 	free_exit(NULL, err_msg(ERR_MAP, 1));
 }
 
-bool	check_rgb(char *line)
+bool	check_rgb(char *c_line, char **spline, char *line)
 {
 	char	**colors;
 	int		i;
 	size_t	j;
 	char	*trimedline;
 
-	trimedline = ft_strtrim(line, "\n");
+	trimedline = ft_strtrim(c_line, "\n");
 	colors = ft_split(trimedline, ',');
 	free(trimedline);
 	i = -1;
 	while (colors[++i])
 	{
 		if (i > 3)
-			return (matomete_free(colors, line), 1);
+			return (matomete_free(colors, spline, line), 1);
 		j = -1;
 		while (++j < ft_strlen(colors[i]))
 		{
 			if (!ft_isdigit(colors[i][j]) || ft_atoi(colors[i]) > 255)
-				return (free_tab((void **)colors), free(line), free_exit(NULL,
-						err_msg(ERR_MAP, 1)), 1);
+				return (matomete_free(colors, spline, line), 1);
 		}
 	}
 	if (i < 2)
-		return (matomete_free(colors, line), 1);
+		return (matomete_free(colors, spline, line), 1);
 	return (free_tab((void **)colors), SUCCESS);
 }
 
@@ -65,7 +65,7 @@ bool	check_dirgb(char **spline, char *line, int i)
 		{
 			if (!ft_strcmp(spline[0], dirgb[i]) && !dirgb_fl[i] && spline[1]
 				&& ((i < 4 && ft_strnstr(spline[1], "text", 4)) || (i >= 4
-						&& check_rgb(spline[1]) == SUCCESS)) && !spline[2])
+						&& check_rgb(spline[1], spline, line) == SUCCESS)) && !spline[2])
 			{
 				dirgb_fl[i] = true;
 				return (free_tab((void **)spline), 1);
