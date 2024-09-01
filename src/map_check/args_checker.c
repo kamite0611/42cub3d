@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 14:53:30 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/01 14:54:50 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ bool	check_rgb(char *line)
 	return (free_tab((void **)colors), SUCCESS);
 }
 
-bool	check_dirgb(char **spline, char *line)
+bool	check_dirgb(char **spline, char *line, int i)
 {
 	static char	*dirgb[6] = {"NO", "WE", "SO", "EA", "C", "F"};
 	static bool	dirgb_fl[6] = {false};
-	int			i;
 
-	if (!spline || !spline[0]){
+	if (!spline || !spline[0])
+	{
 		if (spline)
 			free_tab((void **)spline);
 		return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
@@ -81,7 +81,7 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 	size_t	i;
 
 	if (count < 6)
-		return (check_dirgb(ft_split(line, ' '), line));
+		return (check_dirgb(ft_split(line, ' '), line, 0));
 	if (ft_strchr("NEWS0", line[0]) || ft_strchr("NEWS0 ", line[line_len - 2]))
 		return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
 	i = -1;
