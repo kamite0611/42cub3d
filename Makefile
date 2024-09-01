@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+         #
+#    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/08/24 13:30:13 by mnakashi         ###   ########.fr        #
+#    Updated: 2024/09/01 16:21:58 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3D
-CFLAGS	= -Wall -Werror -Wextra -g
+CFLAGS	= -Wall -Werror -Wextra
 
 # minilibX
 MLX_DIR 		= minilibx-linux
@@ -45,6 +45,8 @@ SRC	= \
 	init/init_texture.c \
 	exit/free_exit.c \
 	map_check/args_checker.c \
+	map_check/hanarekojima.c \
+	map_check/check_xpm.c \
 	render/raycasting.c \
 	render/render_utils.c \
 	render/render.c \

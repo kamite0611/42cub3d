@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 21:59:33 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/23 01:27:11 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/01 16:40:14 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ void	init_game(t_game *game, t_temp *temp)
 	game->player.direction = temp->player_direction;
 	game->player.map_x = temp->player_mapx + 0.5;
 	game->player.map_y = temp->player_mapy + 0.5;
-	init_mapinfo(game, &game->mapinfo, temp);
+	init_mapinfo(game, &game->mapinfo, temp, 0);
+	if (!check_textures_path(game))
+		free_exit(game, err_msg("XPM invalid path", ERROR));
 	init_player_vec(&game->player);
 	init_view_pixels(game);
 	init_texinfo(game, &game->texinfo);

@@ -1,17 +1,18 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile_mac                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+         #
+#    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/08/31 17:34:41 by mnakashi         ###   ########.fr        #
+#    Updated: 2024/09/01 16:27:30 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3D
-CFLAGS	= -Wall -Werror -Wextra -fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra 
+CFLAGS += -fsanitize=address
 
 # minilibX
 MLX_DIR 		= minilibx-linux
@@ -53,6 +54,7 @@ SRC	= \
 	exit/free_exit.c \
 	map_check/args_checker.c \
 	map_check/hanarekojima.c \
+	map_check/check_xpm.c \
 	render/raycasting.c \
 	render/render_utils.c \
 	render/render.c \
