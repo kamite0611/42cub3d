@@ -15,6 +15,14 @@ valgrind ./cub3D maps/invalidmap_nowall_left.cub
 valgrind ./cub3D maps/invalidmap_nowall_right.cub
 valgrind ./cub3D maps/invalidmap_nowall_top.cub
 valgrind ./cub3D maps/invalidmap_nowall_bottom.cub
-valgrind ./cub3D .cub
-valgrind ./cub3D a.cub.cub
-valgrind ./cub3D cub
+valgrind ./cub3D maps/.cub
+valgrind ./cub3D maps/a.cub.cub
+valgrind ./cub3D maps/cub
+valgrind ./cub3D maps/hanarekojima1.cub
+valgrind ./cub3D maps/hanarekojima2.cub
+valgrind ./cub3D maps/hanarekojima3.cub
+valgrind ./cub3D maps/hanarekojima4.cub
+valgrind ./cub3D maps/leftS.cub
+valgrind ./cub3D maps/rightW.cub
+valgrind ./cub3D maps/topN.cub
+valgrind ./cub3D maps/underN.cub
