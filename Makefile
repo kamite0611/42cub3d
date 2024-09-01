@@ -6,12 +6,12 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/09/01 14:21:22 by akamite          ###   ########.fr        #
+#    Updated: 2024/09/01 15:03:11 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3D
-CFLAGS	= -Wall -Werror -Wextra -g
+CFLAGS	= -Wall -Werror -Wextra
 
 # minilibX
 MLX_DIR 		= minilibx-linux
