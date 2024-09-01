@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mapinfo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 14:27:44 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/01 14:46:05 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,13 @@ bool	put_mapinfo(char *line, int count, t_mapinfo *mapinfo, char **map)
 	return (free(line), 1);
 }
 
-int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
+int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp, int count)
 {
-	char			**map;
-	const int		fd = open(temp->map_path, O_RDONLY);
-	int				count;
-	size_t			max_width;
-	char			*line;
+	char		**map;
+	const int	fd = open(temp->map_path, O_RDONLY);
+	size_t		max_width;
+	char		*line;
 
-	count = 0;
 	max_width = 0;
 	mapinfo->map_height = temp->map_count - 6;
 	map = (char **)ft_calloc(sizeof(char *), (mapinfo->map_height + 1));
@@ -90,9 +88,10 @@ int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp)
 			break ;
 		if (count > 5 && max_width < ft_strlen(line) - 1)
 			max_width = ft_strlen(line) - 1;
-		if ((count == temp->map_count - 1 && ft_strchr(line, '0'))
-			|| (count > 6 && ft_strcmp(line, "\n") == 0))
-			return (free(line), free_tab((void **)map), close(fd), free_exit(game, err_msg(ERR_MSG, 1)), 1);
+		if ((count == temp->map_count - 1 && ft_strchr(line, '0')) || (count > 6
+				&& ft_strcmp(line, "\n") == 0))
+			return ((line), free_tab((void **)map), close(fd), free_exit(game,
+					err_msg(ERR_MSG, 1)), 1);
 		count += put_mapinfo(line, count, mapinfo, map);
 	}
 	mapinfo->map = map;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 00:25:44 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/01 14:45:54 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,8 @@ void			rotate_right(t_player *player);
 /** inits */
 int				new_init_mapinfo(t_game *game, t_mapinfo *mapinfo,
 					t_temp *temp);
-int				init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp);
+int				init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp,
+					int count);
 int				initialize_mapinfo(t_mapinfo *mapinfo, char *map_path);
 
 void			init_game(t_game *game, t_temp *temp);
@@ -249,9 +250,8 @@ void			render_raycasting(t_game *game);
 bool			is_hit_wall(t_game *game, t_ray *ray);
 
 //
-int	render(t_game *game);
+int				render(t_game *game);
 //
-
 
 /** Textures */
 int				get_ceiling_color(t_game *game);

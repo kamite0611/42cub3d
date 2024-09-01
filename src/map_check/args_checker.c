@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 14:37:24 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/01 14:48:15 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ bool	check_rgb(char *line)
 		while (++j < ft_strlen(colors[i]))
 		{
 			if (!ft_isdigit(colors[i][j]) || ft_atoi(colors[i]) > 255)
-				return (free_tab((void **)colors), free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 1);
+				return (free_tab((void **)colors), free(line), free_exit(NULL,
+						err_msg(ERR_MAP, 1)), 1);
 		}
 	}
 	if (i < 2)
@@ -52,11 +53,10 @@ bool	check_dirgb(char **spline, char *line)
 	static bool	dirgb_fl[6] = {false};
 	int			i;
 
-	if (!spline || !spline[0]){
-		if(spline)
-			free_tab((void **)spline);	
-		return (free(line),free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
-	}
+	if (spline || !spline[0])
+		free_tab((void **)spline);
+	if (!spline || !spline[0])
+		return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
 	if (spline[0])
 	{
 		i = -1;
@@ -71,7 +71,8 @@ bool	check_dirgb(char **spline, char *line)
 			}
 		}
 	}
-	return (free_tab((void **)spline), free(line),free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
+	return (free_tab((void **)spline), free(line), free_exit(NULL,
+			err_msg(ERR_MAP, 1)), 0);
 }
 
 bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
