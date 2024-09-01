@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mapinfo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 14:50:15 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/01 14:50:45 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp, int count)
 			max_width = ft_strlen(line) - 1;
 		if ((count == temp->map_count - 1 && ft_strchr(line, '0')) || (count > 6
 				&& ft_strcmp(line, "\n") == 0))
-			return (free(line), free_tab((void **)map), close(fd), free_exit(game,
-					err_msg(ERR_MSG, 1)), 1);
+			return (free(line), free_tab((void **)map), close(fd),
+				free_exit(game, err_msg(ERR_MSG, 1)), 1);
 		count += put_mapinfo(line, count, mapinfo, map);
 	}
 	mapinfo->map = map;
