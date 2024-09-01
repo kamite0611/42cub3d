@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 14:48:15 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/01 14:53:30 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,11 @@ bool	check_dirgb(char **spline, char *line)
 	static bool	dirgb_fl[6] = {false};
 	int			i;
 
-	if (spline || !spline[0])
-		free_tab((void **)spline);
-	if (!spline || !spline[0])
+	if (!spline || !spline[0]){
+		if (spline)
+			free_tab((void **)spline);
 		return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
+	}
 	if (spline[0])
 	{
 		i = -1;
