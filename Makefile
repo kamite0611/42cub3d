@@ -6,7 +6,7 @@
 #    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/09/01 15:03:11 by akamite          ###   ########.fr        #
+#    Updated: 2024/09/01 16:21:58 by akamite          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRC	= \
 	exit/free_exit.c \
 	map_check/args_checker.c \
 	map_check/hanarekojima.c \
+	map_check/check_xpm.c \
 	render/raycasting.c \
 	render/render_utils.c \
 	render/render.c \

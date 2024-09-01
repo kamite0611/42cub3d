@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 14:45:54 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/01 16:22:21 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@
 
 # define WALL_C '1'
 
-# define ERR_USAGE "Error\nUsage: ./cub3D <path/to/map.cub>"
-# define ERR_MALLOC "Error\n: malloc() failed."
-# define ERR_ARGMAP "Error\nConfirm map name or map path"
-# define ERR_MSG "Error\nINVALID"
-# define ERR_MAP "Error\nInvalid map content"
-# define ERR_ISLAND "Error\nNot allow to exist hanarekojima"
-# define ERR_MLX "Error\nMLX"
+# define ERR_USAGE "Usage: ./cub3D <path/to/map.cub>"
+# define ERR_MALLOC ": malloc() failed."
+# define ERR_ARGMAP "Confirm map name or map path"
+# define ERR_MSG "INVALID"
+# define ERR_MAP "Invalid map content"
+# define ERR_ISLAND "Not allow to exist hanarekojima"
+# define ERR_MLX "MLX"
 
 /* ------------------- includes ------------------- */
 
@@ -241,6 +241,7 @@ int				finish_game(t_game *game);
 bool			vrp(t_mapinfo *mapinfo, t_game *game);
 bool			vrs(t_mapinfo *mapinfo, t_game *game);
 int				args_checker(int argc, char *argv[], t_temp *temp);
+bool			check_textures_path(t_game *game);
 
 /** Render */
 void			raycasting(t_game *game);
