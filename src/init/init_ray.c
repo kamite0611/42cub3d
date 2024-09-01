@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   init_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 20:23:37 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/10 17:27:49 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/01 14:58:12 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /**
- * step_x, deltadist_xなどを設定する
+ *
  */
 static void	init_ray_dda(t_ray *ray, t_player *player)
 {
@@ -40,7 +40,7 @@ static void	init_ray_dda(t_ray *ray, t_player *player)
 }
 
 /**
- * データをセットする
+ * 
  */
 void	init_ray(t_ray *ray, t_player *player, int x)
 {
@@ -56,7 +56,7 @@ void	init_ray(t_ray *ray, t_player *player, int x)
 }
 
 /**
- * 初期化
+ * 
  */
 void	initialize_ray(t_ray *ray)
 {

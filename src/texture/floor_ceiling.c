@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   floor_ceiling.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 15:39:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/22 23:52:08 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/01 14:58:33 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /**
- * 天井のテクスチャを貼る
+ * 
  */
 int	get_ceiling_color(t_game *game)
 {
@@ -25,7 +25,7 @@ int	get_ceiling_color(t_game *game)
 }
 
 /**
- * 床のテクスチャを貼る
+ * 
  */
 int	get_floor_color(t_game *game)
 {
