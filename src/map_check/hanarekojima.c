@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 15:53:04 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/01 15:56:06 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static bool	is_empty(const char **map, int y, int x)
 {
-	int	mapHeight;
+	int	map_height;
 
-	mapHeight = 0;
-	while (map[mapHeight])
-		mapHeight++;
+	map_height = 0;
+	while (map[map_height])
+		map_height++;
 	if (x < 0 || y < 0)
 		return (false);
-	if (mapHeight <= y || (int)ft_strlen(map[y]) <= x)
+	if (map_height <= y || (int)ft_strlen(map[y]) <= x)
 		return (true);
 	return (map[y][x] == ' ');
 }
@@ -52,6 +52,7 @@ bool	vrp(t_mapinfo *mapinfo, t_game *game)
 	}
 	return (0);
 }
+
 bool	vrs(t_mapinfo *mapinfo, t_game *game)
 {
 	int			i;
