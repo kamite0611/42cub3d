@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 16:08:13 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/06 08:41:26 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	check_rgb(char *c_line, char **spline, char *line)
 	i = -1;
 	while (colors[++i])
 	{
-		if (i > 3)
+		if (i > 2)
 			return (matomete_free(colors, spline, line), 1);
 		j = -1;
 		while (++j < ft_strlen(colors[i]))
@@ -104,6 +104,57 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 	return (1);
 }
 
+#include <stdio.h>
+void	validate_map(t_temp *temp)
+{
+	const int	fd = open(temp->map_path, O_RDONLY);
+	char *line;
+
+	char **temp_map = ft_calloc(sizeof(char *), temp->map_count - 3);
+	int i = 0;
+	size_t j;
+	while (i < temp->map_count - 4)
+	{
+		temp_map[i] = ft_calloc(sizeof(char), temp->max_width + 2);
+		j = 0;
+		while (j < temp->max_width + 1)
+			temp_map[i][j++] = '$';
+		i++;
+	}
+	printf("[%s]\n", temp_map[0]);
+	i = 1;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break;
+		if (ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0 ||
+			ft_strncmp(line, "WE", 2) == 0 || ft_strncmp(line, "EA", 2) == 0 ||
+			ft_strncmp(line, "C", 1) == 0 || ft_strncmp(line, "F", 1) == 0 ||
+			ft_strcmp(line, "\n") == 0)
+		{
+			free(line);
+			continue ;
+		}
+		j = 0;
+		while (j < ft_strlen(line) - 1)
+		{
+			temp_map[i][j + 1] = line[j];
+			j++;
+		}
+		printf("%d: [%s]\n", i, temp_map[i]);
+		free(line);
+		i++;
+	}
+	printf("[%s]\n", temp_map[i]);
+	if (ft_strchr(temp_map[temp->map_count - 6], '0'))
+		printf("aaa\n");//free_exit(NULL, err_msg(ERR_MSG, 1)); //for bottom include '0'
+	if (validate_round_player(temp_map) == 0)
+		printf("bbb\n");
+	if (validate_round_space(temp_map) == 0)
+		printf("ccc\n");
+}
+
 int	args_checker(int argc, char *argv[], t_temp *temp)
 {
 	int		fd;
@@ -124,10 +175,16 @@ int	args_checker(int argc, char *argv[], t_temp *temp)
 			break ;
 		else if (ft_strcmp(line, "\n") != 0)
 			count += read_map(line, count, temp, ft_strlen(line));
+		if (count > 5 && ft_strcmp(line, "\n") == 0) //for bottom hanarekojima
+			return (close(fd), free_exit(NULL, err_msg("$$$", 1)), 1);
+		if (count > 5 && temp->max_width < ft_strlen(line))
+			temp->max_width = ft_strlen(line);
 		free(line);
 	}
 	if (count < 6 || temp->player_flag == false)
 		free_exit(NULL, err_msg(ERR_MAP, 1));
 	temp->map_count = count;
+	printf("%zu\n", temp->max_width);
+	validate_map(temp);
 	return (close(fd), SUCCESS);
 }

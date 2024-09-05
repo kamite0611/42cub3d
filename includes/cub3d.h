@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 16:22:21 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/06 08:34:23 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ typedef struct s_temp
 	int			player_mapx;
 	int			player_mapy;
 	int			texture_size;
+	size_t		max_width;
 }				t_temp;
 
 /* ------------------- functions ------------------- */
@@ -242,6 +243,8 @@ bool			vrp(t_mapinfo *mapinfo, t_game *game);
 bool			vrs(t_mapinfo *mapinfo, t_game *game);
 int				args_checker(int argc, char *argv[], t_temp *temp);
 bool			check_textures_path(t_game *game);
+bool			validate_round_player(char **temp_map);
+bool			validate_round_space(char **temp_map);
 
 /** Render */
 void			raycasting(t_game *game);

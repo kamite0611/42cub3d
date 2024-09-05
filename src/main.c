@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:46:23 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 19:27:33 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/06 07:41:56 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char *argv[])
 	temp.player_mapx = 0;
 	temp.player_mapy = 0;
 	temp.texture_size = 64;
+	temp.max_width = 0;
 	if (args_checker(argc, argv, &temp))
 		return (ERROR);
 	initialize_game(&game, argv[1]);

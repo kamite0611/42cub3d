@@ -1,7 +1,7 @@
 
 
 NO ./texture/no.xpm
-C 225,30,0
+C 225,30,a
 
 EA ./texture/ea.xpm
 SO ./texture/so.xpm
