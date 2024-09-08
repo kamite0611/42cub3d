@@ -30,3 +30,5 @@
 ./cub3D maps/rightW.cub
 ./cub3D maps/topN.cub
 ./cub3D maps/underN.cub
+./cub3D maps/less_dirgb1.cub
+./cub3D maps/less_dirgb2.cub
