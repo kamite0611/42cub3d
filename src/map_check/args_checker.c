@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/08 16:32:11 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/08 16:58:15 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 //confirm no=wall-bottom(need validate_round_zero(delete doll round zero case))
 //confirm .cub pattern
 //confirm a.cub.cub pattern
-//confirm hanarekojima cases
 //hanarekojima3
+//delete vrp vrs
+//confirm print=debug temp=map
 #include <stdio.h>
 
 void	matomete_free(char **tab, char **spline, char *line, char *message)
@@ -86,10 +87,16 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 {
 	size_t	i;
 
+	if (ft_strcmp(line, "\n") == 0 && count < 6)
+		return (free(line), 0);
+	else if (ft_strcmp(line, "\n") == 0 && count >= 6)
+		return (free(line), 1);
 	if (count < 6)
 		return (check_dirgb(temp, ft_split(line, ' '), line, 0));
 	// if (ft_strcmp(line, "\n") == 0)
 	// 	return (free(line), 1);
+	if (temp->max_width < ft_strlen(line)) //include nl
+		temp->max_width = ft_strlen(line);
 	if (ft_strchr("NEWS0", line[0]) || ft_strchr("NEWS0 ", line[line_len - 2]))
 		return (matomete_free(NULL, NULL, line, ERR_MAP), 0);
 	i = -1;
@@ -137,8 +144,8 @@ bool	validate_map(t_temp *temp)
 			break;
 		if (ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0 ||
 			ft_strncmp(line, "WE", 2) == 0 || ft_strncmp(line, "EA", 2) == 0 ||
-			ft_strncmp(line, "C", 1) == 0 || ft_strncmp(line, "F", 1) == 0 ||
-			ft_strcmp(line, "\n") == 0)
+			ft_strncmp(line, "C", 1) == 0 || ft_strncmp(line, "F", 1) == 0
+			|| (i < 6 && ft_strcmp(line, "\n") == 0))
 		{
 			free(line);
 			continue ;
@@ -180,9 +187,9 @@ int	args_checker(int argc, char *argv[], t_temp *temp)
 			break ;
 		else if (ft_strcmp(line, "\n") != 0)
 			count += read_map(line, count, temp, ft_strlen(line));
-		if (count > 5 && temp->max_width < ft_strlen(line))
-			temp->max_width = ft_strlen(line);
-		free(line);
+		// if (count > 5 && temp->max_width < ft_strlen(line))
+		// 	temp->max_width = ft_strlen(line);
+		// free(line);
 	}
 	if (count < 6 || temp->player_flag == false)
 		return (close(fd), free_exit(NULL, err_msg(ERR_MAP, 1)), ERROR);
