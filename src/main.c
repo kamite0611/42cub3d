@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 18:46:23 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/06 07:41:56 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/08 14:52:56 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,17 @@ int	main(int argc, char *argv[])
 	t_game	game;
 	t_temp	temp;
 
-	temp.map_count = 0;
-	temp.map_path[0] = '\0';
-	temp.player_flag = false;
-	temp.player_direction = '\0';
-	temp.player_mapx = 0;
-	temp.player_mapy = 0;
-	temp.texture_size = 64;
-	temp.max_width = 0;
+	// temp.map_count = 0;
+	// temp.map_path[0] = '\0';
+	// temp.player_flag = false;
+	// temp.player_direction = '\0';
+	// temp.player_mapx = 0;
+	// temp.player_mapy = 0;
+	// temp.texture_size = 64;
+	// temp.max_width = 0;
+	// temp.dirgb = {"NO", "WE", "SO", "EA", "C", "F"};
+	// temp.dirgb_flag = {false};
+	init_temp(&temp);
 	if (args_checker(argc, argv, &temp))
 		return (ERROR);
 	initialize_game(&game, argv[1]);

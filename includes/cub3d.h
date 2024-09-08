@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/08 10:30:06 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/08 14:53:18 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define ERR_ISLAND "Not allow to exist hanarekojima"
 # define ERR_RGB "Invalid RGB"
 # define ERR_DIRECTION "Invalid Direction"
+# define ERR_DIRGB "too few DIRGB information"
 # define ERR_MLX "MLX"
 
 /* ------------------- includes ------------------- */
@@ -194,6 +195,8 @@ typedef struct s_temp
 	int			player_mapy;
 	int			texture_size;
 	size_t		max_width;
+	const char	*dirgb[6];
+	bool		dirgb_flag[6];
 }				t_temp;
 
 /* ------------------- functions ------------------- */
@@ -274,6 +277,7 @@ void			put_player(t_player *player);
 void			put_ray(t_ray *ray);
 void			put_tex_ray(t_tex_ray *tex_ray);
 void			put_texinfo(t_texinfo *texinfo);
+void			init_temp(t_temp *temp);
 
 void			free_tab(void **tab);
 

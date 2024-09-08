@@ -6,20 +6,26 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/08 10:30:26 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/08 11:04:54 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-//NOSOWEEA not collect all case
+//NOSOWEEACF not collect all case
+//check Valgrind
+//check joutyou na code
+//norm
 
-void	matomete_free(char **tab, char **spline, char *line)
+void	matomete_free(char **tab, char **spline, char *line, char *message)
 {
-	free_tab((void **)tab);
-	free_tab((void **)spline);
-	free(line);
-	free_exit(NULL, err_msg(ERR_RGB, 1));
+	if (tab)
+		free_tab((void **)tab);
+	if (spline)
+		free_tab((void **)spline);
+	if (line)
+		free(line);
+	free_exit(NULL, err_msg(message, 1));
 }
 
 bool	check_rgb(char *c_line, char **spline, char *line)
@@ -36,46 +42,45 @@ bool	check_rgb(char *c_line, char **spline, char *line)
 	while (colors[++i])
 	{
 		if (i > 2)
-			return (matomete_free(colors, spline, line), 1);
+			return (matomete_free(colors, spline, line, ERR_RGB), 1);
 		j = -1;
 		while (++j < ft_strlen(colors[i]))
 		{
 			if (!ft_isdigit(colors[i][j]) || ft_atoi(colors[i]) > 255)
-				return (matomete_free(colors, spline, line), 1);
+				return (matomete_free(colors, spline, line, ERR_RGB), 1);
 		}
 	}
 	if (i < 2)
-		return (matomete_free(colors, spline, line), 1);
+		return (matomete_free(colors, spline, line, ERR_RGB), 1);
 	return (free_tab((void **)colors), SUCCESS);
 }
 
-bool	check_dirgb(char **spline, char *line, int i)
+bool	check_dirgb(t_temp *temp, char **spline, char *line, int i)
 {
-	static char	*dirgb[6] = {"NO", "WE", "SO", "EA", "C", "F"};
-	static bool	dirgb_fl[6] = {false};
+	// static char	*dirgb[6] = {"NO", "WE", "SO", "EA", "C", "F"};
+	// static bool	dirgb_fl[6] = {false};
 
 	if (!spline || !spline[0])
 	{
-		if (spline)
-			free_tab((void **)spline); //mondainakune?
-		return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
+		// if (spline)
+		// 	free_tab((void **)spline); //mondainakune?
+		return (matomete_free(NULL, spline, line, ERR_DIRGB), 0);
 	}
 	if (spline[0])
 	{
 		i = -1;
 		while (++i < 6)
 		{
-			if (!ft_strcmp(spline[0], dirgb[i]) && !dirgb_fl[i] && spline[1]
+			if (!ft_strcmp(spline[0], temp->dirgb[i]) && !temp->dirgb_flag[i] && spline[1]
 				&& !spline[2] && ((i < 4 && ft_strnstr(spline[1], "text", 4))
 					|| (i >= 4 && check_rgb(spline[1], spline, line) == 0)))
 			{
-				dirgb_fl[i] = true;
+				temp->dirgb_flag[i] = true;
 				return (free_tab((void **)spline), 1);
 			}
 		}
 	}
-	return (free_tab((void **)spline), free(line), free_exit(NULL,
-			err_msg(ERR_DIRECTION, 1)), 0);
+	return (matomete_free(NULL, spline, line, ERR_DIRECTION), 0);
 }
 
 bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
@@ -83,20 +88,20 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 	size_t	i;
 
 	if (count < 6)
-		return (check_dirgb(ft_split(line, ' '), line, 0));
+		return (check_dirgb(temp, ft_split(line, ' '), line, 0));
 	if (ft_strchr("NEWS0", line[0]) || ft_strchr("NEWS0 ", line[line_len - 2]))
-		return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
+		return (matomete_free(NULL, NULL, line, ERR_MAP), 0);
 	i = -1;
 	while (++i < line_len)
 	{
 		if (count == 6 && ft_strchr("NEWS0", line[i]))
-			return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
-		if (ft_strchr("NEWS01\n ", line[i]) == NULL)
-			return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
+			return (matomete_free(NULL, NULL, line, ERR_MAP), 0);
+		if (ft_strchr("NEWS01\n ", line[i]) == NULL) //ueto gappei
+			return (matomete_free(NULL, NULL, line, ERR_MAP), 0);
 		if (ft_strchr("NEWS", line[i]))
 		{
 			if (temp->player_flag == true)
-				return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
+				return (matomete_free(NULL, NULL, line, ERR_MAP), 0);
 			temp->player_direction = line[i];
 			temp->player_mapx = i;
 			temp->player_mapy = count - 6;
@@ -182,9 +187,13 @@ int	args_checker(int argc, char *argv[], t_temp *temp)
 		free(line);
 	}
 	if (count < 6 || temp->player_flag == false)
-		free_exit(NULL, err_msg(ERR_MAP, 1));
+		return (close(fd), free_exit(NULL, err_msg(ERR_MAP, 1)), ERROR);
 	temp->map_count = count;
 	printf("%zu\n", temp->max_width);
+	count = -1;
+	while (++count < 6)
+		if (temp->dirgb[count] == false)
+			return (close(fd), free_exit(NULL, err_msg(ERR_DIRGB, 1)), ERROR);
 	validate_map(temp);
 	return (close(fd), SUCCESS);
 }

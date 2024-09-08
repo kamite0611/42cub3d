@@ -1,17 +1,17 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile_mac                                       :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/09/01 16:27:30 by akamite          ###   ########.fr        #
+#    Updated: 2024/09/08 14:58:32 by mnakashi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3D
-CFLAGS	= -Wall -Werror -Wextra 
+CFLAGS	= -Wall -Werror -Wextra
 CFLAGS += -fsanitize=address
 
 # minilibX
@@ -63,6 +63,7 @@ SRC	= \
 	utils/error.c \
 	utils/debug.c \
 	utils/free.c \
+	utils/init_temp.c \
 	main.c
 
 A_FILES	= $(LIBFT_A)
