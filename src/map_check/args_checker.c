@@ -6,18 +6,20 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/06 08:41:26 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/08 10:30:26 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+//NOSOWEEA not collect all case
 
 void	matomete_free(char **tab, char **spline, char *line)
 {
 	free_tab((void **)tab);
 	free_tab((void **)spline);
 	free(line);
-	free_exit(NULL, err_msg(ERR_MAP, 1));
+	free_exit(NULL, err_msg(ERR_RGB, 1));
 }
 
 bool	check_rgb(char *c_line, char **spline, char *line)
@@ -55,7 +57,7 @@ bool	check_dirgb(char **spline, char *line, int i)
 	if (!spline || !spline[0])
 	{
 		if (spline)
-			free_tab((void **)spline);
+			free_tab((void **)spline); //mondainakune?
 		return (free(line), free_exit(NULL, err_msg(ERR_MAP, 1)), 0);
 	}
 	if (spline[0])
@@ -73,7 +75,7 @@ bool	check_dirgb(char **spline, char *line, int i)
 		}
 	}
 	return (free_tab((void **)spline), free(line), free_exit(NULL,
-			err_msg(ERR_MAP, 1)), 0);
+			err_msg(ERR_DIRECTION, 1)), 0);
 }
 
 bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
@@ -175,8 +177,6 @@ int	args_checker(int argc, char *argv[], t_temp *temp)
 			break ;
 		else if (ft_strcmp(line, "\n") != 0)
 			count += read_map(line, count, temp, ft_strlen(line));
-		if (count > 5 && ft_strcmp(line, "\n") == 0) //for bottom hanarekojima
-			return (close(fd), free_exit(NULL, err_msg("$$$", 1)), 1);
 		if (count > 5 && temp->max_width < ft_strlen(line))
 			temp->max_width = ft_strlen(line);
 		free(line);

@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/06 08:34:23 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/08 10:30:06 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define ERR_MSG "INVALID"
 # define ERR_MAP "Invalid map content"
 # define ERR_ISLAND "Not allow to exist hanarekojima"
+# define ERR_RGB "Invalid RGB"
+# define ERR_DIRECTION "Invalid Direction"
 # define ERR_MLX "MLX"
 
 /* ------------------- includes ------------------- */
