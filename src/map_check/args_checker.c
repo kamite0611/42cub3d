@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/08 17:06:22 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/09 07:04:09 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 //check Valgrind
 //check joutyou na code
 //norm
-//confirm no=wall-bottom(need validate_round_zero(delete doll round zero case))
 //confirm .cub pattern
 //consider a.cub.cub pattern
-//confirm print=debug temp=map
 #include <stdio.h>
 
 void	matomete_free(char **tab, char **spline, char *line, char *message)
@@ -86,13 +84,11 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 	size_t	i;
 
 	if (ft_strcmp(line, "\n") == 0 && count < 6)
-		return (free(line), 0);
+		return (free(line), 0); //return (free(line), (count >= 6))
 	else if (ft_strcmp(line, "\n") == 0 && count >= 6)
 		return (free(line), 1);
 	if (count < 6)
 		return (check_dirgb(temp, ft_split(line, ' '), line, 0));
-	// if (ft_strcmp(line, "\n") == 0)
-	// 	return (free(line), 1);
 	if (temp->max_width < ft_strlen(line)) //include nl
 		temp->max_width = ft_strlen(line);
 	if (ft_strchr("NEWS0", line[0]) || ft_strchr("NEWS0 ", line[line_len - 2]))
@@ -183,8 +179,7 @@ int	args_checker(int argc, char *argv[], t_temp *temp)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		else if (ft_strcmp(line, "\n") != 0)
-			count += read_map(line, count, temp, ft_strlen(line));
+		count += read_map(line, count, temp, ft_strlen(line));
 	}
 	if (count < 6 || temp->player_flag == false)
 		return (close(fd), free_exit(NULL, err_msg(ERR_MAP, 1)), ERROR);

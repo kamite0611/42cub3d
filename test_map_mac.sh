@@ -26,6 +26,8 @@
 ./cub3D maps/hanarekojima4.cub
 ./cub3D maps/hanarekojima5.cub
 ./cub3D maps/hanarekojima6.cub
+./cub3D maps/hanarekojima7.cub
+./cub3D maps/hanarekojima8.cub
 ./cub3D maps/leftS.cub
 ./cub3D maps/rightW.cub
 ./cub3D maps/topN.cub
