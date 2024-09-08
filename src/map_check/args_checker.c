@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/08 15:38:09 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/08 16:00:52 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 //check Valgrind
 //check joutyou na code
 //norm
+//confirm no=wall-bottom(need validate_round_zero(delete doll round zero case))
+//confirm .cub pattern
+//confirm a.cub.cub pattern
+//confirm hanarekojima cases
 #include <stdio.h>
 
 void	matomete_free(char **tab, char **spline, char *line, char *message)
@@ -95,7 +99,7 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 		if (ft_strchr("NEWS", line[i]))
 		{
 			if (temp->player_flag == true)
-				return (matomete_free(NULL, NULL, line, ERR_MAP), 0);
+				return (matomete_free(NULL, NULL, line, ERR_PLAYER), 0);
 			temp->player_direction = line[i];
 			temp->player_mapx = i;
 			temp->player_mapy = count - 6;
