@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 00:16:00 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/08 16:32:41 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/08 17:00:41 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ bool	put_mapinfo(char *line, int count, t_mapinfo *mapinfo, char **map)
 	return (free(line), 1);
 }
 
-int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp, int count)
+int	init_mapinfo(t_mapinfo *mapinfo, t_temp *temp, int count)
 {
 	char		**map;
 	const int	fd = open(temp->map_path, O_RDONLY);
@@ -92,7 +92,7 @@ int	init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp, int count)
 	}
 	mapinfo->map = map;
 	mapinfo->map_width = max_width;
-	return (close(fd), vrp(mapinfo, game), vrs(mapinfo, game), SUCCESS);
+	return (close(fd), SUCCESS);
 }
 
 int	initialize_mapinfo(t_mapinfo *mapinfo, char *map_path)

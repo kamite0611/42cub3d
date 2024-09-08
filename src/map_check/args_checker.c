@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/08 16:58:15 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/08 17:00:11 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 //hanarekojima3
 //delete vrp vrs
 //confirm print=debug temp=map
+//delete (void)game delete init_mapinfo
 #include <stdio.h>
 
 void	matomete_free(char **tab, char **spline, char *line, char *message)
