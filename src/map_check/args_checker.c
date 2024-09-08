@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/08 16:00:52 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/08 16:32:11 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 //confirm .cub pattern
 //confirm a.cub.cub pattern
 //confirm hanarekojima cases
+//hanarekojima3
 #include <stdio.h>
 
 void	matomete_free(char **tab, char **spline, char *line, char *message)
@@ -69,8 +70,8 @@ bool	check_dirgb(t_temp *temp, char **spline, char *line, int i)
 		i = -1;
 		while (++i < 6)
 		{
-			if (!ft_strcmp(spline[0], temp->dirgb[i]) && !temp->dirgb_flag[i] && spline[1]
-				&& !spline[2] && ((i < 4 && xpm_nl_check(spline[1]))
+			if (!ft_strcmp(spline[0], temp->dirgb[i]) && !temp->dirgb_flag[i]
+				&& spline[1] && !spline[2] && ((i < 4 && xpm_nl_check(spline[1]))
 					|| (i >= 4 && check_rgb(spline[1], spline, line) == 0)))
 			{//tyottowakarinikui
 				temp->dirgb_flag[i] = true;
@@ -87,6 +88,8 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 
 	if (count < 6)
 		return (check_dirgb(temp, ft_split(line, ' '), line, 0));
+	// if (ft_strcmp(line, "\n") == 0)
+	// 	return (free(line), 1);
 	if (ft_strchr("NEWS0", line[0]) || ft_strchr("NEWS0 ", line[line_len - 2]))
 		return (matomete_free(NULL, NULL, line, ERR_MAP), 0);
 	i = -1;
@@ -109,7 +112,7 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 	return (1);
 }
 
-void	validate_map(t_temp *temp)
+bool	validate_map(t_temp *temp)
 {
 	const int	fd = open(temp->map_path, O_RDONLY);
 	char *line;
@@ -151,12 +154,10 @@ void	validate_map(t_temp *temp)
 		i++;
 	}
 	printf("[%s]\n", temp_map[i]);
-	if (ft_strchr(temp_map[temp->map_count - 6], '0'))
-		printf("aaa\n");//free_exit(NULL, err_msg(ERR_MSG, 1)); //for bottom include '0'
-	if (validate_round_player(temp_map) == 0)
-		printf("bbb\n");
-	if (validate_round_space(temp_map) == 0)
-		printf("ccc\n");
+	if (validate_round_player(temp_map) || validate_round_space(temp_map)
+		|| validate_round_zero(temp_map))
+		return (close(fd), matomete_free(NULL, temp_map, NULL, ERR_MSG), 1);
+	return (close(fd), free_tab((void **)temp_map), 0);
 }
 
 int	args_checker(int argc, char *argv[], t_temp *temp)
@@ -191,6 +192,5 @@ int	args_checker(int argc, char *argv[], t_temp *temp)
 	while (++count < 6)
 		if (temp->dirgb[count] == false)
 			return (close(fd), free_exit(NULL, err_msg(ERR_DIRGB, 1)), ERROR);
-	validate_map(temp);
-	return (close(fd), SUCCESS);
+	return (close(fd), validate_map(temp), SUCCESS);
 }

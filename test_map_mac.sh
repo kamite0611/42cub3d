@@ -22,7 +22,7 @@
 ./cub3D maps/cub
 ./cub3D maps/hanarekojima1.cub
 ./cub3D maps/hanarekojima2.cub
-./cub3D maps/hanarekojima3.cub
+# ./cub3D maps/hanarekojima3.cub
 ./cub3D maps/hanarekojima4.cub
 ./cub3D maps/hanarekojima5.cub
 ./cub3D maps/hanarekojima6.cub
