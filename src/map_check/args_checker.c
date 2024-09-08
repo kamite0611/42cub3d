@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/08 17:00:11 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/08 17:06:22 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,8 @@
 //norm
 //confirm no=wall-bottom(need validate_round_zero(delete doll round zero case))
 //confirm .cub pattern
-//confirm a.cub.cub pattern
-//hanarekojima3
-//delete vrp vrs
+//consider a.cub.cub pattern
 //confirm print=debug temp=map
-//delete (void)game delete init_mapinfo
 #include <stdio.h>
 
 void	matomete_free(char **tab, char **spline, char *line, char *message)
@@ -188,9 +185,6 @@ int	args_checker(int argc, char *argv[], t_temp *temp)
 			break ;
 		else if (ft_strcmp(line, "\n") != 0)
 			count += read_map(line, count, temp, ft_strlen(line));
-		// if (count > 5 && temp->max_width < ft_strlen(line))
-		// 	temp->max_width = ft_strlen(line);
-		// free(line);
 	}
 	if (count < 6 || temp->player_flag == false)
 		return (close(fd), free_exit(NULL, err_msg(ERR_MAP, 1)), ERROR);
