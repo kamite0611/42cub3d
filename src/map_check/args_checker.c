@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/08 15:30:48 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:38:09 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ bool	check_dirgb(t_temp *temp, char **spline, char *line, int i)
 		while (++i < 6)
 		{
 			if (!ft_strcmp(spline[0], temp->dirgb[i]) && !temp->dirgb_flag[i] && spline[1]
-				&& !spline[2] && ((i < 4 & xpm_file_check(spline[1]))
+				&& !spline[2] && ((i < 4 && xpm_nl_check(spline[1]))
 					|| (i >= 4 && check_rgb(spline[1], spline, line) == 0)))
 			{//tyottowakarinikui
 				temp->dirgb_flag[i] = true;
