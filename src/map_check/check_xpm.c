@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_xpm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 18:41:28 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 16:43:31 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/08 15:25:18 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static bool	is_xpm_file(char *path)
 	return (false);
 }
 
-static bool	xpm_file_check(char *path)
+bool	xpm_file_check(char *path)
 {
 	int	fd;
 

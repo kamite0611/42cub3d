@@ -1,12 +1,11 @@
 
 
-NO ./textures/no.xpm
+NO textures/bookshelf.xpm
 C 225,30,a
 
-EA ./textures/ea.xpm
-SO ./textures/so.xpm
-
-WE ./textures/we.xpm
+EA textures/bookshelf.xpm
+SO textures/bookshelf.xpm
+WE textures/bookshelf.xpm
 
 
 

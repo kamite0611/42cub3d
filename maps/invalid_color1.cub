@@ -1,7 +1,7 @@
-NO ./textures/wall_n.xpm
-SO ./textures/wall_s.xpm
-EA ./textures/wall_e.xpm
-WE ./textures/wall_w.xpm
+NO textures/bookshelf.xpm
+SO textures/bookshelf.xpm
+EA textures/bookshelf.xpm
+WE textures/bookshelf.xpm
 
 F 0,255,2147483648
 C 255,0,255

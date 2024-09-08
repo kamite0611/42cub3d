@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/08 11:04:54 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:30:48 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 //check Valgrind
 //check joutyou na code
 //norm
+#include <stdio.h>
 
 void	matomete_free(char **tab, char **spline, char *line, char *message)
 {
@@ -46,35 +47,28 @@ bool	check_rgb(char *c_line, char **spline, char *line)
 		j = -1;
 		while (++j < ft_strlen(colors[i]))
 		{
-			if (!ft_isdigit(colors[i][j]) || ft_atoi(colors[i]) > 255)
+			if (!ft_isdigit(colors[i][j]) || j > 2 || ft_atoi(colors[i]) > 255)
 				return (matomete_free(colors, spline, line, ERR_RGB), 1);
 		}
 	}
 	if (i < 2)
 		return (matomete_free(colors, spline, line, ERR_RGB), 1);
-	return (free_tab((void **)colors), SUCCESS);
+	return (free_tab((void **)colors), 0);
 }
 
 bool	check_dirgb(t_temp *temp, char **spline, char *line, int i)
 {
-	// static char	*dirgb[6] = {"NO", "WE", "SO", "EA", "C", "F"};
-	// static bool	dirgb_fl[6] = {false};
-
 	if (!spline || !spline[0])
-	{
-		// if (spline)
-		// 	free_tab((void **)spline); //mondainakune?
 		return (matomete_free(NULL, spline, line, ERR_DIRGB), 0);
-	}
 	if (spline[0])
 	{
 		i = -1;
 		while (++i < 6)
 		{
 			if (!ft_strcmp(spline[0], temp->dirgb[i]) && !temp->dirgb_flag[i] && spline[1]
-				&& !spline[2] && ((i < 4 && ft_strnstr(spline[1], "text", 4))
+				&& !spline[2] && ((i < 4 & xpm_file_check(spline[1]))
 					|| (i >= 4 && check_rgb(spline[1], spline, line) == 0)))
-			{
+			{//tyottowakarinikui
 				temp->dirgb_flag[i] = true;
 				return (free_tab((void **)spline), 1);
 			}
@@ -111,7 +105,6 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 	return (1);
 }
 
-#include <stdio.h>
 void	validate_map(t_temp *temp)
 {
 	const int	fd = open(temp->map_path, O_RDONLY);

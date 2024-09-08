@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/08 14:53:18 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:25:40 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,6 +248,7 @@ bool			vrp(t_mapinfo *mapinfo, t_game *game);
 bool			vrs(t_mapinfo *mapinfo, t_game *game);
 int				args_checker(int argc, char *argv[], t_temp *temp);
 bool			check_textures_path(t_game *game);
+bool			xpm_file_check(char *path);
 bool			validate_round_player(char **temp_map);
 bool			validate_round_space(char **temp_map);
 

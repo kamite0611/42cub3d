@@ -11,7 +11,6 @@
 ./cub3D maps/invalidmap_minus.cub
 ./cub3D maps/invalidmap_newline.cub
 ./cub3D maps/invalidmap_noplayer.cub
-./cub3D maps/invalidmap_noplayer.cub
 ./cub3D maps/invalidmap_space.cub
 ./cub3D maps/invalidmap.cbu
 ./cub3D maps/invalidmap_nowall_left.cub

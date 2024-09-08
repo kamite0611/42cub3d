@@ -1,6 +1,6 @@
-NO ./texture/wall_n.xpm
-WE ./texture/wall_w.xpm
-SO ./texture/wall_s.xpm
+NO textures/bookshelf.xpm
+WE textures/bookshelf.xpm
+SO textures/bookshelf.xpm
 
 
 
