@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/08 15:50:35 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/08 16:09:26 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 # define ERR_DIRECTION "Invalid Direction"
 # define ERR_DIRGB "too few DIRGB information"
 # define ERR_PLAYER "Invalid Player"
+# define ERR_SPACE "' ' need walls"
+# define ERR_ZERO "'0' need walls"
 # define ERR_MLX "MLX"
 
 /* ------------------- includes ------------------- */
