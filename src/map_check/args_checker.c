@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/10 07:53:44 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/10 08:14:57 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 //consider a.cub.cub pattern
 #include <stdio.h>
 
-bool	check_rgb(char *c_line, char **spline, char *line)
+static bool	check_rgb(char *c_line, char **spline, char *line)
 {
 	char	**colors;
 	int		i;
@@ -46,7 +46,7 @@ bool	check_rgb(char *c_line, char **spline, char *line)
 	return (free_tab((void **)colors), 0);
 }
 
-bool	check_dirgb(t_temp *temp, char **spline, char *line, int i)
+static bool	check_dirgb(t_temp *temp, char **spline, char *line, int i)
 {
 	if (!spline || !spline[0])
 		return (matomete_free(NULL, spline, line, ERR_DIRGB), 0);
@@ -68,9 +68,9 @@ bool	check_dirgb(t_temp *temp, char **spline, char *line, int i)
 	return (matomete_free(NULL, spline, line, ERR_DIRECTION), 0);
 }
 
-bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
+static bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 {
-	size_t	i;
+	int	i;
 
 	if (ft_strcmp(line, "\n") == 0)
 		return (free(line), (count >= 6));
@@ -80,8 +80,8 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 		temp->max_width = ft_strlen(line);
 	if (ft_strchr("NEWS0", line[0]) || ft_strchr("NEWS0 ", line[line_len - 2]))
 		return (matomete_free(NULL, NULL, line, ERR_MAP), 0);
-	i = -1; //int noga yokune?
-	while (++i < line_len)
+	i = -1;
+	while (++i < (int)line_len)
 	{
 		if (count == 6 && ft_strchr("NEWS0", line[i]))
 			return (matomete_free(NULL, NULL, line, ERR_MAP), 0);
@@ -100,18 +100,37 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 	return (1);
 }
 
+static int	check_filename(int argc, char *filename, t_temp *temp)
+{
+	int		fd;
+	size_t	len;
+	size_t	i;
+
+	len = ft_strlen(filename);
+	if (argc != 2 || len <= 4 || ft_strcmp(filename + len - 4, ".cub") != 0)
+		return (free_exit(NULL, err_msg(ERR_USAGE, 1)), ERROR);
+	i = 0;
+	while (i < len - 4)
+	{
+		if (ft_strncmp(filename + i, ".cub", 4) == 0)
+			return (free_exit(NULL, err_msg(ERR_USAGE, 1)), ERROR);
+		i++;
+	}
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (close(fd), free_exit(NULL, err_msg(ERR_ARGMAP, 1)), ERROR);
+	ft_strlcpy(temp->map_path, filename, 4095);
+	return fd;
+}
+
+
 int	args_checker(int argc, char *argv[], t_temp *temp)
 {
 	int		fd;
 	int		count;
 	char	*line;
 
-	if (argc != 2 || ft_strcmp(argv[1] + ft_strlen(argv[1]) - 4, ".cub") != 0)
-		free_exit(NULL, err_msg(ERR_USAGE, 1));
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return (close(fd), free_exit(NULL, err_msg(ERR_ARGMAP, 1)), ERROR);
-	ft_strlcpy(temp->map_path, argv[1], 4095);
+	fd = check_filename(argc, argv[1], temp);
 	count = 0;
 	while (1)
 	{
@@ -123,9 +142,8 @@ int	args_checker(int argc, char *argv[], t_temp *temp)
 	if (count < 6 || temp->player_flag == false)
 		return (close(fd), free_exit(NULL, err_msg(ERR_MAP, 1)), ERROR);
 	temp->map_count = count;
-	printf("%zu\n", temp->max_width);
 	count = -1;
-	while (++count < 6) //iranaikamo
+	while (++count < 6)
 		if (temp->dirgb[count] == false)
 			return (close(fd), free_exit(NULL, err_msg(ERR_DIRGB, 1)), ERROR);
 	return (close(fd), validate_map(temp), SUCCESS);
