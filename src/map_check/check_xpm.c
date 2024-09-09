@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 18:41:28 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/08 15:45:50 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/10 07:49:18 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ bool	check_textures_path(t_game *game)
 	return (true);
 }
 
-#include <stdio.h>
 bool	xpm_nl_check(char *path)
 {
 	int		fd;

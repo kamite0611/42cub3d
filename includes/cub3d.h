@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/08 17:00:56 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/10 07:52:47 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,12 +246,11 @@ void			free_exit(t_game *game, int status);
 int				finish_game(t_game *game);
 
 /** map_check */
-bool			vrp(t_mapinfo *mapinfo, t_game *game);
-bool			vrs(t_mapinfo *mapinfo, t_game *game);
 int				args_checker(int argc, char *argv[], t_temp *temp);
 bool			check_textures_path(t_game *game);
 bool			xpm_file_check(char *path);
 bool			xpm_nl_check(char *path);
+bool			validate_map(t_temp *temp);
 bool			validate_round_player(char **temp_map);
 bool			validate_round_space(char **temp_map);
 bool			validate_round_zero(char **temp_map);
@@ -285,5 +284,6 @@ void			put_texinfo(t_texinfo *texinfo);
 void			init_temp(t_temp *temp);
 
 void			free_tab(void **tab);
+void			matomete_free(char **tab, char **spline, char *line, char *message);
 
 #endif

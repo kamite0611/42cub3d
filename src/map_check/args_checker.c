@@ -6,13 +6,12 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/09 07:04:09 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/10 07:52:11 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-//NOSOWEEACF not collect all case
 //check Valgrind
 //check joutyou na code
 //norm
@@ -20,16 +19,16 @@
 //consider a.cub.cub pattern
 #include <stdio.h>
 
-void	matomete_free(char **tab, char **spline, char *line, char *message)
-{
-	if (tab)
-		free_tab((void **)tab);
-	if (spline)
-		free_tab((void **)spline);
-	if (line)
-		free(line);
-	free_exit(NULL, err_msg(message, 1));
-}
+// void	matomete_free(char **tab, char **spline, char *line, char *message)
+// {
+// 	if (tab)
+// 		free_tab((void **)tab);
+// 	if (spline)
+// 		free_tab((void **)spline);
+// 	if (line)
+// 		free(line);
+// 	free_exit(NULL, err_msg(message, 1));
+// }
 
 bool	check_rgb(char *c_line, char **spline, char *line)
 {
@@ -68,9 +67,10 @@ bool	check_dirgb(t_temp *temp, char **spline, char *line, int i)
 		while (++i < 6)
 		{
 			if (!ft_strcmp(spline[0], temp->dirgb[i]) && !temp->dirgb_flag[i]
-				&& spline[1] && !spline[2] && ((i < 4 && xpm_nl_check(spline[1]))
+				&& spline[1] && !spline[2]
+				&& ((i < 4 && xpm_nl_check(spline[1]))
 					|| (i >= 4 && check_rgb(spline[1], spline, line) == 0)))
-			{//tyottowakarinikui
+			{
 				temp->dirgb_flag[i] = true;
 				return (free_tab((void **)spline), 1);
 			}
@@ -83,17 +83,15 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 {
 	size_t	i;
 
-	if (ft_strcmp(line, "\n") == 0 && count < 6)
-		return (free(line), 0); //return (free(line), (count >= 6))
-	else if (ft_strcmp(line, "\n") == 0 && count >= 6)
-		return (free(line), 1);
+	if (ft_strcmp(line, "\n") == 0)
+		return (free(line), (count >= 6));
 	if (count < 6)
 		return (check_dirgb(temp, ft_split(line, ' '), line, 0));
 	if (temp->max_width < ft_strlen(line)) //include nl
 		temp->max_width = ft_strlen(line);
 	if (ft_strchr("NEWS0", line[0]) || ft_strchr("NEWS0 ", line[line_len - 2]))
 		return (matomete_free(NULL, NULL, line, ERR_MAP), 0);
-	i = -1;
+	i = -1; //int noga yokune?
 	while (++i < line_len)
 	{
 		if (count == 6 && ft_strchr("NEWS0", line[i]))
@@ -113,53 +111,53 @@ bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 	return (1);
 }
 
-bool	validate_map(t_temp *temp)
-{
-	const int	fd = open(temp->map_path, O_RDONLY);
-	char *line;
+// bool	validate_map(t_temp *temp)
+// {
+// 	const int	fd = open(temp->map_path, O_RDONLY);
+// 	char *line;
 
-	char **temp_map = ft_calloc(sizeof(char *), temp->map_count - 3);
-	int i = 0;
-	size_t j;
-	while (i < temp->map_count - 4)
-	{
-		temp_map[i] = ft_calloc(sizeof(char), temp->max_width + 2);
-		j = 0;
-		while (j < temp->max_width + 1)
-			temp_map[i][j++] = '$';
-		i++;
-	}
-	printf("[%s]\n", temp_map[0]);
-	i = 1;
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (line == NULL)
-			break;
-		if (ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0 ||
-			ft_strncmp(line, "WE", 2) == 0 || ft_strncmp(line, "EA", 2) == 0 ||
-			ft_strncmp(line, "C", 1) == 0 || ft_strncmp(line, "F", 1) == 0
-			|| (i < 6 && ft_strcmp(line, "\n") == 0))
-		{
-			free(line);
-			continue ;
-		}
-		j = 0;
-		while (j < ft_strlen(line) - 1)
-		{
-			temp_map[i][j + 1] = line[j];
-			j++;
-		}
-		printf("%d: [%s]\n", i, temp_map[i]);
-		free(line);
-		i++;
-	}
-	printf("[%s]\n", temp_map[i]);
-	if (validate_round_player(temp_map) || validate_round_space(temp_map)
-		|| validate_round_zero(temp_map))
-		return (close(fd), matomete_free(NULL, temp_map, NULL, ERR_MSG), 1);
-	return (close(fd), free_tab((void **)temp_map), 0);
-}
+// 	char **temp_map = ft_calloc(sizeof(char *), temp->map_count - 3);
+// 	int i = 0;
+// 	size_t j;
+// 	while (i < temp->map_count - 4)
+// 	{
+// 		temp_map[i] = ft_calloc(sizeof(char), temp->max_width + 2);
+// 		j = 0;
+// 		while (j < temp->max_width + 1)
+// 			temp_map[i][j++] = '$';
+// 		i++;
+// 	}
+// 	printf("[%s]\n", temp_map[0]);
+// 	i = 1;
+// 	while (1)
+// 	{
+// 		line = get_next_line(fd);
+// 		if (line == NULL)
+// 			break;
+// 		if (ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0 ||
+// 			ft_strncmp(line, "WE", 2) == 0 || ft_strncmp(line, "EA", 2) == 0 ||
+// 			ft_strncmp(line, "C", 1) == 0 || ft_strncmp(line, "F", 1) == 0
+// 			|| (i < 6 && ft_strcmp(line, "\n") == 0))
+// 		{
+// 			free(line);
+// 			continue ;
+// 		}
+// 		j = 0;
+// 		while (j < ft_strlen(line) - 1)
+// 		{
+// 			temp_map[i][j + 1] = line[j];
+// 			j++;
+// 		}
+// 		printf("%d: [%s]\n", i, temp_map[i]);
+// 		free(line);
+// 		i++;
+// 	}
+// 	printf("[%s]\n", temp_map[i]);
+// 	if (validate_round_player(temp_map) || validate_round_space(temp_map)
+// 		|| validate_round_zero(temp_map))
+// 		return (close(fd), matomete_free(NULL, temp_map, NULL, ERR_MSG), 1);
+// 	return (close(fd), free_tab((void **)temp_map), 0);
+// }
 
 int	args_checker(int argc, char *argv[], t_temp *temp)
 {
@@ -171,7 +169,7 @@ int	args_checker(int argc, char *argv[], t_temp *temp)
 		free_exit(NULL, err_msg(ERR_USAGE, 1));
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		return (free_exit(NULL, err_msg(ERR_ARGMAP, 1)), close(fd), ERROR);
+		return (close(fd), free_exit(NULL, err_msg(ERR_ARGMAP, 1)), ERROR);
 	ft_strlcpy(temp->map_path, argv[1], 4095);
 	count = 0;
 	while (1)
@@ -186,7 +184,7 @@ int	args_checker(int argc, char *argv[], t_temp *temp)
 	temp->map_count = count;
 	printf("%zu\n", temp->max_width);
 	count = -1;
-	while (++count < 6)
+	while (++count < 6) //iranaikamo
 		if (temp->dirgb[count] == false)
 			return (close(fd), free_exit(NULL, err_msg(ERR_DIRGB, 1)), ERROR);
 	return (close(fd), validate_map(temp), SUCCESS);

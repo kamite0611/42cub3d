@@ -6,7 +6,7 @@
 #    By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/09/08 14:58:32 by mnakashi         ###   ########.fr        #
+#    Updated: 2024/09/10 07:51:51 by mnakashi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ SRC	= \
 	map_check/args_checker.c \
 	map_check/hanarekojima.c \
 	map_check/check_xpm.c \
+	map_check/validate_map.c \
 	render/raycasting.c \
 	render/render_utils.c \
 	render/render.c \
