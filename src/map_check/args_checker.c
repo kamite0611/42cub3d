@@ -6,7 +6,7 @@
 /*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/10 08:14:57 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/10 21:48:47 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,13 @@ static bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 		return (free(line), (count >= 6));
 	if (count < 6)
 		return (check_dirgb(temp, ft_split(line, ' '), line, 0));
-	if (temp->max_width < ft_strlen(line)) //include nl
-		temp->max_width = ft_strlen(line);
 	if (ft_strchr("NEWS0", line[0]) || ft_strchr("NEWS0 ", line[line_len - 2]))
 		return (matomete_free(NULL, NULL, line, ERR_MAP), 0);
 	i = -1;
 	while (++i < (int)line_len)
 	{
-		if (count == 6 && ft_strchr("NEWS0", line[i]))
-			return (matomete_free(NULL, NULL, line, ERR_MAP), 0);
-		if (ft_strchr("NEWS01\n ", line[i]) == NULL) //ueto gappei
+		if ((count == 6 && ft_strchr("NEWS0", line[i]))
+			|| (ft_strchr("NEWS01\n ", line[i]) == NULL))
 			return (matomete_free(NULL, NULL, line, ERR_MAP), 0);
 		if (ft_strchr("NEWS", line[i]))
 		{
@@ -103,26 +100,30 @@ static bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 static int	check_filename(int argc, char *filename, t_temp *temp)
 {
 	int		fd;
-	size_t	len;
-	size_t	i;
+	char	*basename;
+	int		len;
+	int		i;
 
-	len = ft_strlen(filename);
-	if (argc != 2 || len <= 4 || ft_strcmp(filename + len - 4, ".cub") != 0)
+	if (argc != 2)
 		return (free_exit(NULL, err_msg(ERR_USAGE, 1)), ERROR);
-	i = 0;
-	while (i < len - 4)
-	{
-		if (ft_strncmp(filename + i, ".cub", 4) == 0)
+	basename = ft_strrchr(filename, '/');
+	if (basename)
+		basename++;
+	else
+		basename = filename;
+	len = (int)ft_strlen(basename);
+	if (len <= 4 || ft_strcmp(basename + len - 4, ".cub") != 0)
+		return (free_exit(NULL, err_msg(ERR_USAGE, 1)), ERROR);
+	i = -1;
+	while (++i < len - 4)
+		if (ft_strncmp(basename + i, ".cub", 4) == 0)
 			return (free_exit(NULL, err_msg(ERR_USAGE, 1)), ERROR);
-		i++;
-	}
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (close(fd), free_exit(NULL, err_msg(ERR_ARGMAP, 1)), ERROR);
 	ft_strlcpy(temp->map_path, filename, 4095);
-	return fd;
+	return (fd);
 }
-
 
 int	args_checker(int argc, char *argv[], t_temp *temp)
 {
@@ -137,6 +138,8 @@ int	args_checker(int argc, char *argv[], t_temp *temp)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
+		if (temp->max_width < ft_strlen(line))
+			temp->max_width = ft_strlen(line);
 		count += read_map(line, count, temp, ft_strlen(line));
 	}
 	if (count < 6 || temp->player_flag == false)
