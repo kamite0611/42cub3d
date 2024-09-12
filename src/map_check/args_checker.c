@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/12 22:23:54 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/12 22:36:08 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static bool	check_dirgb(t_temp *temp, char **spline, char *line, int i)
 						&& check_rgb(spline[1], spline, line) == 0)))
 			{
 				temp->dirgb_flag[i] = true;
-				return (free_tab((void **)spline), 1);
+				return (free(line), free_tab((void **)spline), 1);
 			}
 		}
 	}
@@ -94,7 +94,7 @@ static bool	read_map(char *line, int count, t_temp *temp, size_t line_len)
 			temp->player_flag = true;
 		}
 	}
-	return (1);
+	return (free(line), 1);
 }
 
 static int	check_filename(int argc, char *filename, t_temp *temp)
