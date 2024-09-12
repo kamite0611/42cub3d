@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/12 22:38:33 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/12 22:39:02 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,6 +284,7 @@ void			put_texinfo(t_texinfo *texinfo);
 void			init_temp(t_temp *temp);
 
 void			free_tab(void **tab);
-void			matomete_free(char **tab, char **spline, char *line, char *message);
+void			matomete_free(char **tab, char **spline, char *line,
+					char *message);
 
 #endif
