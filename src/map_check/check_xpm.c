@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_xpm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 18:41:28 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/10 07:49:18 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/12 22:18:45 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static bool	is_xpm_file(char *path)
 	size_t	len;
 
 	len = ft_strlen(path);
-	if (len - 5 < 0)
+	if ((int)(len - 5) < 0)
 		return (false);
 	if (path[len - 4] == '.' && path[len - 3] == 'x' && path[len - 2] == 'p'
 		&& path[len - 1] == 'm')
