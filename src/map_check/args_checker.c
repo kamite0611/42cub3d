@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   args_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/10 21:48:47 by mnakashi         ###   ########.fr       */
+/*   Updated: 2024/09/12 22:22:58 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-//check Valgrind
-//check joutyou na code
-//norm
-//confirm .cub pattern
-//consider a.cub.cub pattern
+// check Valgrind
+// check joutyou na code
+// norm
+// confirm .cub pattern
+// consider a.cub.cub pattern
 #include <stdio.h>
 
 static bool	check_rgb(char *c_line, char **spline, char *line)
@@ -56,9 +56,9 @@ static bool	check_dirgb(t_temp *temp, char **spline, char *line, int i)
 		while (++i < 6)
 		{
 			if (!ft_strcmp(spline[0], temp->dirgb[i]) && !temp->dirgb_flag[i]
-				&& spline[1] && !spline[2]
-				&& ((i < 4 && xpm_nl_check(spline[1]))
-					|| (i >= 4 && check_rgb(spline[1], spline, line) == 0)))
+				&& spline[1] && !spline[2] && ((i < 4
+						&& xpm_nl_check(spline[1])) || (i >= 4
+						&& check_rgb(spline[1], spline, line) == 0)))
 			{
 				temp->dirgb_flag[i] = true;
 				return (free_tab((void **)spline), 1);
@@ -133,8 +133,11 @@ int	args_checker(int argc, char *argv[], t_temp *temp)
 
 	fd = check_filename(argc, argv[1], temp);
 	count = 0;
+	line = NULL;
 	while (1)
 	{
+		if (line)
+			free(line);
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
