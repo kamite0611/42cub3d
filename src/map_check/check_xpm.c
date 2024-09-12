@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_xpm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 18:41:28 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 16:43:31 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/10 07:49:18 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static bool	is_xpm_file(char *path)
 	return (false);
 }
 
-static bool	xpm_file_check(char *path)
+bool	xpm_file_check(char *path)
 {
 	int	fd;
 
@@ -62,4 +62,21 @@ bool	check_textures_path(t_game *game)
 	if (!xpm_file_check(game->mapinfo.ea_path))
 		return (false);
 	return (true);
+}
+
+bool	xpm_nl_check(char *path)
+{
+	int		fd;
+	char	*trimedpath;
+
+	trimedpath = ft_strtrim(path, "\n");
+	if (is_dir(trimedpath))
+		return (free(trimedpath), false);
+	if (ft_strcmp(trimedpath + ft_strlen(trimedpath) - 4, ".xpm") != 0)
+		return (free(trimedpath), false);
+	fd = open(trimedpath, O_RDONLY);
+	if (fd == -1)
+		return (free(trimedpath), false);
+	close(fd);
+	return (free(trimedpath), true);
 }

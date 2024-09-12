@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 01:50:36 by akamite           #+#    #+#             */
-/*   Updated: 2024/08/04 00:29:11 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/10 07:52:18 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,15 @@ void	free_tab(void **tab)
 		free(tab);
 		tab = NULL;
 	}
+}
+
+void	matomete_free(char **tab, char **spline, char *line, char *message)
+{
+	if (tab)
+		free_tab((void **)tab);
+	if (spline)
+		free_tab((void **)spline);
+	if (line)
+		free(line);
+	free_exit(NULL, err_msg(message, 1));
 }

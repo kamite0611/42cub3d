@@ -3,24 +3,32 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 00:12:48 by akamite           #+#    #+#              #
-#    Updated: 2024/09/01 16:21:58 by akamite          ###   ########.fr        #
+#    Updated: 2024/09/10 07:51:51 by mnakashi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3D
 CFLAGS	= -Wall -Werror -Wextra
+CFLAGS += -fsanitize=address
 
 # minilibX
 MLX_DIR 		= minilibx-linux
 MLX_A				= $(MLX_DIR)/libmlx.a
 
+#modified
+X11_PREFIX = $(shell brew --prefix libx11)
+XCB_PREFIX = $(shell brew --prefix libxcb)
+
 MLX_INCS = \
+	-I$(X11_PREFIX)/include -I$(XCB_PREFIX)/include -I$(shell brew --prefix libxau)/include -I$(shell brew --prefix libxdmcp)/include -I$(shell brew --prefix xorgproto)/include \
 	-I $(MLX_DIR)
 
 MLX_LIBS = \
+	-L$(X11_PREFIX)/lib \
+	-L $(shell brew --prefix libxext)/lib \
 	-L $(MLX_DIR) \
 	-lmlx -lXext -lX11 -lm -lz
 
@@ -47,6 +55,7 @@ SRC	= \
 	map_check/args_checker.c \
 	map_check/hanarekojima.c \
 	map_check/check_xpm.c \
+	map_check/validate_map.c \
 	render/raycasting.c \
 	render/render_utils.c \
 	render/render.c \
@@ -55,6 +64,7 @@ SRC	= \
 	utils/error.c \
 	utils/debug.c \
 	utils/free.c \
+	utils/init_temp.c \
 	main.c
 
 A_FILES	= $(LIBFT_A)
@@ -80,8 +90,8 @@ dirs:
 	@mkdir -p $(OBJ_DIR)/utils
 
 buildLibs:
-	@make -C $(MLX_DIR)/
-	@make -C $(LIBFT_DIR)/
+	make -C $(MLX_DIR)/
+	make -C $(LIBFT_DIR)/
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(INCS) $(OBJS) $(A_FILES) $(MLX_LIBS) -o $(NAME)
@@ -96,7 +106,6 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 
 clean:
 	$(RM) -r $(OBJ_DIR)
-
 
 fclean: clean
 	$(RM) $(NAME)

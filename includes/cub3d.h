@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mnakashi <mnakashi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:05:10 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/01 16:22:21 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/10 07:52:47 by mnakashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@
 # define ERR_MSG "INVALID"
 # define ERR_MAP "Invalid map content"
 # define ERR_ISLAND "Not allow to exist hanarekojima"
+# define ERR_RGB "Invalid RGB"
+# define ERR_DIRECTION "Invalid Direction"
+# define ERR_DIRGB "too few DIRGB information"
+# define ERR_PLAYER "Invalid Player"
+# define ERR_SPACE "' ' need walls"
+# define ERR_ZERO "'0' need walls"
 # define ERR_MLX "MLX"
 
 /* ------------------- includes ------------------- */
@@ -191,6 +197,9 @@ typedef struct s_temp
 	int			player_mapx;
 	int			player_mapy;
 	int			texture_size;
+	size_t		max_width;
+	const char	*dirgb[6];
+	bool		dirgb_flag[6];
 }				t_temp;
 
 /* ------------------- functions ------------------- */
@@ -209,8 +218,7 @@ void			rotate_right(t_player *player);
 /** inits */
 int				new_init_mapinfo(t_game *game, t_mapinfo *mapinfo,
 					t_temp *temp);
-int				init_mapinfo(t_game *game, t_mapinfo *mapinfo, t_temp *temp,
-					int count);
+int				init_mapinfo(t_mapinfo *mapinfo, t_temp *temp, int count);
 int				initialize_mapinfo(t_mapinfo *mapinfo, char *map_path);
 
 void			init_game(t_game *game, t_temp *temp);
@@ -238,10 +246,14 @@ void			free_exit(t_game *game, int status);
 int				finish_game(t_game *game);
 
 /** map_check */
-bool			vrp(t_mapinfo *mapinfo, t_game *game);
-bool			vrs(t_mapinfo *mapinfo, t_game *game);
 int				args_checker(int argc, char *argv[], t_temp *temp);
 bool			check_textures_path(t_game *game);
+bool			xpm_file_check(char *path);
+bool			xpm_nl_check(char *path);
+bool			validate_map(t_temp *temp);
+bool			validate_round_player(char **temp_map);
+bool			validate_round_space(char **temp_map);
+bool			validate_round_zero(char **temp_map);
 
 /** Render */
 void			raycasting(t_game *game);
@@ -269,7 +281,9 @@ void			put_player(t_player *player);
 void			put_ray(t_ray *ray);
 void			put_tex_ray(t_tex_ray *tex_ray);
 void			put_texinfo(t_texinfo *texinfo);
+void			init_temp(t_temp *temp);
 
 void			free_tab(void **tab);
+void			matomete_free(char **tab, char **spline, char *line, char *message);
 
 #endif
