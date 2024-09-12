@@ -6,7 +6,7 @@
 /*   By: akamite <akamite@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 23:31:51 by akamite           #+#    #+#             */
-/*   Updated: 2024/09/12 22:22:58 by akamite          ###   ########.fr       */
+/*   Updated: 2024/09/12 22:23:54 by akamite          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,11 +133,8 @@ int	args_checker(int argc, char *argv[], t_temp *temp)
 
 	fd = check_filename(argc, argv[1], temp);
 	count = 0;
-	line = NULL;
 	while (1)
 	{
-		if (line)
-			free(line);
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
